@@ -1,0 +1,282 @@
+@import "parts/reset";
+@import "parts/colors";
+@import "parts/shades";
+
+/* Z-INDEX */
+
+$z-index__site-menu: 200;
+$z-index__site-content: 0;
+$z-index__site-player: 100;
+
+/* COLOR SCHEMES */
+
+$site-custom-theme: false;
+
+$site-color-background-menu: $color-white-300 !default;
+$site-color-background-content: $color-white-400 !default;
+$site-color-background-player: $color-white-400 !default;
+$site-color-background-general: $color-white-500 !default;
+$site-color-font-general: $color-black-900 !default;
+$site-color-font-logo: $color-black-900 !default;
+$site-color-nav-separator: $color-black-200 !default;
+$site-color-background-loading: $color-white-500 !default;
+$site-color-loading-border: $color-white-600 !default;
+$site-color-loading-border-left: $color-primary-500 !default;
+$site-color-loading-border-right: $color-secondary-500 !default;
+$site-color-header-background-top-mobile: $color-secondary-100 !default;
+
+@if $site-custom-theme == true {
+  /* Poner colores acá */
+}
+
+/* General Styles */
+
+body {
+  background-color: $site-color-background-general;
+  color: $site-color-font-general;
+}
+
+.site {
+  width: 100%;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  display: grid;
+  grid-template-areas:
+    "menu"
+    "content"
+    "player";
+  grid-template-rows: auto 1fr auto;
+
+  .site__menu {
+    grid-area: menu;
+    background-color: $site-color-background-menu;
+    height: auto;
+    z-index: $z-index__site-menu;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    padding: 0 1rem;
+
+    position: sticky;
+    width: 100%;
+
+    .site__logo {
+      grid-column: 1;
+      width: 100%;
+      height: 100%;
+
+      text-decoration: none;
+      color: $site-color-font-logo;
+
+      display: grid;
+      justify-content: left;
+      align-items: center;
+
+      overflow: hidden;
+
+      .logo__text {
+        display: inline;
+        font-size: 1.8rem;
+        font-weight: 700;
+        width: auto;
+        text-align: left;
+
+        /*         @media (min-width: 375px) {
+          & {
+            min-width: 12rem;
+          }
+        }
+
+        @media (min-width: 768px) {
+          & {
+            min-width: 24rem;
+          }
+        } */
+      }
+
+      .logo__picture {
+        display: block;
+        height: 100%;
+        width: 100%;
+        filter: brightness(0);
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        justify-content: left;
+        align-items: center;
+
+        /* @media (min-width: 375px) {
+          & {
+            width: 12rem;
+          }
+        }
+
+        @media (min-width: 768px) {
+          & {
+            width: 24rem;
+          }
+        } */
+      }
+    }
+
+    .site__menu__hamburger {
+      text-align: right;
+
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: center;
+
+      @media (min-width: 768px) {
+        & {
+          display: none;
+        }
+      }
+
+      .hamburger__icon {
+        display: block;
+        width: 6.8rem;
+        height: 75%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .hamburger__icon_line {
+        content: "";
+        background-color: black;
+        display: block;
+        height: 0.375rem;
+        width: 2.5rem;
+        border-radius: 1rem;
+        transition: all 0.25s ease-in-out;
+        position: absolute;
+        &--one {
+          transform: translateY(-0.75rem);
+        }
+        &--three {
+          transform: translateY(0.75rem);
+        }
+      }
+
+      .hamburger__icon_line.active {
+        transform: rotate(45deg);
+      }
+
+      .hamburger__icon_line.active ~ .hamburger__icon_line {
+        transform: rotate(-45deg);
+      }
+
+      .hamburger__icon_line.active ~ .hamburger__icon_line:last-child {
+        opacity: 0;
+      }
+    }
+
+    #site__menu__links {
+      /* background-color: violet; */
+      grid-row: 2;
+      /* grid-area: 2 / 2 / 2 / 4; */
+      grid-area: 2 / 1 / 2 / 4;
+      display: flex;
+      flex-direction: column;
+      max-height: 0;
+      transition: all 0.25s ease-in-out;
+      overflow: hidden;
+      font-weight: 500;
+
+      &.active {
+        max-height: calc(var(--vh, 1vh) * 100);
+      }
+      & a {
+        text-align: right;
+        padding: 1rem;
+        border-bottom: 0.1rem solid $site-color-nav-separator;
+      }
+
+      @media (min-width: 768px) {
+        & {
+          max-height: unset;
+          grid-row: 1;
+          grid-column-start: 2;
+          grid-column-end: 3;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-end;
+          transition: none;
+        }
+        & a {
+          text-align: center;
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+
+.site__content {
+  grid-area: content;
+  background-color: $site-color-background-content;
+  height: 100%;
+  overflow: auto;
+  z-index: $z-index__site-content;
+
+  .header {
+    width: 100%;
+    height: 40rem;
+    background: linear-gradient(
+        to bottom,
+        #00000000,
+        $site-color-background-content
+      ),
+      url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_375px.jpg");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    @media (min-width: 425px) {
+      & {
+        height: 50rem;
+        background: linear-gradient(
+            to bottom,
+            #00000000,
+            $site-color-background-content
+          ),
+          url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_375px.jpg");
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+    @media (min-width: 768px) {
+      & {
+        height: 64rem;
+        background: linear-gradient(
+            to bottom,
+            #00000000,
+            $site-color-background-content
+          ),
+          url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_768px.jpg");
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+  }
+}
+
+.site__player {
+  grid-area: player;
+  background-color: $site-color-background-player;
+  height: 6.8rem;
+  z-index: $z-index__site-player;
+}
+
+@import "parts/preloader";
