@@ -9,11 +9,22 @@ function debounce(callback, wait) {
 }
 
 function updateScreen() {
-  // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+  /* // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
   let vh = window.innerHeight * 0.01;
   // Then we set the value in the --vh custom property to the root of the document
   document.documentElement.style.setProperty("--vh", `${vh}px`);
-  console.log(window.innerHeight);
+  console.log(window.innerHeight); */
+  document.getElementById("debug__text").innerHTML =
+    "Absoulute: " +
+    screen.width +
+    "x" +
+    screen.height +
+    "<br>" +
+    "Available: " +
+    screen.availWidth +
+    "x" +
+    screen.availHeight +
+    "<br>";
 }
 
 window.addEventListener(
@@ -26,7 +37,6 @@ window.addEventListener(
 updateScreen();
 
 if (document.readyState == "interactive") {
-
   document.querySelector("#menuToggler").addEventListener("click", () => {
     if (
       document.querySelector("#site__menu__links").classList.contains("active")
@@ -69,11 +79,11 @@ function confirmExit() {
   }, 500);
 }
 
-document.getElementsByTagName("a").onclick = function () {
-  /* document.getElementById("abc").href = "xyz.php"; */
-  /* alert("confirm exit is being called");
+/* document.getElementsByTagName("a").onclick = function () { */
+/* document.getElementById("abc").href = "xyz.php"; */
+/* alert("confirm exit is being called");
   return false; */
-};
+/* }; */
 
 /* document.body.querySelectorAll("a").forEach(function (node) {
   // Do whatever you want with the node object.
