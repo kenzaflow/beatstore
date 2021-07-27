@@ -23,7 +23,7 @@
 }
 
 .preloading__spinner--visible {
-  background-color: $site-color-background-loading;
+  background-color: var(--site-color-background-loading);
   display: flex;
 }
 
@@ -36,10 +36,10 @@
   height: 5rem;
   border-radius: 50%;
   border: solid 1rem;
-  border-color: $site-color-loading-border;
-  border-left-color: $site-color-loading-border-left;
+  border-color: var(--site-color-loading-border);
+  border-left-color: var(--site-color-loading-border-left);
   border-left-width: 1rem;
-  border-right-color: $site-color-loading-border-right;
+  border-right-color: var(--site-color-loading-border-right);
   border-right-width: 1rem;
   animation-timing-function: linear;
   animation-duration: 2s;
@@ -51,17 +51,17 @@
 @keyframes preloading__spinner-animation {
   0% {
     transform: rotate(0deg);
-    /* border-left-color: $site-color-loading-border-left;
-    border-right-color: $site-color-loading-border-right; */
+    /* border-left-color: var(--site-color-loading-border-left;
+    border-right-color: var(--site-color-loading-border-right; */
   }
   50% {
     transform: rotate(180deg);
-    /* border-right-color: $site-color-loading-border-left;
-    border-left-color: $site-color-loading-border-right; */
+    /* border-right-color: var(--site-color-loading-border-left;
+    border-left-color: var(--site-color-loading-border-right; */
   }
   100% {
     transform: rotate(360deg);
-    /* border-left-color: $site-color-loading-border-left;
-    border-right-color: $site-color-loading-border-right; */
+    /* border-left-color: var(--site-color-loading-border-left;
+    border-right-color: var(--site-color-loading-border-right; */
   }
 }

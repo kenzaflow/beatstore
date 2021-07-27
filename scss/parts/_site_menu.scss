@@ -1,6 +1,6 @@
 .site__menu {
     grid-area: menu;
-    background-color: $site-color-background-menu;
+    background-color: var(--site-color-background-menu);
     height: 6.4rem;
     z-index: $z-index__site-menu;
 
@@ -18,7 +18,7 @@
       height: 100%;
 
       text-decoration: none;
-      color: $site-color-font-logo;
+      color: var(--site-color-font-logo);
 
       display: grid;
       justify-content: left;
@@ -140,7 +140,7 @@
           will-change: transform;
           padding: 1rem;
 
-          background-color: $site-color-background-menu;
+          background-color: var(--site-color-background-menu);
           border-radius: 0.25rem;
         }
         &.active {
@@ -148,7 +148,7 @@
           transform: scaleY(100%);
         }
         & a:not(a:last-child) {
-          border-bottom: 0.1rem solid $site-color-nav-separator;
+          border-bottom: 0.1rem solid var(--site-color-nav-separator);
         }
       }
 

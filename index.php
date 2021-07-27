@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=0.0.1" />
+  <link rel="stylesheet" href="css/style.css?v=0.0.2" />
 </head>
 
 <body class="preloading">
@@ -80,7 +80,7 @@
   <div class="debug__box">
     <p id="debug__text">Size: 1920x1080</p>
   </div>
-  <script src="scripts/main.js" defer></script>
+  <script src="scripts/main.js?0.0.2" defer></script>
 </body>
 
 </html>

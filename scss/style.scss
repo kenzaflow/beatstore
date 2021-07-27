@@ -10,49 +10,59 @@ $z-index__site-player: 100;
 
 /* COLOR SCHEMES */
 
+$theme-colors: (
+  site-custom-theme: none,
+  site-color-background-menu: $color-white-300,
+  site-color-background-content: $color-white-400,
+  site-color-background-player: $color-white-400,
+  site-color-background-general: $color-white-500,
+  site-color-font-general: $color-black-900,
+  site-color-font-logo: $color-black-900,
+  site-color-nav-separator: $color-black-200,
+  site-color-background-loading: $color-white-500,
+  site-color-loading-border: $color-white-600,
+  site-color-loading-border-left: $color-primary-500,
+  site-color-loading-border-right: $color-secondary-500,
+  site-color-header-background-top-mobile: $color-secondary-100,
+  /* colors */ /* features */ /* title */ /* text */
+    site-color-featured-title-text: $color-black-900,
+  /* colors */ /* features */ /* info */ /* text */
+    site-color-featured-info-text: $color-black-700,
+  /* colors */ /* features */ /* tags */ /* text */
+    site-color-featured-tags-text: $color-black-800,
+  /* colors */ /* features */ /* tags */ /* button */
+    site-color-featured-tags-button: $color-white-200,
+);
+
+/* // sass variable map
+$theme-colors: (
+  color-black: #ffbb00,
+); */
+
+// loop over each name, color
 :root {
-  --site-custom-theme: none;
-
-  --site-color-background-menu: $color-white-300;
-  --site-color-background-content: $color-white-400;
-  --site-color-background-player: $color-white-400;
-  --site-color-background-general: $color-white-500;
-  --site-color-font-general: $color-black-900;
-  --site-color-font-logo: $color-black-900;
-  --site-color-nav-separator: $color-black-200;
-  --site-color-background-loading: $color-white-500;
-  --site-color-loading-border: $color-white-600;
-  --site-color-loading-border-left: $color-primary-500;
-  --site-color-loading-border-right: $color-secondary-500;
-  --site-color-header-background-top-mobile: $color-secondary-100;
-
-  /* Featured */
-  --site-color-featured-title-text: $color-black-900;
-  --site-color-featured-info-text: $color-black-700;
-  --site-color-featured-tags-text: $color-black-800;
-  --site-color-featured-tags-button: $color-white-200;
+  // each item in color map
+  @each $name, $color in $theme-colors {
+    --#{$name}: #{$color};
+  }
 }
 
 /* ================ */
 /* ================ */
 /* ================ */
 /* ================ */
-
-@if var(--custom-theme) == true {
-  /* Poner colores acá */
-}
 
 /* General Styles */
 
 body {
-  background-color: var(--color-background-general);
-  color: var(--color-font-general);
+  background-color: var(--site-color-background-general);
+  color: var(--site-color-font-general);
 }
 
 .site {
   width: 100%;
   height: 100vh;
-  /* height: calc(var(--vh, 1vh) * 100); */
+  /* height: calc(var(--site-vh, 1vh) * 100); */
   display: grid;
   grid-template-areas:
     "menu"
@@ -65,7 +75,7 @@ body {
 
 .site__content {
   grid-area: content;
-  background-color: var(--color-background-content);
+  background-color: var(--site-color-background-content);
   height: 100%;
   overflow: auto;
   z-index: $z-index__site-content;
@@ -76,7 +86,7 @@ body {
     background: linear-gradient(
         to bottom,
         #00000000,
-        var(--color-background-content)
+        var(--site-color-background-content)
       ),
       url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_375px.jpg");
     background-position: top;
@@ -88,7 +98,7 @@ body {
         background: linear-gradient(
             to bottom,
             #00000000,
-            var(--color-background-content)
+            var(--site-color-background-content)
           ),
           url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_375px.jpg");
         background-position: top;
@@ -102,7 +112,7 @@ body {
         background: linear-gradient(
             to bottom,
             #00000000,
-            var(--color-background-content)
+            var(--site-color-background-content)
           ),
           url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_768px.jpg");
         background-position: top;
@@ -141,7 +151,7 @@ body {
         width: auto;
         height: auto;
         font-size: 2.8rem;
-        color: var(--color-featured-title-text);
+        color: var(--site-color-featured-title-text);
         font-weight: 700;
       }
       .featured_track__info {
@@ -157,7 +167,7 @@ body {
         .featured_track__info__line {
           font-size: 1.5rem;
           font-weight: 500;
-          color: var(--color-featured-info-text);
+          color: var(--site-color-featured-info-text);
         }
       }
       .featured_track__tags {
@@ -175,12 +185,12 @@ body {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          background-color: var(--color-featured-tags-button);
+          background-color: var(--site-color-featured-tags-button);
           padding: 0 1rem;
           width: auto;
           font-size: 1.5rem;
           font-weight: 600;
-          color: var(--color-featured-tags-text);
+          color: var(--site-color-featured-tags-text);
           height: 4rem;
           border-radius: 2rem;
           filter: drop-shadow(0 0.25rem 0.5rem transparentize(black, 0.75));
@@ -192,7 +202,7 @@ body {
 
 .site__player {
   grid-area: player;
-  background-color: var(--color-background-player);
+  background-color: var(--site-color-background-player);
   height: 6.8rem;
   z-index: $z-index__site-player;
 }

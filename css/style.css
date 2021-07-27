@@ -37,26 +37,48 @@ body * {
 
 /* Z-INDEX */
 /* COLOR SCHEMES */
-/* Featured */
+/* // sass variable map
+$theme-colors: (
+  color-black: #ffbb00,
+); */
+:root {
+  --site-custom-theme: none;
+  --site-color-background-menu: #f0f0f0;
+  --site-color-background-content: #dedede;
+  --site-color-background-player: #dedede;
+  --site-color-background-general: #c2c2c2;
+  --site-color-font-general: #000000;
+  --site-color-font-logo: #000000;
+  --site-color-nav-separator: #d9d9d9;
+  --site-color-background-loading: #c2c2c2;
+  --site-color-loading-border: #979797;
+  --site-color-loading-border-left: #00aeff;
+  --site-color-loading-border-right: #ff5100;
+  --site-color-header-background-top-mobile: #ffcbb7;
+  --site-color-featured-title-text: #000000;
+  --site-color-featured-info-text: #434343;
+  --site-color-featured-tags-text: #262626;
+  --site-color-featured-tags-button: #f5f5f5; }
+
 /* ================ */
 /* ================ */
 /* ================ */
 /* ================ */
 /* General Styles */
 body {
-  background-color: #c2c2c2;
-  color: #000000; }
+  background-color: var(--site-color-background-general);
+  color: var(--site-color-font-general); }
 
 .site {
   width: 100%;
   height: 100vh;
-  /* height: calc(var(--vh, 1vh) * 100); */
+  /* height: calc(var(--site-vh, 1vh) * 100); */
   display: grid;
   grid-template-areas: "menu" "content" "player";
   grid-template-rows: 6.4rem 1fr auto; }
   .site .site__menu {
     grid-area: menu;
-    background-color: #f0f0f0;
+    background-color: var(--site-color-background-menu);
     height: 6.4rem;
     z-index: 200;
     display: grid;
@@ -69,7 +91,7 @@ body {
       width: 100%;
       height: 100%;
       text-decoration: none;
-      color: #000000;
+      color: var(--site-color-font-logo);
       display: grid;
       justify-content: left;
       align-items: center;
@@ -160,13 +182,13 @@ body {
           transition: transform 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
           will-change: transform;
           padding: 1rem;
-          background-color: #f0f0f0;
+          background-color: var(--site-color-background-menu);
           border-radius: 0.25rem; }
         .site .site__menu #site__menu__links.active {
           transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
           transform: scaleY(100%); }
         .site .site__menu #site__menu__links a:not(a:last-child) {
-          border-bottom: 0.1rem solid #d9d9d9; } }
+          border-bottom: 0.1rem solid var(--site-color-nav-separator); } }
       @media (min-width: 768px) {
         .site .site__menu #site__menu__links {
           max-height: unset;
@@ -183,28 +205,28 @@ body {
 
 .site__content {
   grid-area: content;
-  background-color: #dedede;
+  background-color: var(--site-color-background-content);
   height: 100%;
   overflow: auto;
   z-index: 0; }
   .site__content .header {
     width: 100%;
     height: 30rem;
-    background: linear-gradient(to bottom, #00000000, #dedede), url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_375px.jpg");
+    background: linear-gradient(to bottom, #00000000, var(--site-color-background-content)), url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_375px.jpg");
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover; }
     @media (min-width: 425px) {
       .site__content .header {
         height: 50rem;
-        background: linear-gradient(to bottom, #00000000, #dedede), url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_375px.jpg");
+        background: linear-gradient(to bottom, #00000000, var(--site-color-background-content)), url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_375px.jpg");
         background-position: top;
         background-repeat: no-repeat;
         background-size: cover; } }
     @media (min-width: 768px) {
       .site__content .header {
         height: 64rem;
-        background: linear-gradient(to bottom, #00000000, #dedede), url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_768px.jpg");
+        background: linear-gradient(to bottom, #00000000, var(--site-color-background-content)), url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_768px.jpg");
         background-position: top;
         background-repeat: no-repeat;
         background-size: cover; } }
@@ -232,7 +254,7 @@ body {
         width: auto;
         height: auto;
         font-size: 2.8rem;
-        color: #000000;
+        color: var(--site-color-featured-title-text);
         font-weight: 700; }
       .site__content .header .featured_track .featured_track__info {
         grid-area: info;
@@ -247,7 +269,7 @@ body {
         .site__content .header .featured_track .featured_track__info .featured_track__info__line {
           font-size: 1.5rem;
           font-weight: 500;
-          color: #434343; }
+          color: var(--site-color-featured-info-text); }
       .site__content .header .featured_track .featured_track__tags {
         grid-area: tags;
         width: auto;
@@ -263,19 +285,19 @@ body {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          background-color: #f5f5f5;
+          background-color: var(--site-color-featured-tags-button);
           padding: 0 1rem;
           width: auto;
           font-size: 1.5rem;
           font-weight: 600;
-          color: #262626;
+          color: var(--site-color-featured-tags-text);
           height: 4rem;
           border-radius: 2rem;
           filter: drop-shadow(0 0.25rem 0.5rem rgba(0, 0, 0, 0.25)); }
 
 .site__player {
   grid-area: player;
-  background-color: #dedede;
+  background-color: var(--site-color-background-player);
   height: 6.8rem;
   z-index: 100; }
 
@@ -292,7 +314,8 @@ body {
   filter: opacity(0.75) drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.25));
   transition: filter 0.5s;
   cursor: default;
-  font-weight: 500; }
+  font-weight: 500;
+  display: none; }
 
 .debug__box:hover {
   filter: opacity(0.25); }
@@ -324,7 +347,7 @@ body {
   transition: all 0.5s ease-in-out; }
 
 .preloading__spinner--visible {
-  background-color: #c2c2c2;
+  background-color: var(--site-color-background-loading);
   display: flex; }
 
 .preloading__spinner--hide {
@@ -335,10 +358,10 @@ body {
   height: 5rem;
   border-radius: 50%;
   border: solid 1rem;
-  border-color: #979797;
-  border-left-color: #00aeff;
+  border-color: var(--site-color-loading-border);
+  border-left-color: var(--site-color-loading-border-left);
   border-left-width: 1rem;
-  border-right-color: #ff5100;
+  border-right-color: var(--site-color-loading-border-right);
   border-right-width: 1rem;
   animation-timing-function: linear;
   animation-duration: 2s;
@@ -349,13 +372,13 @@ body {
 @keyframes preloading__spinner-animation {
   0% {
     transform: rotate(0deg);
-    /* border-left-color: $site-color-loading-border-left;
-    border-right-color: $site-color-loading-border-right; */ }
+    /* border-left-color: var(--site-color-loading-border-left;
+    border-right-color: var(--site-color-loading-border-right; */ }
   50% {
     transform: rotate(180deg);
-    /* border-right-color: $site-color-loading-border-left;
-    border-left-color: $site-color-loading-border-right; */ }
+    /* border-right-color: var(--site-color-loading-border-left;
+    border-left-color: var(--site-color-loading-border-right; */ }
   100% {
     transform: rotate(360deg);
-    /* border-left-color: $site-color-loading-border-left;
-    border-right-color: $site-color-loading-border-right; */ } }
+    /* border-left-color: var(--site-color-loading-border-left;
+    border-right-color: var(--site-color-loading-border-right; */ } }
