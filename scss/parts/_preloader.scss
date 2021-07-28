@@ -1,3 +1,22 @@
+$theme-preloader-colors: (
+  /* loading */ /* background */ /* color */ /* ============== */
+    site-loading-background-color: $color-white-500,
+  /* loading */ /* circle */ /* base--color */ /* ============== */
+    site-loading-circle-color: $color-white-600,
+  /* loading */ /* circle */ /* left--color */ /* ============== */
+    site-loading-circle-color--left: $color-primary-500,
+  /* loading */ /* circle */ /* right--color */ /* ============== */
+    site-loading-circle-color--right: $color-secondary-500
+);
+
+// loop over each name, color
+:root {
+  // each item in color map
+  @each $name, $color in $theme-preloader-colors {
+    --#{$name}: #{$color};
+  }
+}
+
 .preloading * {
   -webkit-transition: none !important;
   -moz-transition: none !important;
@@ -23,7 +42,7 @@
 }
 
 .preloading__spinner--visible {
-  background-color: var(--site-color-background-loading);
+  background-color: var(--site-loading-background-color);
   display: flex;
 }
 
@@ -36,10 +55,10 @@
   height: 5rem;
   border-radius: 50%;
   border: solid 1rem;
-  border-color: var(--site-color-loading-border);
-  border-left-color: var(--site-color-loading-border-left);
+  border-color: var(--site-loading-circle-color);
+  border-left-color: var(--site-loading-circle-color--left);
   border-left-width: 1rem;
-  border-right-color: var(--site-color-loading-border-right);
+  border-right-color: var(--site-loading-circle-color--right);
   border-right-width: 1rem;
   animation-timing-function: linear;
   animation-duration: 2s;
@@ -51,17 +70,17 @@
 @keyframes preloading__spinner-animation {
   0% {
     transform: rotate(0deg);
-    /* border-left-color: var(--site-color-loading-border-left;
-    border-right-color: var(--site-color-loading-border-right; */
+    /* border-left-color: var(--site-loading-circle-color--left;
+    border-right-color: var(--site-loading-circle-color--right; */
   }
   50% {
     transform: rotate(180deg);
-    /* border-right-color: var(--site-color-loading-border-left;
-    border-left-color: var(--site-color-loading-border-right; */
+    /* border-right-color: var(--site-loading-circle-color--left;
+    border-left-color: var(--site-loading-circle-color--right; */
   }
   100% {
     transform: rotate(360deg);
-    /* border-left-color: var(--site-color-loading-border-left;
-    border-right-color: var(--site-color-loading-border-right; */
+    /* border-left-color: var(--site-loading-circle-color--left;
+    border-right-color: var(--site-loading-circle-color--right; */
   }
 }

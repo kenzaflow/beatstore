@@ -1,0 +1,53 @@
+@mixin components__button(
+  $background-color: var(--site__components__button--background-color),
+  $text-color: var(--site__featured__buy-button--text-color),
+  $size: "little",
+  $width: auto,
+  $shadow: auto
+) {
+  background-color: $background-color;
+  color: $text-color;
+
+  width: $width;
+
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @if ($size == "little") {
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    height: 3.5rem;
+    border-radius: 0.25rem;
+  } @else if ($size == "medium") {
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    height: 4rem;
+    border-radius: 0.25rem;
+  } @else if ($size == "big") {
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    height: 4.5rem;
+    border-radius: 0.25rem;
+  }
+
+  @if ($shadow == "auto") {
+    @if ($size == "little") {
+      filter: drop-shadow(0 0.25rem 0.25rem transparentize(black, 0.75));
+    } @else if ($size == "medium") {
+      filter: drop-shadow(0 0.5rem 0.5rem transparentize(black, 0.75));
+    } @else if ($size == "big") {
+      filter: drop-shadow(0 0.75rem 1rem transparentize(black, 0.75));
+    }
+  } @else if ($shadow == "little") {
+    filter: drop-shadow(0 0.25rem 0.25rem transparentize(black, 0.75));
+  } @else if ($shadow == "medium") {
+    filter: drop-shadow(0 0.5rem 0.5rem transparentize(black, 0.75));
+  } @else if ($shadow == "big") {
+    filter: drop-shadow(0 0.75rem 1rem transparentize(black, 0.75));
+  }
+}

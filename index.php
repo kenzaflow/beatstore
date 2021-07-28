@@ -59,14 +59,15 @@
           <span class="featured_track__name">Luz</span>
           <div class="featured_track__info">
             <span class="featured_track__info__line">Featured Track</span>
-            <span class="featured_track__info__line">-</span>
             <span class="featured_track__info__line">90 BPM</span>
+            <span class="featured_track__info__line">G#Min</span>
           </div>
           <div class="featured_track__tags">
             <a class="featured_track__tags_link" href="">#justinquiles</a>
             <a class="featured_track__tags_link" href="">#latin</a>
+            <a class="featured_track__tags_link" href="">#elkenza</a>
           </div>
-          <a href="">$19.99</a>
+          <a class="featured_track__buy_button" href="">Add to cart</a>
         </div>
 
       </div>

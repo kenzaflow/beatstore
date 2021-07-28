@@ -8,36 +8,29 @@ $z-index__site-menu: 200;
 $z-index__site-content: 0;
 $z-index__site-player: 100;
 
-/* COLOR SCHEMES */
+$screen-width-medium: 425px;
+$screen-width-big: 768px;
+
+/* COLOR SCHEME */
 
 $theme-colors: (
-  site-custom-theme: none,
-  site-color-background-menu: $color-white-300,
-  site-color-background-content: $color-white-400,
-  site-color-background-player: $color-white-400,
-  site-color-background-general: $color-white-500,
-  site-color-font-general: $color-black-900,
-  site-color-font-logo: $color-black-900,
-  site-color-nav-separator: $color-black-200,
-  site-color-background-loading: $color-white-500,
-  site-color-loading-border: $color-white-600,
-  site-color-loading-border-left: $color-primary-500,
-  site-color-loading-border-right: $color-secondary-500,
-  site-color-header-background-top-mobile: $color-secondary-100,
-  /* colors */ /* features */ /* title */ /* text */
-    site-color-featured-title-text: $color-black-900,
-  /* colors */ /* features */ /* info */ /* text */
-    site-color-featured-info-text: $color-black-700,
-  /* colors */ /* features */ /* tags */ /* text */
-    site-color-featured-tags-text: $color-black-800,
-  /* colors */ /* features */ /* tags */ /* button */
-    site-color-featured-tags-button: $color-white-200,
+  site-color-body-background-color: $color-white-500,
+  site-color-body-fonts-color: $color-black-900,
+  site-content-background-color: $color-white-400,
+  site-content-header-background-image--little:
+    url("../img/backgrounds/background_little.jpg"),
+  site-content-header-background-image--medium:
+    url("../img/backgrounds/background_medium.jpg"),
+  site-content-header-background-image--big:
+    url("../img/backgrounds/background_big.jpg"),
+  site-content-featured-title-text: $color-black-900,
+  site-content-featured-info-text: $color-black-800,
+  site-content-featured-tags-text: $color-black-800,
+  site-content-featured-tags-button: $color-white-200,
+  site__featured__buy-button--background-color: $color-black-900,
+  site__featured__buy-button--text-color: $color-white-100,
+  site-player-background-color: $color-white-400,
 );
-
-/* // sass variable map
-$theme-colors: (
-  color-black: #ffbb00,
-); */
 
 // loop over each name, color
 :root {
@@ -49,14 +42,16 @@ $theme-colors: (
 
 /* ================ */
 /* ================ */
+
+@import "parts/components/buttons";
 /* ================ */
 /* ================ */
 
 /* General Styles */
 
 body {
-  background-color: var(--site-color-background-general);
-  color: var(--site-color-font-general);
+  background-color: var(--site-color-body-background-color);
+  color: var(--site-color-body-fonts-color);
 }
 
 .site {
@@ -75,46 +70,52 @@ body {
 
 .site__content {
   grid-area: content;
-  background-color: var(--site-color-background-content);
+  background-color: var(--site-content-background-color);
   height: 100%;
   overflow: auto;
   z-index: $z-index__site-content;
 
   .header {
     width: 100%;
-    height: 30rem;
+    height: 40rem;
     background: linear-gradient(
         to bottom,
         #00000000,
-        var(--site-color-background-content)
+        var(--site-content-background-color)
       ),
-      url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_375px.jpg");
+      var(--site-content-header-background-image--little);
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
-    @media (min-width: 425px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    @media (min-width: $screen-width-medium) {
       & {
-        height: 50rem;
+        height: 45rem;
         background: linear-gradient(
             to bottom,
             #00000000,
-            var(--site-color-background-content)
+            var(--site-content-background-color)
           ),
-          url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_375px.jpg");
+          var(--site-content-header-background-image--medium);
         background-position: top;
         background-repeat: no-repeat;
         background-size: cover;
       }
     }
-    @media (min-width: 768px) {
+    @media (min-width: $screen-width-big) {
       & {
         height: 64rem;
         background: linear-gradient(
             to bottom,
             #00000000,
-            var(--site-color-background-content)
+            var(--site-content-background-color)
           ),
-          url("../img/backgrounds/viviana-rishe-ZQ-El23uCRE-unsplash_768px.jpg");
+          var(--site-content-header-background-image--big);
         background-position: top;
         background-repeat: no-repeat;
         background-size: cover;
@@ -130,33 +131,68 @@ body {
         "tags"
         "buy";
       grid-template-columns: 1fr;
-      width: 100%;
-      height: 100%;
+      width: auto;
+      height: auto;
       justify-content: center;
       justify-items: center;
-      padding: 1rem;
+      padding: 3rem;
       align-items: center;
       align-content: center;
+      gap: 1rem;
+
+      background-color: rgba(247, 247, 247, 0.8);
+      border-radius: 0.5rem;
+      filter: drop-shadow(0 0.25rem 1rem transparentize(black, 0.5));
+
+      @media (min-width: $screen-width-big) {
+        & {
+          grid-template-areas:
+            "image info info"
+            "image name name"
+            "image buy tags";
+          grid-template-columns: auto auto auto;
+        }
+      }
+
       .featured_track__img {
         grid-area: image;
-        width: 12rem;
+        height: 12rem;
+        width: auto;
         aspect-ratio: 1 / 1;
         object-fit: cover;
         object-position: center;
         border-radius: 0.25rem;
         filter: drop-shadow(0 0.25rem 0.5rem #000);
+        @media (min-width: $screen-width-big) {
+          & {
+            justify-self: right;
+            height: 12rem;
+            width: auto;
+          }
+        }
       }
       .featured_track__name {
         grid-area: name;
         width: auto;
         height: auto;
-        font-size: 2.8rem;
-        color: var(--site-color-featured-title-text);
-        font-weight: 700;
+        font-size: 2.5rem;
+        color: var(--site-content-featured-title-text);
+        font-weight: 800;
+        @media (min-width: $screen-width-medium) {
+          & {
+            font-size: 3rem;
+          }
+        }
+        @media (min-width: $screen-width-big) {
+          & {
+            justify-self: left;
+            align-self: baseline;
+          }
+        }
       }
       .featured_track__info {
         grid-area: info;
-        width: 100%;
+        width: auto;
         height: auto;
         display: flex;
         flex-direction: row;
@@ -165,35 +201,112 @@ body {
         justify-content: center;
         align-items: center;
         .featured_track__info__line {
-          font-size: 1.5rem;
+          display: inline-block;
+          font-size: 1.25rem;
           font-weight: 500;
-          color: var(--site-color-featured-info-text);
+          color: var(--site-content-featured-info-text);
+          @media (min-width: $screen-width-medium) {
+            & {
+              font-size: 1.5rem;
+            }
+          }
+          &:not(:first-child):before {
+            content: "-";
+          }
+          &:last-child {
+            display: none;
+            @media (min-width: $screen-width-big) {
+              & {
+                display: inline-block;
+              }
+            }
+          }
+        }
+
+        @media (min-width: $screen-width-big) {
+          & {
+            justify-self: left;
+          }
         }
       }
       .featured_track__tags {
         grid-area: tags;
         width: auto;
-        height: 100%;
+        height: auto;
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         align-content: center;
         justify-content: center;
         align-items: center;
+        gap: 1rem;
         .featured_track__tags_link {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          background-color: var(--site-color-featured-tags-button);
+          background-color: var(--site-content-featured-tags-button);
           padding: 0 1rem;
           width: auto;
           font-size: 1.5rem;
           font-weight: 600;
-          color: var(--site-color-featured-tags-text);
+          color: var(--site-content-featured-tags-text);
           height: 4rem;
           border-radius: 2rem;
           filter: drop-shadow(0 0.25rem 0.5rem transparentize(black, 0.75));
+          &:last-child {
+            display: none;
+            @media (min-width: $screen-width-medium) {
+              & {
+                display: flex;
+              }
+            }
+          }
+        }
+        @media (min-width: $screen-width-big) {
+          & {
+            justify-self: left;
+          }
+        }
+      }
+      .featured_track__buy_button {
+        grid-area: buy;
+        @media (max-width: $screen-width-medium) {
+          & {
+            @include components__button(
+              $background-color:
+                var(--site__featured__buy-button--background-color),
+              $text-color: var(--site__featured__buy-button--text-color),
+              $size: "little",
+              $width: 100%,
+              $shadow: "auto"
+            );
+          }
+        }
+        @media (min-width: $screen-width-medium) {
+          & {
+            @include components__button(
+              $background-color:
+                var(--site__featured__buy-button--background-color),
+              $text-color: var(--site__featured__buy-button--text-color),
+              $size: "medium",
+              $width: auto,
+              $shadow: "auto"
+            );
+          }
+        }
+        @media (min-width: $screen-width-big) {
+          & {
+            justify-self: left;
+            @include components__button(
+              $background-color:
+                var(--site__featured__buy-button--background-color),
+              $text-color: var(--site__featured__buy-button--text-color),
+              $size: "medium",
+              $width: auto,
+              $shadow: "auto"
+            );
+          }
         }
       }
     }
@@ -202,7 +315,7 @@ body {
 
 .site__player {
   grid-area: player;
-  background-color: var(--site-color-background-player);
+  background-color: var(--site-player-background-color);
   height: 6.8rem;
   z-index: $z-index__site-player;
 }
