@@ -11,6 +11,7 @@
   width: $width;
 
   text-transform: uppercase;
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,14 +37,10 @@
   }
 
   @if ($shadow == "auto") {
-    @if ($size == "little") {
-      filter: drop-shadow(0 0.25rem 0.25rem transparentize(black, 0.75));
-    } @else if ($size == "medium") {
-      filter: drop-shadow(0 0.5rem 0.5rem transparentize(black, 0.75));
-    } @else if ($size == "big") {
-      filter: drop-shadow(0 0.75rem 1rem transparentize(black, 0.75));
-    }
-  } @else if ($shadow == "little") {
+    $shadow: $size;
+  }
+
+  @if ($shadow == "little") {
     filter: drop-shadow(0 0.25rem 0.25rem transparentize(black, 0.75));
   } @else if ($shadow == "medium") {
     filter: drop-shadow(0 0.5rem 0.5rem transparentize(black, 0.75));
