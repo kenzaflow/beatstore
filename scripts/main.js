@@ -1,13 +1,3 @@
-function debounce(callback, wait) {
-  let timerId;
-  return (...args) => {
-    clearTimeout(timerId);
-    timerId = setTimeout(() => {
-      callback(...args);
-    }, wait);
-  };
-}
-
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty("--vh", `${vh}px`);
 
@@ -31,6 +21,16 @@ function updateScreen() {
 
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty("--vh", `${vh}px`);
+}
+
+function debounce(func, timeout = 300) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
 }
 
 window.addEventListener(
@@ -60,14 +60,18 @@ if (document.readyState == "interactive") {
 
 window.onload = function () {
   /* ready(); */
-  var b = document.getElementsByTagName("body")[0];
-  b.classList.remove("preloading");
-  var b = document.getElementsByClassName("preloading__spinner")[0];
-  b.classList.add("preloading__spinner--hide");
+
+  var c = document.getElementsByClassName("preloading__spinner")[0];
 
   setTimeout(function () {
-    b.classList.remove("preloading__spinner--visible");
-  }, 500);
+    var b = document.getElementsByTagName("body")[0];
+    b.classList.remove("preloading");
+    c.classList.add("preloading__spinner--hide");
+  }, 250);
+
+  setTimeout(function () {
+    c.classList.remove("preloading__spinner--visible");
+  }, 750);
 };
 
 window.onbeforeunload = confirmExit;
@@ -80,9 +84,7 @@ function confirmExit() {
   var b = document.getElementsByClassName("preloading__spinner")[0];
   b.classList.remove("preloading__spinner--hide");
 
-  setTimeout(function () {
-    b.classList.add("preloading__spinner--visible");
-  }, 500);
+  b.classList.add("preloading__spinner--visible");
 }
 
 /* document.getElementsByTagName("a").onclick = function () { */

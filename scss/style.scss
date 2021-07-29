@@ -16,7 +16,7 @@ $screen-width-big: 768px;
 $theme-colors: (
   site-color-body-background-color: $color-white-500,
   site-color-body-fonts-color: $color-black-900,
-  site-content-background-color: $color-white-400,
+  site-content-background-color: $color-white-200,
   site-content-header-background-image--little:
     url("../img/backgrounds/background_little.jpg"),
   site-content-header-background-image--medium:
@@ -29,7 +29,7 @@ $theme-colors: (
   site-content-featured-tags-button: $color-white-200,
   site__featured__buy-button--background-color: $color-black-900,
   site__featured__buy-button--text-color: $color-white-100,
-  site-player-background-color: $color-white-400,
+  site-player-background-color: $color-white-050,
 );
 
 // loop over each name, color
@@ -40,10 +40,31 @@ $theme-colors: (
   }
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 1.25rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $color-white-200;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $color-white-900;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $color-white-600;
+}
+
 /* ================ */
 /* ================ */
 
 @import "parts/components/buttons";
+@import "parts/components/input_range";
 /* ================ */
 /* ================ */
 
@@ -57,13 +78,12 @@ body {
 .site {
   width: 100%;
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  max-height: calc(var(--vh, 1vh) * 100);
   display: grid;
   grid-template-areas:
     "menu"
-    "content"
-    "player";
-  grid-template-rows: 6.4rem 1fr auto;
+    "content";
+  grid-template-rows: 6.4rem 1fr;
   /* grid-template-rows: 6.4rem 1fr 0; */
 
   @import "parts/site_menu";
@@ -73,9 +93,13 @@ body {
   grid-area: content;
   background-color: var(--site-content-background-color);
   height: 100%;
-  overflow: scroll;
+  width: 100%;
   z-index: $z-index__site-content;
   justify-content: center;
+
+  &.expanded {
+    margin-bottom: 8.4rem;
+  }
 
   .header {
     width: 100%;
@@ -163,6 +187,7 @@ body {
         "name"
         "info"
         "tags"
+        "divider"
         "buy";
       grid-template-columns: 1fr;
       width: auto;
@@ -178,6 +203,20 @@ body {
       border-radius: 0.5rem;
       filter: drop-shadow(0 0.25rem 1rem transparentize(black, 0.5));
 
+      @media (min-width: $screen-width-medium) {
+        & {
+          grid-template-areas:
+            "image info"
+            "image name"
+            "image tags"
+            "divider divider"
+            "buy buy";
+          grid-template-columns: auto auto auto;
+          grid-auto-rows: auto auto auto;
+          transform: scale(100%);
+        }
+      }
+
       @media (min-width: $screen-width-big) {
         & {
           grid-template-areas:
@@ -189,9 +228,19 @@ body {
         }
       }
 
+      .featured_track__divider {
+        grid-area: divider;
+        display: block;
+          height: 1rem;
+        @media (min-width: $screen-width-big) {
+          display: none;
+          
+        }
+      }
+
       .featured_track__img {
         grid-area: image;
-        height: 12rem;
+        height: 10rem;
         width: auto;
         aspect-ratio: 1 / 1;
         object-fit: cover;
@@ -213,15 +262,12 @@ body {
         font-size: 2.5rem;
         color: var(--site-content-featured-title-text);
         font-weight: 800;
+        justify-self: center;
+        align-self: center;
         @media (min-width: $screen-width-medium) {
           & {
             font-size: 3rem;
-          }
-        }
-        @media (min-width: $screen-width-big) {
-          & {
             justify-self: left;
-            align-self: baseline;
           }
         }
       }
@@ -263,14 +309,11 @@ body {
           & {
             flex-direction: row;
             gap: 2.5rem;
-          }
-        }
-
-        @media (min-width: $screen-width-big) {
-          & {
             justify-self: left;
           }
         }
+
+        
       }
       .featured_track__tags {
         grid-area: tags;
@@ -299,7 +342,7 @@ body {
           filter: drop-shadow(0 0.25rem 0.5rem transparentize(black, 0.75));
           &:last-child {
             display: none;
-            @media (min-width: $screen-width-medium) {
+            @media (min-width: $screen-width-big) {
               & {
                 display: flex;
               }
@@ -314,9 +357,9 @@ body {
       }
       .featured_track__buy_button {
         grid-area: buy;
+        min-width: 13rem;
         @media (max-width: $screen-width-medium) {
           & {
-            margin-top: 2rem;
             @include components__button(
               $background-color:
                 var(--site__featured__buy-button--background-color),
@@ -329,7 +372,6 @@ body {
         }
         @media (min-width: $screen-width-medium) and (max-width: $screen-width-big - 1px) {
           & {
-            margin-top: 2rem;
             @include components__button(
               $background-color:
                 var(--site__featured__buy-button--background-color),
@@ -369,7 +411,7 @@ body {
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    overflow-y: scroll;
+
     /* @media (min-width: $screen-width-medium) and (max-width: $screen-width-big) {
       & {
         justify-content: center;
@@ -394,15 +436,22 @@ body {
       align-items: center;
       align-content: center;
       gap: 1rem;
-      background-color: rgb(243, 243, 243);
+      $color_linear: rgb(245, 245, 245);
+      $color_linear_medio: rgb(255, 255, 255);
+      background: linear-gradient(
+        to bottom,
+        $color_linear,
+        $color_linear_medio,
+        $color_linear
+      );
       border-radius: 0.5rem;
-      filter: drop-shadow(0 0.25rem 0.25rem rgba(0, 0, 0, 0.25));
+      filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 0, 0.1));
+
       z-index: 1;
-      transition: filter 0.25s ease;
-      &:hover {
-        filter: drop-shadow(0 0.25rem 0.25rem rgba(0, 0, 0, 0.5));
-        z-index: 2;
-      }
+      transition: 0.175s ease-in-out;
+      transform-origin: center;
+      transition-property: filter, background-color, transform;
+      transform: scale(1);
 
       @media (min-width: 539px) {
         & {
@@ -515,7 +564,7 @@ body {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          background-color: rgba(243, 243, 243, 1);
+          /* background-color: rgba(243, 243, 243, 1); */
           filter: none;
           padding: 0 1rem;
           width: auto;
@@ -528,8 +577,8 @@ body {
           transition-property: filter background-color;
 
           &:hover {
-            background-color: rgba(250, 250, 250, 1);
-            filter: drop-shadow(0 0.25rem 0.5rem transparentize(black, 0.75));
+            background-color: $color-white-050;
+            filter: drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.25));
           }
 
           &:nth-child(n) {
@@ -570,6 +619,41 @@ body {
           }
         }
       }
+      &:hover {
+        /* padding: 1px; */
+        /* -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-background-clip: content-box;
+        background-clip: content-box; */
+        filter: drop-shadow(0 0.4rem 0.5rem rgba(0, 0, 0, 0.2));
+
+        background: linear-gradient(
+          to bottom,
+          $color_linear,
+          $color_linear_medio,
+          $color_linear
+        );
+        overflow: none;
+      }
+      &.playing {
+        filter: drop-shadow(0 0.45rem 0.6rem rgba(0, 0, 0, 0.25));
+        /*    no gradients */
+        /* background-color: $color-white-050; */
+        /*  with gradients */
+
+        background: $color-white-100;
+
+        .tracklist_track__tags {
+          .tracklist_track__tags_link {
+            filter: drop-shadow(0 0.25rem 0.25rem transparentize(black, 0.9));
+            background-color: $color-white-050;
+            &:hover {
+              filter: drop-shadow(0 0.25rem 0.5rem transparentize(black, 0.75));
+              background-color: $color-white-050;
+            }
+          }
+        }
+      }
       .tracklist_track__buy_button {
         grid-area: buy;
         @media (max-width: $screen-width-medium) {
@@ -603,7 +687,7 @@ body {
               $background-color:
                 var(--site__featured__buy-button--background-color),
               $text-color: var(--site__featured__buy-button--text-color),
-              $size: "medium",
+              $size: "big",
               $width: auto,
               $shadow: "auto"
             );
@@ -615,20 +699,129 @@ body {
 }
 
 .site__player {
-  grid-area: player;
   background-color: var(--site-player-background-color);
-  height: 6.8rem;
+  /* media query */
+  height: 6.4rem;
   width: 100%;
-  transition: all 0.25s ease;
+  padding: 0 1rem;
   z-index: $z-index__site-player;
-  overflow: hidden;
-  /* transform: translateY(100%);
-  transform-origin: bottom; */
-  display: none;
+  /* overflow: hidden; */
+  transform: translateY(100%);
+  transform-origin: bottom;
+  transition: transform 0.25s cubic-bezier(0.65, 0, 0.35, 1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
   grid-template-areas: "info controls menu";
   grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  /* ================ */
+  /* transform: translateY(0); */
+  /* ================ */
   &.active {
+    transform: translateY(0);
+  }
+
+  @media (min-width: $screen-width-big) {
+    & {
+      height: 8.4rem;
+    }
+  }
+
+  .player__info {
+    grid-area: info;
+    width: auto;
+    height: 100%;
     display: grid;
+    grid-template-areas: "image text";
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 1rem;
+    justify-items: start;
+    justify-content: center;
+    align-content: center;
+
+    .player__info-image {
+      grid-area: image;
+      height: 5rem;
+      width: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0.25rem;
+      filter: drop-shadow(0 0.25rem 0.15rem transparentize(black, 0.5));
+      @media (min-width: $screen-width-big) {
+        & {
+          height: 6.4rem;
+        }
+      }
+    }
+
+    .player__info-text {
+      grid-area: text;
+      height: auto;
+      width: auto;
+      display: flex;
+
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: left;
+      align-items: flex-start;
+      gap: 0.75rem;
+
+      .player__info-text-track_name {
+        height: auto;
+        width: auto;
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: #000;
+        @media (min-width: $screen-width-big) {
+          & {
+            font-size: 1.8rem;
+          }
+        }
+      }
+      .player__info-text-artist {
+        height: auto;
+        width: auto;
+        font-weight: 600;
+        font-size: 1.25rem;
+        color: #141414;
+        @media (min-width: $screen-width-big) {
+          & {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+  .player__controls {
+    grid-area: controls;
+    width: 100%;
+    height: 100%;
+    max-width: 30rem;
+    justify-self: center;
+    display: grid;
+    grid-template-areas:
+      "play_pause_etc"
+      "slider";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    /* gap: 1rem; */
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    .player__controls-play_pause_etc {
+      grid-area: play_pause_etc;
+    }
+    .player__controls-slider {
+      grid-area: slider;
+      transition: all 1s ease;
+    }
   }
 }
 

@@ -16,6 +16,8 @@
   align-items: center;
   justify-content: center;
 
+  transition: filter 0.175s ease-in-out;
+
   @if ($size == "little") {
     padding: 1rem;
     font-size: 1.25rem;
@@ -41,10 +43,20 @@
   }
 
   @if ($shadow == "little") {
-    filter: drop-shadow(0 0.25rem 0.25rem transparentize(black, 0.75));
+    filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.15));
   } @else if ($shadow == "medium") {
-    filter: drop-shadow(0 0.5rem 0.5rem transparentize(black, 0.75));
+    filter: drop-shadow(0 0.2rem 0.3rem rgba(0, 0, 0, 0.15));
   } @else if ($shadow == "big") {
-    filter: drop-shadow(0 0.75rem 1rem transparentize(black, 0.75));
+    filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.15));
+  }
+
+  &:hover {
+    @if ($shadow == "little") {
+      filter: drop-shadow(0 0.2rem 0.3rem rgba(0, 0, 0, 0.30));
+    } @else if ($shadow == "medium") {
+      filter: drop-shadow(0 0.3rem 0.3rem rgba(0, 0, 0, 0.35));
+    } @else if ($shadow == "big") {
+      filter: drop-shadow(0 0.35rem 0.3rem rgba(0, 0, 0, 0.40));
+    }
   }
 }
