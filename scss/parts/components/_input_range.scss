@@ -35,13 +35,13 @@ $track-color: #eceff1;
 $thumb-color: $color-black-900;
 
 $thumb-radius: 12px;
-$thumb-height: 18px;
-$thumb-width: 18px;
+$thumb-height: 16px;
+$thumb-width: 16px;
 $thumb-shadow-size: 2px;
 $thumb-shadow-blur: 5px;
 $thumb-shadow-color: rgba(0, 0, 0, 0.25);
-$thumb-border-width: 0px;
-$thumb-border-color: #eceff1;
+$thumb-border-width: 1px;
+$thumb-border-color: $color-black-800;
 
 $track-width: 100%;
 $track-height: 8px;
@@ -52,7 +52,7 @@ $track-border-width: 0px;
 $track-border-color: #cfd8dc;
 
 $track-radius: 2px;
-$contrast: 5%;
+$contrast: 0%;
 
 $ie-bottom-track-color: darken($track-color, $contrast);
 
