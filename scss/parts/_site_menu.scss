@@ -69,7 +69,6 @@ $theme-menu-colors: (
   }
 
   .site__menu__hamburger {
-
     cursor: pointer;
     text-align: right;
 
@@ -131,8 +130,6 @@ $theme-menu-colors: (
       transform: rotate(-45deg);
     }
   }
-
-  
 }
 
 #site__menu__links {
@@ -140,6 +137,7 @@ $theme-menu-colors: (
   flex-direction: column;
   height: auto;
   font-weight: 500;
+  z-index: $z-index__site-menu;
   & a {
     text-align: center;
     padding: 1rem;
@@ -163,6 +161,7 @@ $theme-menu-colors: (
     }
     &.active {
       transform: scaleY(100%);
+      filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.5));
     }
     & a:not(a:last-child) {
       border-bottom: 0.1rem solid var(--site-menu-nav-separator-color);

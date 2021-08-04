@@ -1,3 +1,145 @@
+function interceptClickEvent(e) {
+  var href;
+  var target = e.target || e.srcElement;
+  target = target.closest("a");
+  if (target !== null) {
+    if (target.tagName !== null) {
+      if (target.tagName !== "a") {
+        if (target.getAttribute("href") !== null) {
+          href = target.getAttribute("href");
+
+          //put your logic here...
+          if (true) {
+            //tell the browser not to respond to the link click
+            e.preventDefault();
+
+            /* WIIIIII */
+            /* console.log(getParameterByName("page", href)); */
+            let newPage = getParameterByName("page", href);
+            replaceSiteContent(newPage + ".html");
+          }
+        }
+      }
+    }
+  }
+}
+
+//listen for link click events at the document level
+if (document.addEventListener) {
+  document.addEventListener("click", interceptClickEvent);
+} else if (document.attachEvent) {
+  document.attachEvent("onclick", interceptClickEvent);
+}
+
+function getParameterByName(name, url = window.location.href) {
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return "";
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+window.addEventListener("DOMContentLoaded", (event) => {
+  /* console.log("DOM fully loaded and parsed"); */
+  let urlParams = new URLSearchParams(window.location.search);
+  let myParam = urlParams.get("page");
+
+  if (myParam === null) {
+    setCurrentPage("home");
+    urlParams = new URLSearchParams(window.location.search);
+    myParam = urlParams.get("page");
+  }
+
+  /* fileExists(myParam + ".html").then(
+    (yes) => yes && getPage(myParam + ".html")
+  ); */
+
+  /* setPageIfExists(myParam + ".html"); */
+  replaceSiteContent(myParam + ".html");
+
+  /* console.log("esto no deberia suceder"); */
+});
+
+function setCurrentPage(thePage) {
+  const url = new URL(location.href);
+  url.searchParams.set("page", thePage);
+  history.pushState(null, "", url);
+}
+
+/* function getPage(theURL) {
+  console.log(theURL);
+} */
+
+/* const fileExists = (file) =>
+  fetch(file, { method: "HEAD", cache: "no-store" }).then(
+    (response) => response.status == 200
+  ); */
+
+async function replaceSiteContent(url, error_page) {
+  /* makeitDisplay(false); */
+  let queryURL = url.replace(".html", "");
+  try {
+    const response = await fetch(url, { cache: "no-store" });
+    const data = await response.text();
+    /* console.log(data); */
+
+    if (response.ok) {
+      /* response.blob().then(function (miBlob) {
+        var objectURL = URL.createObjectURL(miBlob);
+        console.log(objectURL);
+      }); */
+      document.getElementById("site__content").innerHTML = data;
+
+      setCurrentPage(queryURL);
+
+      if (queryURL === "home") {
+        setTimeout(() => {
+          scanImageTracks();
+        }, 100);
+      }
+
+      if (queryURL === "404") {
+        if (error_page == undefined) {
+          document.getElementById("error_404_cannot_text").innerHTML =
+            "Cannot find the page";
+        } else {
+          document.getElementById("error_404_cannot_page").innerHTML =
+            error_page;
+        }
+      }
+
+      /* makeitDisplay(true); */
+    } else {
+      /* console.log("Respuesta de red OK pero respuesta HTTP no OK"); */
+      replaceSiteContent("404.html", queryURL);
+    }
+  } catch (err) {
+    console.log("Hubo un problema con la petición Fetch:" + err.message);
+    replaceSiteContent("404.html", queryURL);
+  }
+}
+
+/* const setPageIfExists = function (file) {
+  fetch(file, { method: "HEAD", cache: "no-store" })
+    .then(function (response) {
+      if (response.ok) {
+        response.blob().then(function (miBlob) {
+          var objectURL = URL.createObjectURL(miBlob);
+          console.log(objectURL);
+        });
+      } else {
+        console.log("Respuesta de red OK pero respuesta HTTP no OK");
+      }
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(function (error) {
+      console.log("Hubo un problema con la petición Fetch:" + error.message);
+    });
+}; */
+
 function debounce(func, timeout = 300) {
   let timer;
   return (...args) => {
@@ -72,24 +214,37 @@ if (document.readyState == "interactive") {
   }
 }); */
 
-function makeitDisplay() {
-  console.log("DIOS");
+function makeitDisplay(makeactive = true) {
+  /* console.log("DIOS"); */
   var siteDiv = document.getElementById("site");
 
   /* siteDiv.style.display = "block"; */
 
-  console.log("terminamos de cargar");
+  /* console.log("terminamos de cargar"); */
   var c = document.getElementsByClassName("preloading__spinner")[0];
 
-  setTimeout(function () {
-    var b = document.getElementsByTagName("body")[0];
-    b.classList.remove("preloading");
-    c.classList.add("preloading__spinner--hide");
-  }, 250);
+  if (makeactive === true) {
+    setTimeout(function () {
+      var b = document.getElementsByTagName("body")[0];
+      b.classList.remove("preloading");
+      c.classList.add("preloading__spinner--hide");
+    }, 250);
 
-  setTimeout(function () {
-    c.classList.remove("preloading__spinner--visible");
-  }, 750);
+    setTimeout(function () {
+      c.classList.remove("preloading__spinner--visible");
+    }, 750);
+  } else {
+    setTimeout(function () {
+      var b = document.getElementsByTagName("body")[0];
+      b.classList.add("preloading");
+      c.classList.add("preloading__spinner--hide");
+      c.classList.add("preloading__spinner--visible");
+    }, 1);
+
+    setTimeout(function () {
+      c.classList.remove("preloading__spinner--hide");
+    }, 100);
+  }
 }
 
 function scanImageTracks() {
@@ -183,7 +338,7 @@ function playSound(element_clicked_id) {
 
       var scriptTwoLoaded = document.querySelector("#player_script");
       scriptTwoLoaded.addEventListener("load", function () {
-        console.log("Está cargado el player");
+        /* console.log("Está cargado el player"); */
         playSound(element_clicked_id);
       });
     });
