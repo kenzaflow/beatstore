@@ -1,162 +1,174 @@
 <div class="header">
-    <picture class="header__background_div">
-      <source
-        media="(min-width: 768px)"
-        srcset="img/backgrounds/background_big.jpg"
-      />
-      <source
-        media="(min-width: 375px)"
-        srcset="img/backgrounds/background_medium.jpg"
-      />
-      <img
-        loading="lazy"
-        class="header__background_div_img"
-        src="img/backgrounds/background_little.jpg"
-        alt="Background"
-      />
-    </picture>
+  <picture class="header__background_div">
+    <source
+      media="(min-width: 768px)"
+      srcset="img/backgrounds/background_big.webp"
+      type="image/webp"
+    />
+    <source
+      media="(min-width: 375px)"
+      srcset="img/backgrounds/background_medium.webp"
+      type="image/webp"
+    />
+    <source
+      media="(min-width: 768px)"
+      srcset="img/backgrounds/background_big.jpg"
+      type="image/jpeg"
+    />
+    <source
+      media="(min-width: 375px)"
+      srcset="img/backgrounds/background_medium.jpg"
+      type="image/jpeg"
+    />
+    <img
+      loading="lazy"
+      class="header__background_div_img"
+      src="img/backgrounds/background_little.jpg"
+      alt="Background"
+    />
+  </picture>
 
-    <div
-      class="featured_track"
-      data-ignore="ignore"
-      data-track_src="audio/luz.mp3"
-      data-track_name="Luz"
-      data-artist="Kenza"
-      data-artwork="data/luz.jpg"
-      onclick="playSound(this);"
-    >
-      <img
-        loading="lazy"
-        class="featured_track__img"
-        src="img/placeholders/track.svg"
-        width="100px"
-        height="100px"
-        alt="Artwork"
-      />
-      <span class="featured_track__name">Luz</span>
-      <div class="featured_track__info">
-        <span class="featured_track__info__line">Featured Track</span>
-      </div>
-      <div class="featured_track__tags">
-        <a class="featured_track__tags_link" href="">#justinquiles</a>
-        <a class="featured_track__tags_link" href="">#latin</a>
-        <a class="featured_track__tags_link" href="">#elkenza</a>
-      </div>
-      <div class="featured_track__divider"></div>
-      <a class="featured_track__buy_button" href="">Add to cart</a>
+  <div
+    class="featured_track"
+    data-ignore="ignore"
+    data-track_src="audio/luz.mp3"
+    data-track_name="Luz"
+    data-artist="Kenza"
+    data-artwork="data/luz.jpg"
+    onclick="playSound(this);"
+  >
+    <img
+      loading="lazy"
+      class="featured_track__img"
+      src="img/placeholders/track.svg"
+      width="100px"
+      height="100px"
+      alt="Artwork"
+    />
+    <span class="featured_track__name">Luz</span>
+    <div class="featured_track__info">
+      <span class="featured_track__info__line">Featured Track</span>
     </div>
+    <div class="featured_track__tags">
+      <a class="featured_track__tags_link" href="">#justinquiles</a>
+      <a class="featured_track__tags_link" href="">#latin</a>
+      <a class="featured_track__tags_link" href="">#elkenza</a>
+    </div>
+    <div class="featured_track__divider"></div>
+    <a class="featured_track__buy_button" href="">Add to cart</a>
+  </div>
+</div>
+
+<div class="tracklist">
+  <div
+    class="tracklist_track"
+    data-track_src="audio/luz.mp3"
+    data-track_name="Luz"
+    data-artist="Kenza"
+    data-artwork="data/luz.jpg"
+    onclick="playSound(this);"
+  >
+    <img
+      loading="lazy"
+      class="tracklist_track__img"
+      src="img/placeholders/track.svg"
+      alt="Artwork"
+    />
+    <span class="tracklist_track__name">Luz</span>
+    <div class="tracklist_track__info">
+      <span class="tracklist_track__info__line">90 BPM</span>
+      <span class="tracklist_track__info__line">G#Min</span>
+      <span class="tracklist_track__info__line">3:30</span>
+    </div>
+    <div class="tracklist_track__tags">
+      <a class="tracklist_track__tags_link" href="">#justinquiles</a>
+      <a class="tracklist_track__tags_link" href="">#latin</a>
+      <a class="tracklist_track__tags_link" href="">#elkenza</a>
+    </div>
+    <a class="tracklist_track__buy_button" href="">Add to cart</a>
   </div>
 
-  <div class="tracklist">
-    <div
-      class="tracklist_track"
-      data-track_src="audio/luz.mp3"
-      data-track_name="Luz"
-      data-artist="Kenza"
-      data-artwork="data/luz.jpg"
-      onclick="playSound(this);"
-    >
-      <img
-        loading="lazy"
-        class="tracklist_track__img"
-        src="img/placeholders/track.svg"
-        alt="Artwork"
-      />
-      <span class="tracklist_track__name">Luz</span>
-      <div class="tracklist_track__info">
-        <span class="tracklist_track__info__line">90 BPM</span>
-        <span class="tracklist_track__info__line">G#Min</span>
-        <span class="tracklist_track__info__line">3:30</span>
-      </div>
-      <div class="tracklist_track__tags">
-        <a class="tracklist_track__tags_link" href="">#justinquiles</a>
-        <a class="tracklist_track__tags_link" href="">#latin</a>
-        <a class="tracklist_track__tags_link" href="">#elkenza</a>
-      </div>
-      <a class="tracklist_track__buy_button" href="">Add to cart</a>
+  <div
+    class="tracklist_track"
+    data-track_src="audio/karma.mp3"
+    data-track_name="Karma"
+    data-artist="Kenza"
+    data-artwork="data/karma.jpg"
+    onclick="playSound(this);"
+  >
+    <img
+      loading="lazy"
+      class="tracklist_track__img"
+      src="img/placeholders/track.svg"
+      alt="Artwork"
+    />
+    <span class="tracklist_track__name">Karma</span>
+    <div class="tracklist_track__info">
+      <span class="tracklist_track__info__line">90 BPM</span>
+      <span class="tracklist_track__info__line">G#Min</span>
+      <span class="tracklist_track__info__line">3:30</span>
     </div>
-
-    <div
-      class="tracklist_track"
-      data-track_src="audio/karma.mp3"
-      data-track_name="Karma"
-      data-artist="Kenza"
-      data-artwork="data/karma.jpg"
-      onclick="playSound(this);"
-    >
-      <img
-        loading="lazy"
-        class="tracklist_track__img"
-        src="img/placeholders/track.svg"
-        alt="Artwork"
-      />
-      <span class="tracklist_track__name">Karma</span>
-      <div class="tracklist_track__info">
-        <span class="tracklist_track__info__line">90 BPM</span>
-        <span class="tracklist_track__info__line">G#Min</span>
-        <span class="tracklist_track__info__line">3:30</span>
-      </div>
-      <div class="tracklist_track__tags">
-        <a class="tracklist_track__tags_link" href="">#justinquiles</a>
-        <a class="tracklist_track__tags_link" href="">#latin</a>
-        <a class="tracklist_track__tags_link" href="">#elkenza</a>
-      </div>
-      <a class="tracklist_track__buy_button" href="">Add to cart</a>
+    <div class="tracklist_track__tags">
+      <a class="tracklist_track__tags_link" href="">#justinquiles</a>
+      <a class="tracklist_track__tags_link" href="">#latin</a>
+      <a class="tracklist_track__tags_link" href="">#elkenza</a>
     </div>
-
-    <div
-      class="tracklist_track"
-      data-track_src="audio/quizas.mp3"
-      data-track_name="Quizás"
-      data-artist="Kenza"
-      data-artwork="data/quizas.jpg"
-      onclick="playSound(this);"
-    >
-      <img
-        loading="lazy"
-        class="tracklist_track__img"
-        src="img/placeholders/track.svg"
-        alt="Artwork"
-      />
-      <span class="tracklist_track__name">Quizás</span>
-      <div class="tracklist_track__info">
-        <span class="tracklist_track__info__line">90 BPM</span>
-        <span class="tracklist_track__info__line">G#Min</span>
-        <span class="tracklist_track__info__line">3:30</span>
-      </div>
-      <div class="tracklist_track__tags">
-        <a class="tracklist_track__tags_link" href="">#justinquiles</a>
-        <a class="tracklist_track__tags_link" href="">#latin</a>
-        <a class="tracklist_track__tags_link" href="">#elkenza</a>
-      </div>
-      <a class="tracklist_track__buy_button" href="">Add to cart</a>
-    </div>
-
-    <div
-      class="tracklist_track"
-      data-track_src="audio/sufres.mp3"
-      data-track_name="Sufres"
-      data-artist="Kenza"
-      data-artwork="data/sufres.jpg"
-      onclick="playSound(this);"
-    >
-      <img
-        loading="lazy"
-        class="tracklist_track__img"
-        src="img/placeholders/track.svg"
-        alt="Artwork"
-      />
-      <span class="tracklist_track__name">Sufres</span>
-      <div class="tracklist_track__info">
-        <span class="tracklist_track__info__line">90 BPM</span>
-        <span class="tracklist_track__info__line">G#Min</span>
-        <span class="tracklist_track__info__line">3:30</span>
-      </div>
-      <div class="tracklist_track__tags">
-        <a class="tracklist_track__tags_link" href="">#justinquiles</a>
-        <a class="tracklist_track__tags_link" href="">#latin</a>
-        <a class="tracklist_track__tags_link" href="">#elkenza</a>
-      </div>
-      <a class="tracklist_track__buy_button" href="">Add to cart</a>
-    </div>
+    <a class="tracklist_track__buy_button" href="">Add to cart</a>
   </div>
+
+  <div
+    class="tracklist_track"
+    data-track_src="audio/quizas.mp3"
+    data-track_name="Quizás"
+    data-artist="Kenza"
+    data-artwork="data/quizas.jpg"
+    onclick="playSound(this);"
+  >
+    <img
+      loading="lazy"
+      class="tracklist_track__img"
+      src="img/placeholders/track.svg"
+      alt="Artwork"
+    />
+    <span class="tracklist_track__name">Quizás</span>
+    <div class="tracklist_track__info">
+      <span class="tracklist_track__info__line">90 BPM</span>
+      <span class="tracklist_track__info__line">G#Min</span>
+      <span class="tracklist_track__info__line">3:30</span>
+    </div>
+    <div class="tracklist_track__tags">
+      <a class="tracklist_track__tags_link" href="">#justinquiles</a>
+      <a class="tracklist_track__tags_link" href="">#latin</a>
+      <a class="tracklist_track__tags_link" href="">#elkenza</a>
+    </div>
+    <a class="tracklist_track__buy_button" href="">Add to cart</a>
+  </div>
+
+  <div
+    class="tracklist_track"
+    data-track_src="audio/sufres.mp3"
+    data-track_name="Sufres"
+    data-artist="Kenza"
+    data-artwork="data/sufres.jpg"
+    onclick="playSound(this);"
+  >
+    <img
+      loading="lazy"
+      class="tracklist_track__img"
+      src="img/placeholders/track.svg"
+      alt="Artwork"
+    />
+    <span class="tracklist_track__name">Sufres</span>
+    <div class="tracklist_track__info">
+      <span class="tracklist_track__info__line">90 BPM</span>
+      <span class="tracklist_track__info__line">G#Min</span>
+      <span class="tracklist_track__info__line">3:30</span>
+    </div>
+    <div class="tracklist_track__tags">
+      <a class="tracklist_track__tags_link" href="">#justinquiles</a>
+      <a class="tracklist_track__tags_link" href="">#latin</a>
+      <a class="tracklist_track__tags_link" href="">#elkenza</a>
+    </div>
+    <a class="tracklist_track__buy_button" href="">Add to cart</a>
+  </div>
+</div>
