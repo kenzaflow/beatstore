@@ -278,6 +278,22 @@ function TimerSliderUpdater() {
     );
     player_controls_slider.setAttribute("max", sound.duration(0));
     player_controls_slider.value = sound.seek();
+
+    /* const percentValueOverDuration = Math.round(
+      (sound.seek() / sound.duration(0)) * 100
+    ); */
+
+    const percentValueOverDuration = (sound.seek() / sound.duration(0)) * 100;
+
+    var subTotalFormatted = parseFloat(percentValueOverDuration).toFixed(1); //"12.13"
+
+    let newVar = "ScaleX(" + subTotalFormatted / 100.0 + ")";
+
+    var player__top_slider__inner = document.getElementById(
+      "player__top_slider__inner"
+    );
+
+    player__top_slider__inner.style.transform = newVar;
   }
 }
 
@@ -399,3 +415,40 @@ function saveVolume() {
   }
   /* console.log("volumen_guardado"); */
 }
+
+document.getElementById("player__top_slider").onclick = function clickEvent(e) {
+  if (sound != null) {
+    /* var player__top_slider = document.getElementById("player__top_slider");
+
+    var player__top_slider__inner = document.getElementById(
+      "player__top_slider__inner"
+    ); */
+
+    /* var newAudioIndex = element_clicked_id.getAttribute("data-track_src"); */
+
+    var rect = e.target.getBoundingClientRect();
+    var x = e.clientX - rect.left; //x position within the element.
+    var y = e.clientY - rect.top; //y position within the element.
+
+    console.log("Left: " + x + " & Top: " + y);
+
+    /* if e.screenX document.getElementById("player__top_slider") */
+
+    var player__top_slider = document.getElementById("player__top_slider");
+    var positionInfo = player__top_slider.getBoundingClientRect();
+    var width = positionInfo.width;
+
+    let percentValueOverDuration = (x / width) * 100;
+    console.log("Percent: " + percentValueOverDuration);
+
+    /* const sape = getPosition(player__top_slider);
+
+    console.log(sape); */
+
+    /* if (site__playlist_player.classList.contains("visible")) {
+      site__playlist_player.classList.remove("visible");
+    } else {
+      site__playlist_player.classList.add("visible");
+    } */
+  }
+};

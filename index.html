@@ -76,12 +76,23 @@
       </div> -->
 
       <div id="site__content" class="site__content">
-        
-
         <!-- <p>Version 0.0.3</p> -->
       </div>
 
       <div id="site__player" class="site__player shade--small">
+        <!--  -->
+        <!--  -->
+        <div
+          class="player__top_slider"
+          id="player__top_slider"
+        >
+          <div
+            class="player__top_slider__inner"
+            id="player__top_slider__inner"
+          ></div>
+        </div>
+        <!--  -->
+        <!--  -->
         <div id="player__info" class="player__info">
           <img
             id="player__info-image"
@@ -136,7 +147,10 @@
                 id="player__menu_volume-slider"
               /></div
           ></span>
-          <span id="player__menu_open_playlist" class="player__menu_open_playlist fi-sr-align-justify"></span>
+          <span
+            id="player__menu_open_playlist"
+            class="player__menu_open_playlist fi-sr-align-justify"
+          ></span>
         </div>
       </div>
 
@@ -151,7 +165,9 @@
             src="img/placeholders/track.svg"
             alt="Artwork"
           />
-          <span class="playlist__track__name">Sufres<span class="playlist__track__playing">Playing</span></span>
+          <span class="playlist__track__name"
+            >Sufres<span class="playlist__track__playing">Playing</span></span
+          >
           <span class="playlist__track__play_button">Play</span>
         </div>
         <div class="playlist__track" onclick="playSoundById(0);">
