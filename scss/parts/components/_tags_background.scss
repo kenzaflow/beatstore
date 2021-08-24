@@ -1,0 +1,30 @@
+@mixin calc($property, $expression...) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -o-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+@mixin components_tags_background($back_color: rgb(192, 63, 63), $padding: 0) {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  @include calc(width, #{"100% + #{$padding * 2}"});
+  transform: translateX(0 - ($padding));
+
+  height: 100%;
+
+  border-radius: 2rem;
+  background-color: $back_color;
+  /* background-color: var(--site-content-featured-tags-button); */
+  /* background-color: hsl(0, 0%, 100%); */
+
+  transition: filter 0.175s ease-in-out;
+  filter: drop-shadow(0 0.075rem 0.15rem rgba(0, 0, 0, 0.15));
+  &:hover {
+    filter: drop-shadow(0 0.125rem 0.25rem rgba(255, 255, 255, 0.3));
+  }
+  z-index: -1;
+}

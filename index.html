@@ -23,8 +23,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link defer rel="stylesheet" href="css/style.css?v=0.0.10" />
-    <script defer src="scripts/main.js?0.0.11"></script>
+    <link defer rel="stylesheet" href="css/style.css?v=0.0.11" />
+    <script defer src="scripts/main.js?0.0.12"></script>
     <!-- <script
       defer
       src="scripts/howler.min.js?0.0.8"
@@ -34,17 +34,12 @@
     <script defer src="scripts/player.js?0.0.6"></script> -->
   </head>
 
-  <body class="preloading">
-    <div class="preloading__spinner preloading__spinner--visible">
-      <div class="shade--medium">
-        <div class="inner"></div>
-      </div>
-    </div>
-
+  <body id="body" class="preloading">
     <div id="site" class="site">
       <div id="site__menu" class="site__menu shade--small">
         <a href="?page=home" class="site__logo">
           <img
+            draggable="false"
             loading="lazy"
             class="logo__img"
             src="img/logos/logo-white.svg"
@@ -52,21 +47,28 @@
           />
         </a>
 
-        <div class="site__menu__hamburger" id="menuToggler">
-          <div class="hamburger__icon">
-            <span class="hamburger__icon_line hamburger__icon_line--one"></span>
-            <span class="hamburger__icon_line hamburger__icon_line--two"></span>
+        <div class="site__menu__hamburger" id="site__menu__hamburger">
+          <div class="hamburger__icon" id="hamburger__icon">
             <span
+              id="hamburger__icon_line__one"
+              class="hamburger__icon_line hamburger__icon_line--one"
+            ></span>
+            <span
+              id="hamburger__icon_line__two"
+              class="hamburger__icon_line hamburger__icon_line--two"
+            ></span>
+            <span
+              id="hamburger__icon_line__three"
               class="hamburger__icon_line hamburger__icon_line--three"
             ></span>
           </div>
         </div>
 
         <div id="site__menu__links">
-          <a href="?page=home">Home</a>
-          <a href="?page=explore">Explore</a>
-          <a href="?page=cart">Cart</a>
-          <a href="?page=account">Account</a>
+          <a class="show_link" href="?page=home">Home</a>
+          <a class="show_link" href="?page=explore">Explore</a>
+          <a class="show_link" href="?page=cart">Cart</a>
+          <a class="show_link" href="?page=account">Account</a>
         </div>
       </div>
 
@@ -75,17 +77,18 @@
         <a class="search_bar__search_button" href="" for="header-seach">Search</a>
       </div> -->
 
-      <div id="site__content" class="site__content">
-        <!-- <p>Version 0.0.3</p> -->
+      <div id="site__content" class="site__content"></div>
+
+      <div id="site__footer" class="site__footer">
+        <p>Version 0.0.3</p>
       </div>
+
+      <div id="site__bottom_margin" class="site__bottom_margin"></div>
 
       <div id="site__player" class="site__player shade--small">
         <!--  -->
         <!--  -->
-        <div
-          class="player__top_slider"
-          id="player__top_slider"
-        >
+        <div class="player__top_slider" id="player__top_slider">
           <div
             class="player__top_slider__inner"
             id="player__top_slider__inner"
@@ -95,6 +98,7 @@
         <!--  -->
         <div id="player__info" class="player__info">
           <img
+            draggable="false"
             id="player__info-image"
             class="player__info-image"
             alt="Artwork"
@@ -127,8 +131,8 @@
             max="100"
             value="0"
             step="any"
-            class="player__controls-slider"
-            id="player__controls-slider"
+            class="player__controls_slider"
+            id="player__controls_slider"
           />
         </div>
         <div id="player__menu" class="player__menu">
@@ -160,6 +164,7 @@
         </div>
         <div class="playlist__track" onclick="playSoundById(0);">
           <img
+            draggable="false"
             loading="lazy"
             class="playlist__track__img"
             src="img/placeholders/track.svg"
@@ -172,6 +177,7 @@
         </div>
         <div class="playlist__track" onclick="playSoundById(0);">
           <img
+            draggable="false"
             loading="lazy"
             class="playlist__track__img"
             src="img/placeholders/track.svg"
@@ -182,6 +188,7 @@
         </div>
         <div class="playlist__track" onclick="playSoundById(0);">
           <img
+            draggable="false"
             loading="lazy"
             class="playlist__track__img"
             src="img/placeholders/track.svg"

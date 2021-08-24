@@ -23,9 +23,8 @@ $theme-menu-colors: (
 
   padding: 0 1rem;
 
-  /* position: fixed; */
-  top: 0;
   position: sticky;
+  top: 0;
   width: 100%;
 
   .site__logo {
@@ -136,11 +135,15 @@ $theme-menu-colors: (
   display: flex;
   flex-direction: column;
   height: auto;
-  font-weight: 500;
   z-index: $z-index__site-menu;
-  & a {
+  a {
     text-align: center;
     padding: 1rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    /* &.active {
+      font-weight: 700;
+    } */
   }
 
   @media (max-width: $screen-width-big - 1) {
@@ -151,7 +154,6 @@ $theme-menu-colors: (
       right: 1rem;
       transform-origin: top;
       transition: transform 0.175s ease-in-out;
-      /* will-change: transform; */
       padding: 1rem;
 
       background-color: var(--site-menu-background-color);
@@ -160,7 +162,7 @@ $theme-menu-colors: (
       transform: scaleY(0);
     }
     &.active {
-      transform: scaleY(100%);
+      transform: scaleY(1);
       filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.5));
     }
     & a:not(a:last-child) {
@@ -179,7 +181,7 @@ $theme-menu-colors: (
       justify-content: flex-end;
       transition: none;
     }
-    & a {
+    a {
       text-align: center;
       border-bottom: none;
     }

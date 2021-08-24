@@ -1,22 +1,125 @@
 function interceptClickEvent(e) {
   var href;
   var target = e.target || e.srcElement;
+
+  /* if (target.offsetParent && target.offsetParent == 'menuToggler') {
+    console.log("Hizo click bien");
+  } */
+
+  /* console.log("---------");
+  console.log(target);
+  console.log(target.id);
+  console.log(target.offsetParent);
+  console.log("---------"); */
+
+  /* console.log(target.id); */
+
+  if (
+    target.id == "site__menu__hamburger" ||
+    target.id == "hamburger__icon" ||
+    target.id == "hamburger__icon_line__one" ||
+    target.id == "hamburger__icon_line__two" ||
+    target.id == "hamburger__icon_line__three"
+  ) {
+    if (
+      document.querySelector("#site__menu__links").classList.contains("active")
+    ) {
+      document.querySelector("#site__menu__links").classList.remove("active");
+      document
+        .querySelector(".hamburger__icon_line")
+        .classList.remove("active");
+    } else {
+      document.querySelector("#site__menu__links").classList.add("active");
+      document.querySelector(".hamburger__icon_line").classList.add("active");
+    }
+  } else {
+    if (
+      document.querySelector("#site__menu__links").classList.contains("active")
+    ) {
+      document.querySelector("#site__menu__links").classList.remove("active");
+      document
+        .querySelector(".hamburger__icon_line")
+        .classList.remove("active");
+    }
+  }
+  if (target.id == "youtube__section__video_thumbail_play") {
+    document.getElementById("youtube__section__video").innerHTML =
+      '<iframe class="youtube__section__video_iframe" width="100%" height="100%" src="https://www.youtube.com/embed/41p8H7OU4Ew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    if (typeof sound !== "undefined") {
+      sound.pause();
+    }
+  }
+  if (
+    target.id == "player__menu_volume" ||
+    target.id == "player__menu_volume_container" ||
+    target.id == "player__menu_volume-slider"
+  ) {
+    /* console.log("Click en volumen"); */
+    /* document
+      .getElementById("player__menu_volume_container")
+      .classList.add("visible"); */
+
+    if (
+      !document
+        .getElementById("player__menu_volume_container")
+        .classList.contains("visible")
+    ) {
+      document
+        .getElementById("player__menu_volume_container")
+        .classList.add("visible");
+    } else if (target.id == "player__menu_volume") {
+      document
+        .getElementById("player__menu_volume_container")
+        .classList.remove("visible");
+    }
+  } else {
+    if (
+      document
+        .getElementById("player__menu_volume_container")
+        .classList.contains("visible")
+    ) {
+      document
+        .getElementById("player__menu_volume_container")
+        .classList.remove("visible");
+    }
+  }
+  if (target.offsetParent !== null) {
+    if (
+      target.offsetParent.id !== "site__playlist_player" &&
+      target.offsetParent.id !== null &&
+      target.id !== "player__menu_open_playlist"
+    ) {
+      var site__playlist_player = document.getElementById(
+        "site__playlist_player"
+      );
+
+      if (site__playlist_player.classList.contains("visible")) {
+        site__playlist_player.classList.remove("visible");
+      }
+    }
+  }
+
   target = target.closest("a");
   if (target !== null) {
     if (target.tagName !== null) {
+      /* En este nesting van los elementos */
       if (target.tagName !== "a") {
-        if (target.getAttribute("href") !== null) {
-          href = target.getAttribute("href");
+        //tell the browser not to respond to the link click
+        e.preventDefault();
+        if (target.getAttribute("href") !== "") {
+          if (target.getAttribute("href") !== null) {
+            if (target.getAttribute("href") !== "#") {
+              href = target.getAttribute("href");
+              /* console.log(href); */
 
-          //put your logic here...
-          if (true) {
-            //tell the browser not to respond to the link click
-            e.preventDefault();
-
-            /* WIIIIII */
-            /* console.log(getParameterByName("page", href)); */
-            let newPage = getParameterByName("page", href);
-            replaceSiteContent(newPage + ".html");
+              //put your logic here...
+              if (true) {
+                /* WIIIIII */
+                /* console.log(getParameterByName("page", href)); */
+                let newPage = getParameterByName("page", href);
+                replaceSiteContent(newPage + ".html");
+              }
+            }
           }
         }
       }
@@ -76,13 +179,35 @@ function setCurrentPage(thePage) {
     (response) => response.status == 200
   ); */
 
+/* function disableAllMenuActives(thePageID) {
+  thePageID = "?page=" + thePageID;
+  var allTag_A = document.getElementsByTagName("a");
+  for (var currentA = 0; currentA < allTag_A.length; currentA++) {
+    if (
+      allTag_A[currentA].getAttribute("href") !== null &&
+      allTag_A[currentA].getAttribute("href") !== undefined
+    ) {
+      if (allTag_A[currentA].classList.contains("active")) {
+        allTag_A[currentA].classList.remove("active");
+      }
+
+      if (allTag_A[currentA].getAttribute("href") == thePageID) {
+        allTag_A[currentA].classList.add("active");
+        console.log("DUINU");
+      }
+    }
+  }
+} */
+
 async function replaceSiteContent(url, error_page) {
-  /* makeitDisplay(false); */
+  makeitDisplay(false);
   let queryURL = url.replace(".html", "");
   try {
     const response = await fetch(url, { cache: "no-store" });
     const data = await response.text();
     /* console.log(data); */
+
+    /* console.log(response.status); */
 
     if (response.ok) {
       /* response.blob().then(function (miBlob) {
@@ -93,10 +218,17 @@ async function replaceSiteContent(url, error_page) {
 
       setCurrentPage(queryURL);
 
+      if (document.getElementById("site").classList.contains("in_home")) {
+        document.getElementById("site").classList.remove("in_home");
+      }
+
+      /* disableAllMenuActives(queryURL); */
+
       if (queryURL === "home") {
         setTimeout(() => {
           scanImageTracks();
         }, 100);
+        document.getElementById("site").classList.add("in_home");
       }
 
       if (queryURL === "404") {
@@ -109,9 +241,10 @@ async function replaceSiteContent(url, error_page) {
         }
       }
 
-      /* makeitDisplay(true); */
+      makeitDisplay(true);
+    } else if (response.status == 404) {
+      replaceSiteContent("404.html", queryURL);
     } else {
-      /* console.log("Respuesta de red OK pero respuesta HTTP no OK"); */
       replaceSiteContent("404.html", queryURL);
     }
   } catch (err) {
@@ -155,7 +288,7 @@ var mediaqueryList = window.matchMedia("(min-width: 768px)");
 function updateScreen() {
   // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 
-  /* document.getElementById("debug__text").innerHTML =
+  document.getElementById("debug__text").innerHTML =
     "Absoulute: " +
     screen.width +
     "x" +
@@ -165,7 +298,7 @@ function updateScreen() {
     screen.availWidth +
     "x" +
     screen.availHeight +
-    "<br>"; */
+    "<br>";
 
   const parent_site = document.getElementById("site");
   const parent_site_menu = document.getElementById("site__menu");
@@ -189,7 +322,7 @@ window.addEventListener(
   }, 200)
 );
 
-if (document.readyState == "interactive") {
+/* if (document.readyState == "interactive") {
   document.querySelector("#menuToggler").addEventListener("click", () => {
     if (
       document.querySelector("#site__menu__links").classList.contains("active")
@@ -198,12 +331,14 @@ if (document.readyState == "interactive") {
       document
         .querySelector(".hamburger__icon_line")
         .classList.remove("active");
+      console.log("nav inactiva");
     } else {
       document.querySelector("#site__menu__links").classList.add("active");
       document.querySelector(".hamburger__icon_line").classList.add("active");
+      console.log("nav activa");
     }
   });
-}
+} */
 
 /* ToDo like this below */
 
@@ -216,34 +351,13 @@ if (document.readyState == "interactive") {
 
 function makeitDisplay(makeactive = true) {
   /* console.log("DIOS"); */
-  var siteDiv = document.getElementById("site");
-
-  /* siteDiv.style.display = "block"; */
-
-  /* console.log("terminamos de cargar"); */
-  var c = document.getElementsByClassName("preloading__spinner")[0];
+  var theBody = document.getElementById("body");
 
   if (makeactive === true) {
-    setTimeout(function () {
-      var b = document.getElementsByTagName("body")[0];
-      b.classList.remove("preloading");
-      c.classList.add("preloading__spinner--hide");
-    }, 250);
-
-    setTimeout(function () {
-      c.classList.remove("preloading__spinner--visible");
-    }, 750);
+    theBody.classList.remove("preloading");
   } else {
-    setTimeout(function () {
-      var b = document.getElementsByTagName("body")[0];
-      b.classList.add("preloading");
-      c.classList.add("preloading__spinner--hide");
-      c.classList.add("preloading__spinner--visible");
-    }, 1);
-
-    setTimeout(function () {
-      c.classList.remove("preloading__spinner--hide");
-    }, 100);
+    var b = document.getElementsByTagName("body")[0];
+    theBody.classList.add("preloading");
   }
 }
 
@@ -259,13 +373,25 @@ function scanImageTracks() {
       );
 
       if (tracklist_track__img[0] != undefined) {
-        tracklist_track__img[0].src =
-          allTag_DIVS[currentDIV].getAttribute("data-artwork");
+        if (allTag_DIVS[currentDIV].getAttribute("data-artwork") !== null) {
+          tracklist_track__img[0].src =
+            allTag_DIVS[currentDIV].getAttribute("data-artwork");
+          if (typeof sound !== "undefined") {
+            if (
+              allTag_DIVS[currentDIV].getAttribute("data-track_src") ==
+              actualSongURL /* track_list[currentSrc][0] */
+            ) {
+              allTag_DIVS[currentDIV].classList.add("playing");
+            }
+          }
+        }
       }
 
       if (featured_track__img[0] != undefined) {
-        featured_track__img[0].src =
-          allTag_DIVS[currentDIV].getAttribute("data-artwork");
+        if (allTag_DIVS[currentDIV].getAttribute("data-artwork") !== null) {
+          featured_track__img[0].src =
+            allTag_DIVS[currentDIV].getAttribute("data-artwork");
+        }
       }
     }
   }
@@ -290,6 +416,12 @@ window.addEventListener("load", (event) => {
   linkToAddAnother.href = "css/uicons/css/uicons-solid-rounded.css?0.0.3";
   document.getElementsByTagName("head")[0].appendChild(linkToAddAnother);
 
+  var linkToAddAnotherOne = document.createElement("link");
+  linkToAddAnotherOne.setAttribute("rel", "stylesheet");
+  linkToAddAnotherOne.href =
+    "https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap";
+  document.getElementsByTagName("head")[0].appendChild(linkToAddAnotherOne);
+
   /* const scriptOne = document.createElement("script");
   scriptOne.type = "text/javascript";
   scriptOne.src = "scripts/howler.min.js?0.0.8";
@@ -308,9 +440,9 @@ window.addEventListener("load", (event) => {
     makeitDisplay();
   }, 500);
 
-  setTimeout(() => {
+  /* setTimeout(() => {
     scanImageTracks();
-  }, 750);
+  }, 750); */
 });
 
 var yaEstaAgregado = false;

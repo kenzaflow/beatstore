@@ -1,29 +1,52 @@
 <div class="header">
   <picture class="header__background_div">
     <source
-      media="(min-width: 768px)"
-      srcset="img/backgrounds/background_big.webp"
+      media="(max-width: 479px)"
+      srcset="img/backgrounds/v2/background_0_25.webp"
       type="image/webp"
     />
     <source
-      media="(min-width: 375px)"
-      srcset="img/backgrounds/background_medium.webp"
+      media="(min-width: 480px) and (max-width: 959px)"
+      srcset="img/backgrounds/v2/background_0_5.webp"
       type="image/webp"
     />
     <source
-      media="(min-width: 768px)"
-      srcset="img/backgrounds/background_big.jpg"
+      media="(min-width: 960px) and (max-width: 1439px)"
+      srcset="img/backgrounds/v2/background_0_75.webp"
+      type="image/webp"
+    />
+    <source
+      media="(min-width: 1440px)"
+      srcset="img/backgrounds/v2/background_1.webp"
+      type="image/webp"
+    />
+
+    <source
+      media="(max-width: 479px)"
+      srcset="img/backgrounds/v2/background_0_25.jpg"
       type="image/jpeg"
     />
     <source
-      media="(min-width: 375px)"
-      srcset="img/backgrounds/background_medium.jpg"
+      media="(min-width: 480px) and (max-width: 959px)"
+      srcset="img/backgrounds/v2/background_0_5.jpg"
       type="image/jpeg"
     />
+    <source
+      media="(min-width: 960px) and (max-width: 1439px)"
+      srcset="img/backgrounds/v2/background_0_75.jpg"
+      type="image/jpeg"
+    />
+    <source
+      media="(min-width: 1440px)"
+      srcset="img/backgrounds/v2/background_1.jpg"
+      type="image/jpeg"
+    />
+
     <img
+      draggable="false"
       loading="lazy"
       class="header__background_div_img"
-      src="img/backgrounds/background_little.jpg"
+      src="img/backgrounds/v2/background_0_25.jpg"
       alt="Background"
     />
   </picture>
@@ -31,13 +54,14 @@
   <div
     class="featured_track"
     data-ignore="ignore"
-    data-track_src="audio/luz.mp3"
-    data-track_name="Luz"
+    data-track_src="audio/otra_vez.mp3"
+    data-track_name="Otra Vez"
     data-artist="Kenza"
-    data-artwork="data/luz.jpg"
+    data-artwork="data/otra_vez.jpg"
     onclick="playSound(this);"
   >
     <img
+      draggable="false"
       loading="lazy"
       class="featured_track__img"
       src="img/placeholders/track.svg"
@@ -45,17 +69,20 @@
       height="100px"
       alt="Artwork"
     />
-    <span class="featured_track__name">Luz</span>
+    <span class="featured_track__name">Otra Vez</span>
     <div class="featured_track__info">
       <span class="featured_track__info__line">Featured Track</span>
     </div>
     <div class="featured_track__tags">
-      <a class="featured_track__tags_link" href="">#justinquiles</a>
-      <a class="featured_track__tags_link" href="">#latin</a>
-      <a class="featured_track__tags_link" href="">#elkenza</a>
+      <a class="featured_track__tags_link" href="">#JhayCortez</a>
+      <a class="featured_track__tags_link" href="">#NioGarcia</a>
+      <a class="featured_track__tags_link" href="">#Dembow</a>
     </div>
     <div class="featured_track__divider"></div>
-    <a class="featured_track__buy_button" href="">Add to cart</a>
+    <a class="featured_track__buy_button" href=""
+      ><span class="fi-sr-shopping-bag-add"></span
+      ><span class="price">$19.99</span></a
+    >
   </div>
 </div>
 
@@ -69,6 +96,7 @@
     onclick="playSound(this);"
   >
     <img
+      draggable="false"
       loading="lazy"
       class="tracklist_track__img"
       src="img/placeholders/track.svg"
@@ -76,16 +104,19 @@
     />
     <span class="tracklist_track__name">Luz</span>
     <div class="tracklist_track__info">
-      <span class="tracklist_track__info__line">90 BPM</span>
-      <span class="tracklist_track__info__line">G#Min</span>
-      <span class="tracklist_track__info__line">3:30</span>
+      <span class="tracklist_track__info__line show_link">90 BPM</span>
+      <span class="tracklist_track__info__line show_link">G#Min</span>
+      <span class="tracklist_track__info__line show_link">3:30</span>
     </div>
     <div class="tracklist_track__tags">
       <a class="tracklist_track__tags_link" href="">#justinquiles</a>
       <a class="tracklist_track__tags_link" href="">#latin</a>
       <a class="tracklist_track__tags_link" href="">#elkenza</a>
     </div>
-    <a class="tracklist_track__buy_button" href="">Add to cart</a>
+    <a class="tracklist_track__buy_button" href=""
+      ><span class="fi-sr-shopping-bag-add"></span
+      ><span class="price">$19.99</span></a
+    >
   </div>
 
   <div
@@ -97,6 +128,7 @@
     onclick="playSound(this);"
   >
     <img
+      draggable="false"
       loading="lazy"
       class="tracklist_track__img"
       src="img/placeholders/track.svg"
@@ -104,16 +136,19 @@
     />
     <span class="tracklist_track__name">Karma</span>
     <div class="tracklist_track__info">
-      <span class="tracklist_track__info__line">90 BPM</span>
-      <span class="tracklist_track__info__line">G#Min</span>
-      <span class="tracklist_track__info__line">3:30</span>
+      <span class="tracklist_track__info__line show_link">90 BPM</span>
+      <span class="tracklist_track__info__line show_link">G#Min</span>
+      <span class="tracklist_track__info__line show_link">3:30</span>
     </div>
     <div class="tracklist_track__tags">
       <a class="tracklist_track__tags_link" href="">#justinquiles</a>
       <a class="tracklist_track__tags_link" href="">#latin</a>
       <a class="tracklist_track__tags_link" href="">#elkenza</a>
     </div>
-    <a class="tracklist_track__buy_button" href="">Add to cart</a>
+    <a class="tracklist_track__buy_button" href=""
+      ><span class="fi-sr-shopping-bag-add"></span
+      ><span class="price">$19.99</span></a
+    >
   </div>
 
   <div
@@ -125,6 +160,7 @@
     onclick="playSound(this);"
   >
     <img
+      draggable="false"
       loading="lazy"
       class="tracklist_track__img"
       src="img/placeholders/track.svg"
@@ -132,16 +168,19 @@
     />
     <span class="tracklist_track__name">Quizás</span>
     <div class="tracklist_track__info">
-      <span class="tracklist_track__info__line">90 BPM</span>
-      <span class="tracklist_track__info__line">G#Min</span>
-      <span class="tracklist_track__info__line">3:30</span>
+      <span class="tracklist_track__info__line show_link">90 BPM</span>
+      <span class="tracklist_track__info__line show_link">G#Min</span>
+      <span class="tracklist_track__info__line show_link">3:30</span>
     </div>
     <div class="tracklist_track__tags">
       <a class="tracklist_track__tags_link" href="">#justinquiles</a>
       <a class="tracklist_track__tags_link" href="">#latin</a>
       <a class="tracklist_track__tags_link" href="">#elkenza</a>
     </div>
-    <a class="tracklist_track__buy_button" href="">Add to cart</a>
+    <a class="tracklist_track__buy_button" href=""
+      ><span class="fi-sr-shopping-bag-add"></span
+      ><span class="price">$19.99</span></a
+    >
   </div>
 
   <div
@@ -153,6 +192,7 @@
     onclick="playSound(this);"
   >
     <img
+      draggable="false"
       loading="lazy"
       class="tracklist_track__img"
       src="img/placeholders/track.svg"
@@ -160,15 +200,210 @@
     />
     <span class="tracklist_track__name">Sufres</span>
     <div class="tracklist_track__info">
-      <span class="tracklist_track__info__line">90 BPM</span>
-      <span class="tracklist_track__info__line">G#Min</span>
-      <span class="tracklist_track__info__line">3:30</span>
+      <span class="tracklist_track__info__line show_link">90 BPM</span>
+      <span class="tracklist_track__info__line show_link">G#Min</span>
+      <span class="tracklist_track__info__line show_link">3:30</span>
     </div>
     <div class="tracklist_track__tags">
       <a class="tracklist_track__tags_link" href="">#justinquiles</a>
       <a class="tracklist_track__tags_link" href="">#latin</a>
       <a class="tracklist_track__tags_link" href="">#elkenza</a>
     </div>
-    <a class="tracklist_track__buy_button" href="">Add to cart</a>
+    <a class="tracklist_track__buy_button" href=""
+      ><span class="fi-sr-shopping-bag-add"></span
+      ><span class="price">$19.99</span></a
+    >
+  </div>
+
+  <div
+    class="tracklist_track"
+    data-track_src="audio/otra_vez.mp3"
+    data-track_name="Otra Vez"
+    data-artist="Kenza"
+    data-artwork="data/otra_vez.jpg"
+    onclick="playSound(this);"
+  >
+    <img
+      draggable="false"
+      loading="lazy"
+      class="tracklist_track__img"
+      src="img/placeholders/track.svg"
+      alt="Artwork"
+    />
+    <span class="tracklist_track__name">Otra Vez</span>
+    <div class="tracklist_track__info">
+      <span class="tracklist_track__info__line show_link">90 BPM</span>
+      <span class="tracklist_track__info__line show_link">C#Min</span>
+      <span class="tracklist_track__info__line show_link">2:55</span>
+    </div>
+    <div class="tracklist_track__tags">
+      <a class="tracklist_track__tags_link" href="">#JhayCortez</a>
+      <a class="tracklist_track__tags_link" href="">#NioGarcia</a>
+      <a class="tracklist_track__tags_link" href="">#Dembow</a>
+    </div>
+    <a class="tracklist_track__buy_button" href=""
+      ><span class="fi-sr-shopping-bag-add"></span
+      ><span class="price">$19.99</span></a
+    >
+  </div>
+</div>
+
+<div class="license__section" id="license__section">
+  <p class="license__section_title">Licensing</p>
+  <div class="license__section_leases">
+    <div class="license__section_single_lease">
+      <span class="license__section_single_lease_title">Limited Lease</span>
+      <span class="license__section_single_lease_price">$29.99</span>
+      <span class="license__section_single_lease_subtitle">For Artists</span>
+      <ul class="license__section_single_lease_features_list">
+        <li class="license__section_single_lease_features_list_item">
+          Untagged .wav
+        </li>
+        <li class="license__section_single_lease_features_list_item">
+          Limited to 200.000 streams
+        </li>
+        <li class="license__section_single_lease_features_list_item">
+          Upload to Spotify, Soundcloud, Youtube, etc.
+        </li>
+      </ul>
+      <a class="license__section_single_lease_button" href="#">Read License</a>
+    </div>
+    <div class="license__section_single_lease featured">
+      <span class="license__section_single_lease_title">Pro Lease</span>
+      <span class="license__section_single_lease_price">$29.99</span>
+      <span class="license__section_single_lease_subtitle">For Artists</span>
+      <ul class="license__section_single_lease_features_list">
+        <li class="license__section_single_lease_features_list_item">
+          Untagged .wav
+        </li>
+        <li class="license__section_single_lease_features_list_item">
+          Limited to 200.000 streams
+        </li>
+        <li class="license__section_single_lease_features_list_item">
+          Upload to Spotify, Soundcloud, Youtube, etc.
+        </li>
+      </ul>
+      <a class="license__section_single_lease_button" href="#">Read License</a>
+    </div>
+    <div class="license__section_single_lease">
+      <span class="license__section_single_lease_title">Master Lease</span>
+      <span class="license__section_single_lease_price">$29.99</span>
+      <span class="license__section_single_lease_subtitle">For Artists</span>
+      <ul class="license__section_single_lease_features_list">
+        <li class="license__section_single_lease_features_list_item">
+          Untagged .wav
+        </li>
+        <li class="license__section_single_lease_features_list_item">
+          Limited to 200.000 streams
+        </li>
+        <li class="license__section_single_lease_features_list_item">
+          Upload to Spotify, Soundcloud, Youtube, etc.
+        </li>
+      </ul>
+      <a class="license__section_single_lease_button" href="#">Read License</a>
+    </div>
+  </div>
+</div>
+
+<div class="youtube__section">
+  <div class="youtube__section__info">
+    <div class="yt_info__image_name_subs">
+      <img
+        class="yt_info__image_name_subs__image"
+        src="https://yt3.ggpht.com/ytc/AKedOLR7B131oQBfA1zGlc-O6EhxmNH-XyNvYvGeHzSKuw=s88-c-k-c0x00ffffff-no-rj"
+        alt=""
+      />
+      <p class="yt_info__image_name_subs__title">Kenza</p>
+      <p class="yt_info__image_name_subs__count">29.600 subs</p>
+    </div>
+    <div class="yt_info__total_views">
+      <span class="yt_info__total_views__icon fi-sr-eye"></span>
+      <p class="yt_info__total_views__title">Total Views</p>
+      <p class="yt_info__total_views__count">10M</p>
+    </div>
+    <div class="yt_info__total_videos">
+      <span class="yt_info__total_videos__icon fi-sr-video-camera"></span>
+      <p class="yt_info__total_videos__title">Videos</p>
+      <p class="yt_info__total_videos__count">120</p>
+    </div>
+  </div>
+  <div id="youtube__section__video" class="youtube__section__video">
+    <!-- <iframe class="youtube__section__video_iframe" width="100%" height="100%" src="https://www.youtube.com/embed/41p8H7OU4Ew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+    <picture class="youtube__section__video_thumbail">
+      <source
+        media="(min-width: 768px)"
+        srcset="https://i.ytimg.com/vi/41p8H7OU4Ew/maxresdefault.jpg"
+        type="image/jpeg"
+      />
+      <source
+        media="(min-width: 480px)"
+        srcset="https://i.ytimg.com/vi/41p8H7OU4Ew/hqdefault.jpg"
+        type="image/jpeg"
+      />
+      <img
+        draggable="false"
+        loading="lazy"
+        class="youtube__section__video_thumbail"
+        src="https://i.ytimg.com/vi/41p8H7OU4Ew/mqdefault.jpg"
+        alt="YouTube Thumbail"
+      />
+    </picture>
+    <div
+      id="youtube__section__video_thumbail_play"
+      class="youtube__section__video_thumbail_play"
+    ></div>
+  </div>
+</div>
+
+<div class="contact__section">
+  <p class="contact__section_title">Contact</p>
+  <div class="contact__section_inner">
+    <form class="theform">
+      <input
+        class="name"
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Your Name"
+      />
+      <input
+        class="email"
+        type="email"
+        name="email"
+        id="email"
+        placeholder="E-Mail Address"
+      />
+      <input
+        class="subject"
+        type="text"
+        name="subject"
+        id="subject"
+        placeholder="Subject"
+      />
+      <textarea
+        class="message"
+        name="message"
+        id="message"
+        rows="2"
+        placeholder="Message"
+      ></textarea>
+      <!-- <input type="submit" value="Send" /> -->
+      <button class="send" type="reset">Send</button>
+      <div class="info">
+        <div class="line line_1">
+          <span class="fi-sr-info"></span>
+          <span>If you have any questions, contact me!</span>
+        </div>
+        <div class="line line_2">
+          <span class="fi-sr-envelope"></span>
+          <span>contact@kenzaflow.com</span>
+        </div>
+        <div class="line line_3">
+          <span class="fi-sr-marker"></span>
+          <span>Buenos Aires, AR</span>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

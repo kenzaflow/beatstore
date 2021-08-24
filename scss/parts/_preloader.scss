@@ -25,45 +25,33 @@ $theme-preloader-colors: (
   transition: none !important;
 }
 
-.preloading__spinner {
-  z-index: 9999;
+.preloading::before {
+  content: "";
+  z-index: 9998;
   position: fixed;
   left: 0;
-  right: 0;
   top: 0;
+  right: 0;
   bottom: 0;
-  display: none;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.5s ease-in-out;
-  filter: opacity(1);
+  background-color: rgba(247, 247, 247, 0.5);
+  backdrop-filter: blur(1rem);
 }
 
-.preloading__spinner--visible {
-  background-color: var(--site-loading-background-color);
-  display: flex;
-  filter: opacity(1);
-}
-
-.preloading__spinner--hide {
-  filter: opacity(0);
-}
-
-.preloading__spinner .inner {
-  width: 5rem;
-  height: 5rem;
+.preloading::after {
+  content: "";
+  z-index: 9999;
+  position: absolute;
+  left: calc(50% - 3rem);
+  top: calc(50% - 3rem);
+  width: 6rem;
+  height: 6rem;
+  /* background-color: rgb(19, 161, 90); */
+  border: 1rem solid $color-black-050;
+  border-left: 1rem solid $color-black-900;
   border-radius: 50%;
-  border: solid 1rem;
-  border-color: var(--site-loading-circle-color);
-  border-left-color: var(--site-loading-circle-color--left);
-  border-left-width: 1rem;
-  border-right-color: var(--site-loading-circle-color--right);
-  border-right-width: 1rem;
+
   animation-timing-function: linear;
-  animation-duration: 2s;
+  animation-duration: 1.75s;
   animation-name: preloading__spinner-animation;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
