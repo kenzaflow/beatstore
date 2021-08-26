@@ -60,9 +60,10 @@ function findTrackIndex(array, value) {
   return -1;
 }
 
-const track_list = [];
+let track_list = [];
 
 function scanTracks() {
+  track_list = [];
   var allTag_DIVS = document.getElementsByTagName("div");
   for (var currentDIV = 0; currentDIV < allTag_DIVS.length; currentDIV++) {
     if (allTag_DIVS[currentDIV].getAttribute("data-track_src") != null) {
@@ -83,6 +84,7 @@ function scanTracks() {
 scanTracks();
 
 document.getElementById("site__playlist_player").classList.add("enabled");
+document.getElementById("player__menu").classList.remove("invisible");
 
 /* console.table(track_list); */
 
@@ -119,14 +121,16 @@ function playSoundById(newAudioIndex) {
 
 function ActualizarPlaylist(newAudioIndex) {
   var site__playlist_player = document.getElementById("site__playlist_player");
-  /* site__playlist_player.innerHTML = ""; */
-
-  /* player__info_text_track_name.innerHTML = track_list[newAudioIndex][1];
-  player__info_text_artist.innerHTML = track_list[newAudioIndex][2];
-  player__info_image.src = track_list[newAudioIndex][3]; */
 
   site__playlist_player.innerHTML =
     '<div class="playlist__top"><span class="playlist__topText">Playlist</span></div>';
+
+  /* var theNewDiv = document.createElement("div");
+  theNewDiv.innerHTML =
+    '<div class="playlist__top"><span class="playlist__topText">Playlist</span></div>';
+  theNewDiv.id = "site__playlist_player";
+  theNewDiv.classList.add("site__playlist_player");
+  theNewDiv.classList.add("enabled"); */
 
   for (var id = 0; id < track_list.length; id++) {
     var div = document.createElement("div");
@@ -158,12 +162,25 @@ function ActualizarPlaylist(newAudioIndex) {
 
     site__playlist_player.appendChild(div);
   }
+
+  /* if (site__playlist_player.innerHTML == theNewDiv.innerHTML) {
+    console.log("Son iguales");
+  } else {
+    console.log("No son iguales");
+  }
+
+  console.log(site__playlist_player);
+  console.log(theNewDiv);
+
+  site__playlist_player.appendChild(theNewDiv); */
 }
 
 var player__control_play = document.getElementById("player__control_play");
 var player__control_pause = document.getElementById("player__control_pause");
 
 function play_Sound_Now(newAudioIndex) {
+  scanTracks();
+  console.table(track_list);
   if (track_list[actualSongID] !== undefined) {
     var OldAudioIndex = findTrackIndex(track_list, actualSongURL);
     var old_track_div =
@@ -217,7 +234,8 @@ function play_Sound_Now(newAudioIndex) {
   }
 
   site__player.classList.add("active");
-  document.getElementById("site__bottom_margin").classList.add("expanded");
+
+  document.getElementById("site").classList.add("expanded");
 
   player__controls_slider.classList.remove("visible");
   player__control_spinner.classList.add("visible");

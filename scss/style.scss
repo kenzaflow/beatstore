@@ -17,12 +17,9 @@ $theme-colors: (
   site-color-body-background-color: $color-white-500,
   site-color-body-fonts-color: $color-black-900,
   site-content-background-color: $color-white-200,
-  site-content-header-background-image--little:
-    url("../img/backgrounds/background_little.jpg"),
-  site-content-header-background-image--medium:
-    url("../img/backgrounds/background_medium.jpg"),
-  site-content-header-background-image--big:
-    url("../img/backgrounds/background_big.jpg"),
+  site-content-header-background-image--little: url("../img/backgrounds/background_little.jpg"),
+  site-content-header-background-image--medium: url("../img/backgrounds/background_medium.jpg"),
+  site-content-header-background-image--big: url("../img/backgrounds/background_big.jpg"),
   site-content-featured-title-text: $color-black-900,
   site-content-featured-info-text: $color-black-800,
   site-content-featured-tags-text: $color-black-800,
@@ -102,19 +99,26 @@ body {
   /* &.in_home {
 
   } */
+
+  &.expanded {
+    .site__content {
+      min-height: calc(100vh - 6.4rem - 8.4rem);
+    }
+
+    .site__bottom_margin {
+      margin-bottom: 6.4rem;
+      @media (min-width: $screen-width-big) {
+        & {
+          margin-bottom: 8.4rem;
+        }
+      }
+    }
+  }
 }
 
 .site__bottom_margin {
   height: 0;
   width: 100%;
-  &.expanded {
-    margin-bottom: 6.4rem;
-    @media (min-width: $screen-width-big) {
-      & {
-        margin-bottom: 8.4rem;
-      }
-    }
-  }
 }
 
 .site__content {
@@ -252,11 +256,7 @@ body {
         top: 0;
         bottom: 0;
         right: 0;
-        background: linear-gradient(
-          to bottom,
-          hsla(0, 0%, 100%, 0.4),
-          var(--site-content-background-color)
-        );
+        background: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.4), var(--site-content-background-color));
       }
     }
 
@@ -461,10 +461,7 @@ body {
         }
 
         .featured_track__tags_link::before {
-          @include components_tags_background(
-            $back_color: hsl(0, 0%, 96%),
-            $padding: 0.75rem
-          );
+          @include components_tags_background($back_color: hsl(0, 0%, 96%), $padding: 0.75rem);
         }
 
         .featured_track__tags_link {
@@ -507,8 +504,7 @@ body {
         @media (max-width: $screen-width-medium) {
           & {
             @include components__button(
-              $background-color:
-                var(--site__featured__buy-button--background-color),
+              $background-color: var(--site__featured__buy-button--background-color),
               $text-color: var(--site__featured__buy-button--text-color),
               $size: "little",
               $width: 100%,
@@ -519,8 +515,7 @@ body {
         @media (min-width: $screen-width-medium) and (max-width: $screen-width-big - 1px) {
           & {
             @include components__button(
-              $background-color:
-                var(--site__featured__buy-button--background-color),
+              $background-color: var(--site__featured__buy-button--background-color),
               $text-color: var(--site__featured__buy-button--text-color),
               $size: "medium",
               $width: auto,
@@ -532,8 +527,7 @@ body {
           & {
             justify-self: left;
             @include components__button(
-              $background-color:
-                var(--site__featured__buy-button--background-color),
+              $background-color: var(--site__featured__buy-button--background-color),
               $text-color: var(--site__featured__buy-button--text-color),
               $size: "medium",
               $width: auto,
@@ -571,12 +565,7 @@ body {
       gap: 1rem;
       $color_linear: rgb(245, 245, 245);
       $color_linear_medio: rgb(255, 255, 255);
-      background: linear-gradient(
-        to bottom,
-        $color_linear,
-        $color_linear_medio,
-        $color_linear
-      );
+      background: linear-gradient(to bottom, $color_linear, $color_linear_medio, $color_linear);
       border-radius: 0.5rem;
       filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.1));
 
@@ -690,16 +679,43 @@ body {
       }
       .tracklist_track__tags {
         grid-area: tags;
-        width: auto;
-        height: auto;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
+        width: 100%;
         display: none;
+
+        @media (min-width: 539px) {
+          & {
+            display: grid;
+          }
+        }
+        height: 100%;
+        overflow-y: scroll;
+        overflow: overlay;
+
+        /* align-content: safe center; */
+
+        position: relative;
+
+        /* &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.05);
+          z-index: 1000;
+        } */
+
+        scroll-behavior: smooth;
+        overscroll-behavior: contain;
+
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        &::-webkit-scrollbar {
+          display: none;
+        }
 
         /* scroll-snap-type: x mandatory;
         overflow-x: scroll; */
@@ -720,13 +736,11 @@ body {
         } */
 
         .tracklist_track__tags_link::before {
-          @include components_tags_background(
-            $back_color: #fff,
-            $padding: 0.175rem
-          );
+          @include components_tags_background($back_color: #fff, $padding: 0.175rem);
         }
 
         .tracklist_track__tags_link {
+          margin: 0.5rem;
           position: relative;
           display: flex;
           flex-direction: column;
@@ -734,12 +748,12 @@ body {
           align-items: center;
           /* background-color: $color-white-050;
           filter: drop-shadow(0 0.05rem 0.15rem rgba(0, 0, 0, 0.2)); */
-          padding: 0 1rem;
+          padding: 1rem;
           width: auto;
           font-size: 1.2rem;
           font-weight: 600;
           color: var(--site-content-featured-tags-text);
-          height: 2.5rem;
+          height: auto;
           /* border-radius: 2rem; */
           transition: all 0.175s ease-out;
           transition-property: filter, background-color;
@@ -758,16 +772,16 @@ body {
             &:nth-child(1) {
               display: flex;
             }
-          }
-          @media (min-width: $screen-width-big) {
             &:nth-child(2) {
               display: flex;
             }
-          }
-          @media (min-width: 1024px) {
             &:nth-child(3) {
               display: flex;
             }
+          }
+
+          &:nth-child(3) {
+            margin-bottom: 1rem;
           }
 
           /* & {
@@ -779,13 +793,6 @@ body {
             }
           } */
         }
-        @media (min-width: 539px) {
-          & {
-            display: flex;
-            flex-wrap: nowrap;
-            justify-self: center;
-          }
-        }
       }
       &:hover {
         /* padding: 1px; */
@@ -795,12 +802,7 @@ body {
         background-clip: content-box; */
         filter: drop-shadow(0 0.15rem 0.3rem rgba(0, 0, 0, 0.2));
 
-        background: linear-gradient(
-          to bottom,
-          $color_linear,
-          $color_linear_medio,
-          $color_linear
-        );
+        background: linear-gradient(to bottom, $color_linear, $color_linear_medio, $color_linear);
         overflow: none;
       }
       &.playing {
@@ -810,12 +812,7 @@ body {
         /*  with gradients */
 
         /* background: $color-white-100; */
-        background: linear-gradient(
-          to bottom,
-          $color_linear_medio,
-          $color_linear_medio,
-          $color_linear_medio
-        );
+        background: linear-gradient(to bottom, $color_linear_medio, $color_linear_medio, $color_linear_medio);
       }
       .tracklist_track__buy_button {
         grid-area: buy;
@@ -827,8 +824,7 @@ body {
         @media (max-width: $screen-width-medium) {
           & {
             @include components__button(
-              $background-color:
-                var(--site__featured__buy-button--background-color),
+              $background-color: var(--site__featured__buy-button--background-color),
               $text-color: var(--site__featured__buy-button--text-color),
               $size: "little",
               $width: 100%,
@@ -839,8 +835,7 @@ body {
         @media (min-width: $screen-width-medium) and (max-width: $screen-width-big - 1px) {
           & {
             @include components__button(
-              $background-color:
-                var(--site__featured__buy-button--background-color),
+              $background-color: var(--site__featured__buy-button--background-color),
               $text-color: var(--site__featured__buy-button--text-color),
               $size: "little",
               $width: auto,
@@ -852,8 +847,7 @@ body {
           & {
             justify-self: left;
             @include components__button(
-              $background-color:
-                var(--site__featured__buy-button--background-color),
+              $background-color: var(--site__featured__buy-button--background-color),
               $text-color: var(--site__featured__buy-button--text-color),
               $size: "little",
               $width: auto,
@@ -869,6 +863,91 @@ body {
             }
           }
         }
+      }
+    }
+    .tracklist__explore_button {
+      @include components__button(
+        $background-color: var(--site__featured__buy-button--background-color),
+        $text-color: var(--site__featured__buy-button--text-color),
+        $size: "big",
+        $width: auto,
+        $shadow: "auto"
+      );
+      margin-top: 4rem;
+    }
+  }
+}
+
+.site__footer {
+  height: 25rem;
+  background-color: $color-white-100;
+  display: grid;
+  grid-template-areas:
+    "links"
+    "socials"
+    "copyright";
+  grid-template-columns: 1fr;
+  @media (min-width: $screen-width-medium) {
+    & {
+      grid-template-areas: "links copyright socials";
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  justify-items: center;
+  align-items: center;
+  a,
+  p {
+    display: inline-block;
+  }
+  & > [class^="footer_"] {
+    /* width: 100%; */
+    height: auto;
+    display: grid;
+    gap: 1rem;
+  }
+  .footer_links {
+    grid-area: links;
+    justify-items: center;
+    @media (min-width: $screen-width-medium) {
+      & {
+        justify-items: start;
+      }
+    }
+    * {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+  }
+  .footer_copyright {
+    grid-area: copyright;
+    justify-items: center;
+    text-align: center;
+    * {
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+  }
+  .footer_socials {
+    grid-area: socials;
+
+    justify-items: center;
+    * {
+      font-size: 1.5rem;
+    }
+    .socials__inner {
+      display: grid;
+      gap: 1rem;
+      grid-auto-flow: column;
+      .socials__image {
+        width: 2.4rem;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        object-position: center;
+        background-color: #ffffff;
+        padding: 0.75rem;
+        box-sizing: content-box;
+        border-radius: 0.25rem;
+        filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.5));
       }
     }
   }
@@ -1137,6 +1216,9 @@ body {
     align-items: center;
     gap: 1rem;
     justify-content: end;
+    &.invisible {
+      display: none;
+    }
     .player__menu_open_playlist {
       cursor: pointer;
       line-height: 0;
@@ -1329,15 +1411,15 @@ body {
   .license__section_leases {
     display: grid;
     gap: 1rem;
-    grid-template-columns: 1fr;
-    @media (min-width: calc(28rem * 2)) {
+    grid-template-columns: auto;
+    @media (min-width: calc(550px)) {
       & {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: auto auto;
       }
     }
-    @media (min-width: calc(28rem * 3)) {
+    @media (min-width: calc(795px)) {
       & {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: auto auto auto;
       }
     }
     justify-items: center;
@@ -1374,17 +1456,16 @@ body {
         height: 35rem;
         top: 0; */
 
-      &:nth-child(1) {
-        /* transform: translateX(calc(-27.5rem * 1)); */
-        /* scroll-snap-align: start; */
+      /* &:nth-child(1) {
+        transform: translateX(calc(-27.5rem * 1));
       }
 
       &:nth-child(2) {
-        /* transform: translateX(calc(27.5rem * 1)); */
+        transform: translateX(calc(27.5rem * 1));
       }
       &:nth-child(3) {
-        /* transform: translateX(calc(27.5rem * 2)); */
-      }
+        transform: translateX(calc(27.5rem * 2));
+      } */
 
       display: grid;
       grid-template-areas:
@@ -1394,19 +1475,14 @@ body {
         "features_list"
         "button";
       width: 25rem;
-      grid-template-rows: auto;
+      grid-template-rows: 1.8rem 4.8rem 1.2rem auto 4.5rem;
       justify-items: center;
       background-color: #00000000;
       filter: none;
       height: auto;
 
       /* background-color: $color-white-100; */
-      background: linear-gradient(
-        to bottom,
-        $color-white-200,
-        $color-white-100,
-        $color-white-200
-      );
+      background: linear-gradient(to bottom, $color-white-200, $color-white-100, $color-white-200);
       filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.1));
       &:hover {
         filter: drop-shadow(0 0.25rem 0.4rem rgba(0, 0, 0, 0.2));
@@ -1449,7 +1525,7 @@ body {
         grid-template-columns: 1fr;
         width: auto;
         color: $color-black-800;
-        max-width: 15rem;
+        max-width: 20rem;
         text-align: center;
         margin: 0;
         padding: 0;
@@ -1481,8 +1557,7 @@ body {
         @media (max-width: $screen-width-medium) {
           & {
             @include components__button(
-              $background-color:
-                var(--site__featured__buy-button--background-color),
+              $background-color: var(--site__featured__buy-button--background-color),
               $text-color: var(--site__featured__buy-button--text-color),
               $size: "little",
               $width: 100%,
@@ -1493,8 +1568,7 @@ body {
         @media (min-width: $screen-width-medium) and (max-width: $screen-width-big - 1px) {
           & {
             @include components__button(
-              $background-color:
-                var(--site__featured__buy-button--background-color),
+              $background-color: var(--site__featured__buy-button--background-color),
               $text-color: var(--site__featured__buy-button--text-color),
               $size: "medium",
               $width: auto,
@@ -1505,8 +1579,7 @@ body {
         @media (min-width: $screen-width-big) {
           & {
             @include components__button(
-              $background-color:
-                var(--site__featured__buy-button--background-color),
+              $background-color: var(--site__featured__buy-button--background-color),
               $text-color: var(--site__featured__buy-button--text-color),
               $size: "big",
               $width: auto,
@@ -1534,31 +1607,19 @@ body {
   background-color: var(--site-content-background-color);
 
   @media (max-width: 479px) {
-    background-image: linear-gradient(
-        hsla(0, 0%, 100%, 0.9),
-        hsla(0, 0%, 100%, 0.9)
-      ),
+    background-image: linear-gradient(hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.9)),
       url("../img/backgrounds/v2/youtube_0_25.webp");
   }
   @media (min-width: 480px) and (max-width: 959px) {
-    background-image: linear-gradient(
-        hsla(0, 0%, 100%, 0.9),
-        hsla(0, 0%, 100%, 0.9)
-      ),
+    background-image: linear-gradient(hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.9)),
       url("../img/backgrounds/v2/youtube_0_5.webp");
   }
   @media (min-width: 960px) and (max-width: 1439px) {
-    background-image: linear-gradient(
-        hsla(0, 0%, 100%, 0.9),
-        hsla(0, 0%, 100%, 0.9)
-      ),
+    background-image: linear-gradient(hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.9)),
       url("../img/backgrounds/v2/youtube_0_75.webp");
   }
   @media (min-width: 1440px) {
-    background-image: linear-gradient(
-        hsla(0, 0%, 100%, 0.9),
-        hsla(0, 0%, 100%, 0.9)
-      ),
+    background-image: linear-gradient(hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.9)),
       url("../img/backgrounds/v2/youtube_0_75.webp");
   }
   background-position: center;
@@ -1583,6 +1644,12 @@ body {
     grid-area: info;
     display: grid;
     grid-auto-flow: row;
+
+    @media (min-width: 540px) and (max-width: $screen-width-big) {
+      & {
+        grid-template-columns: auto auto auto;
+      }
+    }
     gap: 2rem;
     width: 90%;
     max-width: 45rem;
@@ -1693,6 +1760,7 @@ body {
       /* max-width: 56rem; */
       display: block;
       border-radius: 1rem;
+      filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.25));
     }
     .youtube__section__video_thumbail_play {
       /* content: ""; */
@@ -1710,8 +1778,7 @@ body {
       left: 0;
       /* backdrop-filter: blur(0); */
 
-      transition: background-color 0.175s ease-in-out,
-        backdrop-filter 0.175s ease-in-out;
+      transition: background-color 0.175s ease-in-out, backdrop-filter 0.175s ease-in-out;
       &:hover {
         background-color: rgba(0, 0, 0, 0.75);
         /* backdrop-filter: blur(0.25rem); */
@@ -1776,12 +1843,15 @@ body {
   }
 
   .contact__section_inner {
-    width: 85%;
-    max-width: 90rem;
+    width: 100%;
     height: auto;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-areas: ". form .";
 
     .theform {
+      grid-area: form;
+      padding: 0 2rem;
       display: grid;
       grid-template-areas:
         "name"
@@ -1829,7 +1899,7 @@ body {
         filter: drop-shadow(0 0.05rem 0.1rem rgba(0, 0, 0, 0.1));
         transition: filter 0.175s ease-out;
         &:hover {
-          filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.25));
+          filter: drop-shadow(0 0.15rem 0.3rem rgba(0, 0, 0, 0.25));
         }
         &:active,
         &:focus,
@@ -1864,9 +1934,18 @@ body {
         display: grid;
         grid-auto-flow: row;
         gap: 1rem;
+
         .line {
           font-size: 1.8rem;
           font-weight: 500;
+          display: grid;
+          grid-auto-flow: column;
+          justify-content: start;
+          align-items: center;
+          gap: 0.5rem;
+          & > [class^="fi-sr"] {
+            line-height: 0;
+          }
         }
       }
     }
@@ -1897,11 +1976,11 @@ button {
     position: relative;
     left: 0;
     width: 100%;
-    height: 0.25rem;
+    height: 0.3rem;
     bottom: 0;
     display: block;
     transform: scaleX(0);
-    border-radius: 1rem;
+    border-radius: 35%;
     transition: transform 0.175s ease-in-out;
   }
   &:hover::after {

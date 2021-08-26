@@ -145,6 +145,7 @@ function getParameterByName(name, url = window.location.href) {
 
 window.addEventListener("DOMContentLoaded", (event) => {
   /* console.log("DOM fully loaded and parsed"); */
+
   let urlParams = new URLSearchParams(window.location.search);
   let myParam = urlParams.get("page");
 
@@ -200,7 +201,9 @@ function setCurrentPage(thePage) {
 } */
 
 async function replaceSiteContent(url, error_page) {
-  makeitDisplay(false);
+  displayPreloading(true);
+  window.scrollTo(0, 0);
+
   let queryURL = url.replace(".html", "");
   try {
     const response = await fetch(url, { cache: "no-store" });
@@ -224,11 +227,11 @@ async function replaceSiteContent(url, error_page) {
 
       /* disableAllMenuActives(queryURL); */
 
-      if (queryURL === "home") {
+      if (queryURL === "home" || queryURL === "explore") {
         setTimeout(() => {
           scanImageTracks();
         }, 100);
-        document.getElementById("site").classList.add("in_home");
+        /* document.getElementById("site").classList.add("in_home"); */
       }
 
       if (queryURL === "404") {
@@ -241,7 +244,9 @@ async function replaceSiteContent(url, error_page) {
         }
       }
 
-      makeitDisplay(true);
+      displayPreloading(false);
+
+      agregarScript();
     } else if (response.status == 404) {
       replaceSiteContent("404.html", queryURL);
     } else {
@@ -251,6 +256,18 @@ async function replaceSiteContent(url, error_page) {
     console.log("Hubo un problema con la petición Fetch:" + err.message);
     replaceSiteContent("404.html", queryURL);
   }
+}
+
+function agregarScript() {
+  /* const script = document.createElement("script"),
+    text = document.createTextNode("console.log('holawachen');");
+
+  script.appendChild(text);
+  script.setAttribute("defer"); */
+  /* script.attributes.add("jeje", "masbien"); */
+  /* script.setAttribute("onload", "console.log('holawachen');"); */
+  /* console.log(script);
+  document.body.appendChild(script); */
 }
 
 /* const setPageIfExists = function (file) {
@@ -349,17 +366,27 @@ window.addEventListener(
   }
 }); */
 
-function makeitDisplay(makeactive = true) {
+/* let sape = false; */
+
+function displayPreloading(display) {
   /* console.log("DIOS"); */
   var theBody = document.getElementById("body");
 
-  if (makeactive === true) {
+  if (display === false) {
     theBody.classList.remove("preloading");
+    /* sape = false; */
   } else {
-    var b = document.getElementsByTagName("body")[0];
     theBody.classList.add("preloading");
+    /* sape = true; */
   }
 }
+
+/* window.onkeypress = function (event) {
+  if (event.keyCode == 48) {
+    sape = !sape;
+    displayPreloading(sape);
+  }
+}; */
 
 function scanImageTracks() {
   var allTag_DIVS = document.getElementsByTagName("div");
@@ -404,24 +431,6 @@ window.addEventListener("load", (event) => {
   for (var i = 0; i < linesToAdd.length; i++) {
     document.head.innerHTML += linesToAdd[i];
   } */
-
-  var linkToAdd = document.createElement("link");
-  linkToAdd.setAttribute("rel", "stylesheet");
-  linkToAdd.href =
-    "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
-  document.getElementsByTagName("head")[0].appendChild(linkToAdd);
-
-  var linkToAddAnother = document.createElement("link");
-  linkToAddAnother.setAttribute("rel", "stylesheet");
-  linkToAddAnother.href = "css/uicons/css/uicons-solid-rounded.css?0.0.3";
-  document.getElementsByTagName("head")[0].appendChild(linkToAddAnother);
-
-  var linkToAddAnotherOne = document.createElement("link");
-  linkToAddAnotherOne.setAttribute("rel", "stylesheet");
-  linkToAddAnotherOne.href =
-    "https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap";
-  document.getElementsByTagName("head")[0].appendChild(linkToAddAnotherOne);
-
   /* const scriptOne = document.createElement("script");
   scriptOne.type = "text/javascript";
   scriptOne.src = "scripts/howler.min.js?0.0.8";
@@ -433,13 +442,9 @@ window.addEventListener("load", (event) => {
   scriptTwo.src = "scripts/player.js?0.0.6";
 
    document.head.appendChild(scriptTwo); */
-
-  updateScreen();
-
-  setTimeout(() => {
-    makeitDisplay();
-  }, 500);
-
+  /*   setTimeout(() => {
+    displayPreloading();
+  }, 500); */
   /* setTimeout(() => {
     scanImageTracks();
   }, 750); */
@@ -451,32 +456,41 @@ function playSound(element_clicked_id) {
   if (yaEstaAgregado == false) {
     yaEstaAgregado = true;
 
-    const scriptOne = document.createElement("script");
-    scriptOne.id = "howler_id";
-    scriptOne.type = "text/javascript";
-    scriptOne.src = "scripts/howler.min.js?0.0.11";
+    document.getElementById("site__player").classList.add("active");
+    document.getElementById("player__control_spinner").classList.add("visible");
 
-    document.head.appendChild(scriptOne);
-
-    var scriptOneLoaded = document.querySelector("#howler_id");
-    scriptOneLoaded.addEventListener("load", function () {
-      const scriptTwo = document.createElement("script");
-      scriptTwo.id = "player_script";
-      scriptTwo.type = "text/javascript";
-      scriptTwo.src = "scripts/player.js?0.0.10";
-      scriptTwo.async = true;
-
-      document.head.appendChild(scriptTwo);
-
-      var scriptTwoLoaded = document.querySelector("#player_script");
-      scriptTwoLoaded.addEventListener("load", function () {
-        /* console.log("Está cargado el player"); */
-        playSound(element_clicked_id);
-      });
-    });
+    setTimeout(() => {
+      startLoadingPlayer(element_clicked_id);
+    }, 100);
   } else {
-    console.log("no pofavo");
+    console.log("bancaaaaaaaaaaa");
   }
+}
+
+function startLoadingPlayer(element_clicked_id) {
+  const scriptOne = document.createElement("script");
+  scriptOne.id = "howler_id";
+  scriptOne.type = "text/javascript";
+  scriptOne.src = "scripts/howler.min.js?0.0.11";
+
+  document.head.appendChild(scriptOne);
+
+  var scriptOneLoaded = document.querySelector("#howler_id");
+  scriptOneLoaded.addEventListener("load", function () {
+    const scriptTwo = document.createElement("script");
+    scriptTwo.id = "player_script";
+    scriptTwo.type = "text/javascript";
+    scriptTwo.src = "scripts/player.js?0.0.10";
+    scriptTwo.async = true;
+
+    document.head.appendChild(scriptTwo);
+
+    var scriptTwoLoaded = document.querySelector("#player_script");
+    scriptTwoLoaded.addEventListener("load", function () {
+      /* console.log("Está cargado el player"); */
+      playSound(element_clicked_id);
+    });
+  });
 }
 
 // module.js
@@ -490,3 +504,22 @@ function playSound(element_clicked_id) {
 
 /* window.onbeforeunload = confirmExit;
 function confirmExit() {} */
+
+var linkToAdd = document.createElement("link");
+linkToAdd.setAttribute("rel", "stylesheet");
+linkToAdd.href =
+  "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
+document.getElementsByTagName("head")[0].appendChild(linkToAdd);
+
+var linkToAddAnother = document.createElement("link");
+linkToAddAnother.setAttribute("rel", "stylesheet");
+linkToAddAnother.href = "css/uicons/css/uicons-solid-rounded.css?0.0.3";
+document.getElementsByTagName("head")[0].appendChild(linkToAddAnother);
+
+var linkToAddAnotherOne = document.createElement("link");
+linkToAddAnotherOne.setAttribute("rel", "stylesheet");
+linkToAddAnotherOne.href =
+  "https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap";
+document.getElementsByTagName("head")[0].appendChild(linkToAddAnotherOne);
+
+updateScreen();
