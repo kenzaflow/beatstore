@@ -418,7 +418,10 @@ function displayPreloading(display) {
 function scanImageTracks() {
   var allTag_DIVS = document.getElementsByTagName("div");
   for (var currentDIV = 0; currentDIV < allTag_DIVS.length; currentDIV++) {
-    if (allTag_DIVS[currentDIV].getAttribute("data-track_src") != null) {
+    if (
+      allTag_DIVS[currentDIV].getAttribute("data-track_src") != null ||
+      allTag_DIVS[currentDIV].getAttribute("data-artwork") != null
+    ) {
       var tracklist_track__img = allTag_DIVS[currentDIV].getElementsByClassName(
         "tracklist_track__img"
       );

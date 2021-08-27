@@ -1,284 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      http-equiv="Cache-Control"
-      content="no-cache, no-store, must-revalidate"
-    />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <title>BeatStore</title>
-    <meta name="description" content="Portfolio & Store for Producers" />
-    <meta name="keywords" content="Beats, Instrumentals, Music" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--     <link
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>BeatStore</title>
+  <meta name="description" content="Portfolio & Store for Producers" />
+  <meta name="keywords" content="Beats, Instrumentals, Music" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--     <link
       rel="preload"
       as="font"
       crossorigin
       type="font/woff2"
       href="css/uicons/webfonts/uicons-solid-rounded.woff2"
     /> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link defer rel="stylesheet" href="css/style.css?v=0.0.15" />
-    <script defer src="scripts/main.js?0.0.14"></script>
-    <!-- <script
+  <link defer rel="stylesheet" href="css/style.css?v=0.0.15" />
+  <script defer src="scripts/main.js?0.0.14"></script>
+  <!-- <script
       defer
       src="scripts/howler.min.js?0.0.8"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
     <script defer src="scripts/player.js?0.0.6"></script> -->
-  </head>
+</head>
 
-  <body id="body" class="preloading">
-    <div class="loader"></div>
-    <div id="site" class="site">
-      <div id="site__menu" class="site__menu shade--small">
-        <a href="?page=home" class="site__logo">
-          <img
-            draggable="false"
-            loading="lazy"
-            class="logo__img"
-            src="img/logos/logo.svg"
-            alt="Logo"
-          />
-        </a>
+<body id="body" class="preloading">
+  <div class="loader"></div>
+  <div id="site" class="site">
+    <div id="site__menu" class="site__menu shade--small">
+      <a href="?page=home" class="site__logo">
+        <img draggable="false" loading="lazy" class="logo__img" src="img/logos/logo.svg" alt="Logo" />
+      </a>
 
-        <div class="site__menu__hamburger" id="site__menu__hamburger">
-          <div class="hamburger__icon" id="hamburger__icon">
-            <span
-              id="hamburger__icon_line__one"
-              class="hamburger__icon_line hamburger__icon_line--one"
-            ></span>
-            <span
-              id="hamburger__icon_line__two"
-              class="hamburger__icon_line hamburger__icon_line--two"
-            ></span>
-            <span
-              id="hamburger__icon_line__three"
-              class="hamburger__icon_line hamburger__icon_line--three"
-            ></span>
-          </div>
-        </div>
-
-        <div id="site__menu__links">
-          <a class="show_link" href="?page=home">Home</a>
-          <a class="show_link" href="?page=explore">Explore</a>
-          <a class="show_link" href="?page=cart">Cart</a>
-          <a class="show_link" href="?page=account">Account</a>
+      <div class="site__menu__hamburger" id="site__menu__hamburger">
+        <div class="hamburger__icon" id="hamburger__icon">
+          <span id="hamburger__icon_line__one" class="hamburger__icon_line hamburger__icon_line--one"></span>
+          <span id="hamburger__icon_line__two" class="hamburger__icon_line hamburger__icon_line--two"></span>
+          <span id="hamburger__icon_line__three" class="hamburger__icon_line hamburger__icon_line--three"></span>
         </div>
       </div>
 
-      <!-- <div class="search_bar">
-        <input class="search_bar__search_input" type="search" name="header-seach" id="header-seach" placeholder="What type of track are you looking for?">
-        <a class="search_bar__search_button" href="" for="header-seach">Search</a>
-      </div> -->
-
-      <div id="site__content" class="site__content"></div>
-
-      <div id="site__footer" class="site__footer">
-        <div class="footer_links">
-          <a class="show_link" href="?page=home">Home</a>
-          <a class="show_link" href="?page=explore">Explore</a>
-          <a class="show_link" href="?page=licensing">Licensing</a>
-        </div>
-        <div class="footer_copyright">
-          <p>Kenza&copy; - 2021</p>
-          <p>
-            <a class="show_link" href="https://www.kenzaflow.com/"
-              >www.kenzaflow.com</a
-            >
-          </p>
-          <p>
-            Icons made by
-            <a
-              class="show_link"
-              href="https://icon54.com/"
-              target="_blank"
-              title="Pixel perfect"
-              >Pixel perfect</a
-            >
-            from
-            <a
-              class="show_link"
-              href="https://www.flaticon.com/"
-              target="_blank"
-              title="Flaticon"
-              >Flaticon</a
-            >
-          </p>
-          <p>
-            Uicons by
-            <a
-              class="show_link"
-              href="https://www.flaticon.com/"
-              target="_blank"
-              title="Flaticon"
-              >Flaticon</a
-            >
-          </p>
-        </div>
-        <div class="footer_socials">
-          <p>Follow me!</p>
-          <div class="socials__inner">
-            <a
-              class="show_link"
-              href="https://www.instagram.com/kenzaflow"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><img
-                class="socials__image"
-                src="img/socialmedia/instagram.png"
-                alt=""
-            /></a>
-            <a
-              class="show_link"
-              href="https://www.youtube.com/kenzaflow"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><img
-                class="socials__image"
-                src="img/socialmedia/youtube.png"
-                alt=""
-            /></a>
-            <a
-              class="show_link"
-              href="https://t.me/kenzaflow"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><img
-                class="socials__image"
-                src="img/socialmedia/telegram.png"
-                alt=""
-            /></a>
-          </div>
-        </div>
-      </div>
-
-      <div id="site__bottom_margin" class="site__bottom_margin"></div>
-
-      <div id="site__player" class="site__player shade--small">
-        <!--  -->
-        <!--  -->
-        <div class="player__top_slider" id="player__top_slider">
-          <div
-            class="player__top_slider__inner"
-            id="player__top_slider__inner"
-          ></div>
-        </div>
-        <!--  -->
-        <!--  -->
-        <div id="player__info" class="player__info">
-          <img
-            draggable="false"
-            id="player__info-image"
-            class="player__info-image"
-            alt="Artwork"
-            data-src="img/placeholders/track.svg"
-            src="img/placeholders/track.svg"
-          />
-          <div class="player__info-text">
-            <p
-              id="player__info-text-track_name"
-              class="player__info-text-track_name"
-            >
-              
-            </p>
-            <p id="player__info-text-artist" class="player__info-text-artist">
-              
-            </p>
-          </div>
-        </div>
-        <div id="player__controls" class="player__controls">
-          <div class="player__controls-play_pause_etc">
-            <span id="player__control_spinner" class="fi-sr-spinner"></span>
-            <span id="player__control_back" class="fi-sr-rewind"></span>
-            <span id="player__control_stop" class="fi-sr-stop"></span>
-            <span id="player__control_play" class="fi-sr-play"></span>
-            <span id="player__control_pause" class="fi-sr-pause"></span>
-            <span id="player__control_next" class="fi-sr-forward"></span>
-          </div>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value="0"
-            step="any"
-            class="player__controls_slider"
-            id="player__controls_slider"
-          />
-        </div>
-        <div id="player__menu" class="player__menu invisible">
-          <span id="player__menu_volume" class="fi-sr-volume"
-            ><div
-              id="player__menu_volume_container"
-              class="player__menu_volume_container"
-            >
-              <input
-                type="range"
-                min="0"
-                max="1"
-                value="75"
-                step="any"
-                class="player__menu_volume-slider"
-                id="player__menu_volume-slider"
-              /></div
-          ></span>
-          <span
-            id="player__menu_open_playlist"
-            class="player__menu_open_playlist fi-sr-align-justify"
-          ></span>
-        </div>
-      </div>
-
-      <div id="site__playlist_player" class="site__playlist_player">
-        <div class="playlist__top">
-          <span class="playlist__topText">Playlist</span>
-        </div>
-        <div class="playlist__track" onclick="playSoundById(0);">
-          <img
-            draggable="false"
-            loading="lazy"
-            class="playlist__track__img"
-            src="img/placeholders/track.svg"
-            alt="Artwork"
-          />
-          <span class="playlist__track__name"
-            >Sufres<span class="playlist__track__playing">Playing</span></span
-          >
-          <span class="playlist__track__play_button">Play</span>
-        </div>
-        <div class="playlist__track" onclick="playSoundById(0);">
-          <img
-            draggable="false"
-            loading="lazy"
-            class="playlist__track__img"
-            src="img/placeholders/track.svg"
-            alt="Artwork"
-          />
-          <span class="playlist__track__name">Sufres</span>
-          <span class="playlist__track__play_button">Play</span>
-        </div>
-        <div class="playlist__track" onclick="playSoundById(0);">
-          <img
-            draggable="false"
-            loading="lazy"
-            class="playlist__track__img"
-            src="img/placeholders/track.svg"
-            alt="Artwork"
-          />
-          <span class="playlist__track__name">Sufres</span>
-          <span class="playlist__track__play_button">Play</span>
-        </div>
-      </div>
-
-      <div class="debug__box">
-        <p id="debug__text">Size: 1920x1080</p>
+      <div id="site__menu__links">
+        <a class="show_link" href="?page=home">Home</a>
+        <a class="show_link" href="?page=explore">Explore</a>
+        <a class="show_link" href="?page=cart">Cart</a>
+        <a class="show_link" href="?page=account">Account</a>
       </div>
     </div>
-  </body>
+
+    <div id="site__content" class="site__content"></div>
+
+    <div id="site__footer" class="site__footer">
+      <div class="footer_links">
+        <a class="show_link" href="?page=home">Home</a>
+        <a class="show_link" href="?page=explore">Explore</a>
+        <a class="show_link" href="?page=licensing">Licensing</a>
+      </div>
+      <div class="footer_copyright">
+        <p>Kenza&copy; - 2021</p>
+        <p>
+          <a class="show_link" href="https://www.kenzaflow.com/">www.kenzaflow.com</a>
+        </p>
+        <p>
+          Icons made by
+          <a class="show_link" href="https://icon54.com/" target="_blank" title="Pixel perfect">Pixel perfect</a>
+          from
+          <a class="show_link" href="https://www.flaticon.com/" target="_blank" title="Flaticon">Flaticon</a>
+        </p>
+        <p>
+          Uicons by
+          <a class="show_link" href="https://www.flaticon.com/" target="_blank" title="Flaticon">Flaticon</a>
+        </p>
+      </div>
+      <div class="footer_socials">
+        <p>Follow me!</p>
+        <div class="socials__inner">
+          <a class="show_link" href="https://www.instagram.com/kenzaflow" target="_blank" rel="noopener noreferrer"><img
+              loading="lazy" class="socials__image" src="img/socialmedia/instagram.png" alt="" /></a>
+          <a class="show_link" href="https://www.youtube.com/kenzaflow" target="_blank" rel="noopener noreferrer"><img
+              loading="lazy" class="socials__image" src="img/socialmedia/youtube.png" alt="" /></a>
+          <a class="show_link" href="https://t.me/kenzaflow" target="_blank" rel="noopener noreferrer"><img
+              loading="lazy" class="socials__image" src="img/socialmedia/telegram.png" alt="" /></a>
+        </div>
+      </div>
+    </div>
+
+    <div id="site__bottom_margin" class="site__bottom_margin"></div>
+
+    <div id="site__player" class="site__player shade--small">
+      <!--  -->
+      <!--  -->
+      <div class="player__top_slider" id="player__top_slider">
+        <div class="player__top_slider__inner" id="player__top_slider__inner"></div>
+      </div>
+      <!--  -->
+      <!--  -->
+      <div id="player__info" class="player__info">
+        <img draggable="false" id="player__info-image" class="player__info-image" alt="Artwork"
+          data-src="img/placeholders/track.svg" src="img/placeholders/track.svg" />
+        <div class="player__info-text">
+          <p id="player__info-text-track_name" class="player__info-text-track_name">
+
+          </p>
+          <p id="player__info-text-artist" class="player__info-text-artist">
+
+          </p>
+        </div>
+      </div>
+      <div id="player__controls" class="player__controls">
+        <div class="player__controls-play_pause_etc">
+          <span id="player__control_spinner" class="fi-sr-spinner"></span>
+          <span id="player__control_back" class="fi-sr-rewind"></span>
+          <span id="player__control_stop" class="fi-sr-stop"></span>
+          <span id="player__control_play" class="fi-sr-play"></span>
+          <span id="player__control_pause" class="fi-sr-pause"></span>
+          <span id="player__control_next" class="fi-sr-forward"></span>
+        </div>
+        <input type="range" min="0" max="100" value="0" step="any" class="player__controls_slider"
+          id="player__controls_slider" />
+      </div>
+      <div id="player__menu" class="player__menu invisible">
+        <span id="player__menu_volume" class="fi-sr-volume">
+          <div id="player__menu_volume_container" class="player__menu_volume_container">
+            <input type="range" min="0" max="1" value="75" step="any" class="player__menu_volume-slider"
+              id="player__menu_volume-slider" />
+          </div>
+        </span>
+        <span id="player__menu_open_playlist" class="player__menu_open_playlist fi-sr-align-justify"></span>
+      </div>
+    </div>
+
+    <div id="site__playlist_player" class="site__playlist_player">
+      <div class="playlist__top">
+        <span class="playlist__topText">Playlist</span>
+      </div>
+      <div class="playlist__track" onclick="playSoundById(0);">
+        <img draggable="false" loading="lazy" class="playlist__track__img" src="img/placeholders/track.svg"
+          alt="Artwork" />
+        <span class="playlist__track__name">Sufres<span class="playlist__track__playing">Playing</span></span>
+        <span class="playlist__track__play_button">Play</span>
+      </div>
+      <div class="playlist__track" onclick="playSoundById(0);">
+        <img draggable="false" loading="lazy" class="playlist__track__img" src="img/placeholders/track.svg"
+          alt="Artwork" />
+        <span class="playlist__track__name">Sufres</span>
+        <span class="playlist__track__play_button">Play</span>
+      </div>
+      <div class="playlist__track" onclick="playSoundById(0);">
+        <img draggable="false" loading="lazy" class="playlist__track__img" src="img/placeholders/track.svg"
+          alt="Artwork" />
+        <span class="playlist__track__name">Sufres</span>
+        <span class="playlist__track__play_button">Play</span>
+      </div>
+    </div>
+
+    <div class="debug__box">
+      <p id="debug__text">Size: 1920x1080</p>
+    </div>
+  </div>
+</body>
+
 </html>

@@ -1,74 +1,33 @@
 <div class="header">
   <picture class="header__background_div">
-    <source
-      media="(max-width: 479px)"
-      srcset="img/backgrounds/v2/background_0_25.webp"
-      type="image/webp"
-    />
-    <source
-      media="(min-width: 480px) and (max-width: 959px)"
-      srcset="img/backgrounds/v2/background_0_5.webp"
-      type="image/webp"
-    />
-    <source
-      media="(min-width: 960px) and (max-width: 1439px)"
-      srcset="img/backgrounds/v2/background_0_75.webp"
-      type="image/webp"
-    />
-    <source
-      media="(min-width: 1440px)"
-      srcset="img/backgrounds/v2/background_1.webp"
-      type="image/webp"
-    />
+    <source media="(max-width: 479px)" srcset="img/backgrounds/v2/background_0_25.webp" type="image/webp" />
+    <source media="(min-width: 480px) and (max-width: 959px)" srcset="img/backgrounds/v2/background_0_5.webp"
+      type="image/webp" />
+    <source media="(min-width: 960px) and (max-width: 1439px)" srcset="img/backgrounds/v2/background_0_75.webp"
+      type="image/webp" />
+    <source media="(min-width: 1440px)" srcset="img/backgrounds/v2/background_1.webp" type="image/webp" />
 
-    <source
-      media="(max-width: 479px)"
-      srcset="img/backgrounds/v2/background_0_25.jpg"
-      type="image/jpeg"
-    />
-    <source
-      media="(min-width: 480px) and (max-width: 959px)"
-      srcset="img/backgrounds/v2/background_0_5.jpg"
-      type="image/jpeg"
-    />
-    <source
-      media="(min-width: 960px) and (max-width: 1439px)"
-      srcset="img/backgrounds/v2/background_0_75.jpg"
-      type="image/jpeg"
-    />
-    <source
-      media="(min-width: 1440px)"
-      srcset="img/backgrounds/v2/background_1.jpg"
-      type="image/jpeg"
-    />
+    <source media="(max-width: 479px)" srcset="img/backgrounds/v2/background_0_25.jpg" type="image/jpeg" />
+    <source media="(min-width: 480px) and (max-width: 959px)" srcset="img/backgrounds/v2/background_0_5.jpg"
+      type="image/jpeg" />
+    <source media="(min-width: 960px) and (max-width: 1439px)" srcset="img/backgrounds/v2/background_0_75.jpg"
+      type="image/jpeg" />
+    <source media="(min-width: 1440px)" srcset="img/backgrounds/v2/background_1.jpg" type="image/jpeg" />
 
-    <img
-      draggable="false"
-      loading="lazy"
-      class="header__background_div_img"
-      src="img/backgrounds/v2/background_0_25.jpg"
-      alt="Background"
-    />
+    <img draggable="false" loading="lazy" class="header__background_div_img"
+      src="img/backgrounds/v2/background_0_25.jpg" alt="Background" />
   </picture>
 
-  <div
-    class="featured_track"
-    data-ignore="ignore"
-    data-track_src="data/otra_vez.mp3"
-    data-track_name="Otra Vez"
-    data-artist="Kenza"
-    data-artwork="data/otra_vez.jpg"
-    onclick="playSound(this);"
-  >
-    <img
-      draggable="false"
-      loading="lazy"
-      class="featured_track__img"
-      src="img/placeholders/track.svg"
-      width="100px"
-      height="100px"
-      alt="Artwork"
-    />
+  <div class="header__search">
+    <input class="search__input" type="search" name="header_seach" id="header_seach"
+      placeholder="What type of track are you looking for?">
+    <a class="search__button" href="#" for="header_seach">Search</a>
+  </div>
+
+  <div class="featured_track" data-ignore="ignore" data-track_src="data/otra_vez.mp3" data-track_name="Otra Vez"
+    data-artist="Kenza" data-artwork="data/otra_vez.jpg" onclick="playSound(this);">
+    <img draggable="false" loading="lazy" class="featured_track__img" src="img/placeholders/track.svg" width="100px"
+      height="100px" alt="Artwork" />
     <span class="featured_track__name">Otra Vez</span>
     <div class="featured_track__info">
       <span class="featured_track__info__line">Featured Track</span>
@@ -79,29 +38,15 @@
       <a class="featured_track__tags_link" href="#">#Dembow</a>
     </div>
     <div class="featured_track__divider"></div>
-    <a class="featured_track__buy_button" href="#"
-      ><span class="fi-sr-shopping-bag-add"></span
-      ><span class="price">$19.99</span></a
-    >
+    <a class="featured_track__buy_button" href="?page=cart"><span class="fi-sr-shopping-bag-add"></span><span
+        class="price">$19.99</span></a>
   </div>
 </div>
 
 <div class="tracklist">
-  <div
-    class="tracklist_track"
-    data-track_src="data/luz.mp3"
-    data-track_name="Luz"
-    data-artist="Kenza"
-    data-artwork="data/luz.jpg"
-    onclick="playSound(this);"
-  >
-    <img
-      draggable="false"
-      loading="lazy"
-      class="tracklist_track__img"
-      src="img/placeholders/track.svg"
-      alt="Artwork"
-    />
+  <div class="tracklist_track" data-track_src="data/luz.mp3" data-track_name="Luz" data-artist="Kenza"
+    data-artwork="data/luz.jpg" onclick="playSound(this);">
+    <img draggable="false" loading="lazy" class="tracklist_track__img" src="img/placeholders/track.svg" alt="Artwork" />
     <span class="tracklist_track__name">Luz</span>
     <div class="tracklist_track__info">
       <span class="tracklist_track__info__line show_link">85 BPM</span>
@@ -113,27 +58,13 @@
       <a class="tracklist_track__tags_link" href="#">#Latin</a>
       <a class="tracklist_track__tags_link" href="#">#ElKenza</a>
     </div>
-    <a class="tracklist_track__buy_button" href="#"
-      ><span class="fi-sr-shopping-bag-add"></span
-      ><span class="price">$19.99</span></a
-    >
+    <a class="tracklist_track__buy_button" href="?page=cart"><span class="fi-sr-shopping-bag-add"></span><span
+        class="price">$19.99</span></a>
   </div>
 
-  <div
-    class="tracklist_track"
-    data-track_src="data/karma.mp3"
-    data-track_name="Karma"
-    data-artist="Kenza"
-    data-artwork="data/karma.jpg"
-    onclick="playSound(this);"
-  >
-    <img
-      draggable="false"
-      loading="lazy"
-      class="tracklist_track__img"
-      src="img/placeholders/track.svg"
-      alt="Artwork"
-    />
+  <div class="tracklist_track" data-track_src="data/karma.mp3" data-track_name="Karma" data-artist="Kenza"
+    data-artwork="data/karma.jpg" onclick="playSound(this);">
+    <img draggable="false" loading="lazy" class="tracklist_track__img" src="img/placeholders/track.svg" alt="Artwork" />
     <span class="tracklist_track__name">Karma</span>
     <div class="tracklist_track__info">
       <span class="tracklist_track__info__line show_link">90 BPM</span>
@@ -145,27 +76,13 @@
       <a class="tracklist_track__tags_link" href="#">#Sech</a>
       <a class="tracklist_track__tags_link" href="#">#ElKenza</a>
     </div>
-    <a class="tracklist_track__buy_button" href="#"
-      ><span class="fi-sr-shopping-bag-add"></span
-      ><span class="price">$19.99</span></a
-    >
+    <a class="tracklist_track__buy_button" href="?page=cart"><span class="fi-sr-shopping-bag-add"></span><span
+        class="price">$19.99</span></a>
   </div>
 
-  <div
-    class="tracklist_track"
-    data-track_src="data/quizas.mp3"
-    data-track_name="Quizás"
-    data-artist="Kenza"
-    data-artwork="data/quizas.jpg"
-    onclick="playSound(this);"
-  >
-    <img
-      draggable="false"
-      loading="lazy"
-      class="tracklist_track__img"
-      src="img/placeholders/track.svg"
-      alt="Artwork"
-    />
+  <div class="tracklist_track" data-track_src="data/quizas.mp3" data-track_name="Quizás" data-artist="Kenza"
+    data-artwork="data/quizas.jpg" onclick="playSound(this);">
+    <img draggable="false" loading="lazy" class="tracklist_track__img" src="img/placeholders/track.svg" alt="Artwork" />
     <span class="tracklist_track__name">Quizás</span>
     <div class="tracklist_track__info">
       <span class="tracklist_track__info__line show_link">99 BPM</span>
@@ -177,27 +94,13 @@
       <a class="tracklist_track__tags_link" href="#">#MariaBecerra</a>
       <a class="tracklist_track__tags_link" href="#">#ElKenza</a>
     </div>
-    <a class="tracklist_track__buy_button" href="#"
-      ><span class="fi-sr-shopping-bag-add"></span
-      ><span class="price">$19.99</span></a
-    >
+    <a class="tracklist_track__buy_button" href="?page=cart"><span class="fi-sr-shopping-bag-add"></span><span
+        class="price">$19.99</span></a>
   </div>
 
-  <div
-    class="tracklist_track"
-    data-track_src="data/sufres.mp3"
-    data-track_name="Sufres"
-    data-artist="Kenza"
-    data-artwork="data/sufres.jpg"
-    onclick="playSound(this);"
-  >
-    <img
-      draggable="false"
-      loading="lazy"
-      class="tracklist_track__img"
-      src="img/placeholders/track.svg"
-      alt="Artwork"
-    />
+  <div class="tracklist_track" data-track_src="data/sufres.mp3" data-track_name="Sufres" data-artist="Kenza"
+    data-artwork="data/sufres.jpg" onclick="playSound(this);">
+    <img draggable="false" loading="lazy" class="tracklist_track__img" src="img/placeholders/track.svg" alt="Artwork" />
     <span class="tracklist_track__name">Sufres</span>
     <div class="tracklist_track__info">
       <span class="tracklist_track__info__line show_link">100 BPM</span>
@@ -209,27 +112,13 @@
       <a class="tracklist_track__tags_link" href="#">#EmiliaMernes</a>
       <a class="tracklist_track__tags_link" href="#">#ElKenza</a>
     </div>
-    <a class="tracklist_track__buy_button" href="#"
-      ><span class="fi-sr-shopping-bag-add"></span
-      ><span class="price">$19.99</span></a
-    >
+    <a class="tracklist_track__buy_button" href="?page=cart"><span class="fi-sr-shopping-bag-add"></span><span
+        class="price">$19.99</span></a>
   </div>
 
-  <div
-    class="tracklist_track"
-    data-track_src="data/otra_vez.mp3"
-    data-track_name="Otra Vez"
-    data-artist="Kenza"
-    data-artwork="data/otra_vez.jpg"
-    onclick="playSound(this);"
-  >
-    <img
-      draggable="false"
-      loading="lazy"
-      class="tracklist_track__img"
-      src="img/placeholders/track.svg"
-      alt="Artwork"
-    />
+  <div class="tracklist_track" data-track_src="data/otra_vez.mp3" data-track_name="Otra Vez" data-artist="Kenza"
+    data-artwork="data/otra_vez.jpg" onclick="playSound(this);"><img draggable="false" loading="lazy"
+      class="tracklist_track__img" src="img/placeholders/track.svg" alt="Artwork" />
     <span class="tracklist_track__name">Otra Vez</span>
     <div class="tracklist_track__info">
       <span class="tracklist_track__info__line show_link">90 BPM</span>
@@ -241,11 +130,30 @@
       <a class="tracklist_track__tags_link" href="#">#NioGarcia</a>
       <a class="tracklist_track__tags_link" href="#">#ElKenza</a>
     </div>
-    <a class="tracklist_track__buy_button" href="#"
-      ><span class="fi-sr-shopping-bag-add"></span
-      ><span class="price">$19.99</span></a
-    >
+    <a class="tracklist_track__buy_button" href="?page=cart"><span class="fi-sr-shopping-bag-add"></span><span
+        class="price">$19.99</span></a>
   </div>
+
+
+  <div class="tracklist_track last_faded" data-track_name="Bellaca" data-artist="Kenza" data-artwork="data/bellaca.jpg">
+    <img draggable="false" loading="lazy" class="tracklist_track__img" src="img/placeholders/track.svg" alt="Artwork" />
+    <span class="tracklist_track__name">Bellaca</span>
+    <div class="tracklist_track__info">
+      <span class="tracklist_track__info__line show_link">92 BPM</span>
+      <span class="tracklist_track__info__line show_link">C Min</span>
+      <span class="tracklist_track__info__line show_link">3:13</span>
+    </div>
+    <div class="tracklist_track__tags hide">
+      <a class="tracklist_track__tags_link" href="#">#BadBunny</a>
+      <a class="tracklist_track__tags_link" href="#">#Dembow</a>
+      <a class="tracklist_track__tags_link" href="#">#ElKenza</a>
+    </div>
+    <a class="tracklist_track__buy_button" href="?page=cart"><span class="fi-sr-shopping-bag-add"></span><span
+        class="price">$19.99</span></a>
+  </div>
+
+
+
   <a class="tracklist__explore_button" href="?page=explore">Browse All Tracks</a>
 </div>
 
@@ -321,11 +229,9 @@
 <div class="youtube__section">
   <div class="youtube__section__info">
     <div class="yt_info__image_name_subs">
-      <img
-        class="yt_info__image_name_subs__image"
+      <img class="yt_info__image_name_subs__image"
         src="https://yt3.ggpht.com/ytc/AKedOLR7B131oQBfA1zGlc-O6EhxmNH-XyNvYvGeHzSKuw=s88-c-k-c0x00ffffff-no-rj"
-        alt=""
-      />
+        alt="" />
       <p class="yt_info__image_name_subs__title">Kenza</p>
       <p class="yt_info__image_name_subs__count">29.600 subs</p>
     </div>
@@ -344,28 +250,13 @@
     <!-- <iframe class="youtube__section__video_iframe" width="100%" height="100%" src="https://www.youtube.com/embed/41p8H7OU4Ew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
     <picture class="youtube__section__video_thumbail">
-      <source
-        media="(min-width: 768px)"
-        srcset="https://i.ytimg.com/vi/41p8H7OU4Ew/maxresdefault.jpg"
-        type="image/jpeg"
-      />
-      <source
-        media="(min-width: 480px)"
-        srcset="https://i.ytimg.com/vi/41p8H7OU4Ew/hqdefault.jpg"
-        type="image/jpeg"
-      />
-      <img
-        draggable="false"
-        loading="lazy"
-        class="youtube__section__video_thumbail"
-        src="https://i.ytimg.com/vi/41p8H7OU4Ew/mqdefault.jpg"
-        alt="YouTube Thumbail"
-      />
+      <source media="(min-width: 768px)" srcset="https://i.ytimg.com/vi/41p8H7OU4Ew/maxresdefault.jpg"
+        type="image/jpeg" />
+      <source media="(min-width: 480px)" srcset="https://i.ytimg.com/vi/41p8H7OU4Ew/hqdefault.jpg" type="image/jpeg" />
+      <img draggable="false" loading="lazy" class="youtube__section__video_thumbail"
+        src="https://i.ytimg.com/vi/41p8H7OU4Ew/mqdefault.jpg" alt="YouTube Thumbail" />
     </picture>
-    <div
-      id="youtube__section__video_thumbail_play"
-      class="youtube__section__video_thumbail_play"
-    ></div>
+    <div id="youtube__section__video_thumbail_play" class="youtube__section__video_thumbail_play"></div>
   </div>
 </div>
 
@@ -373,34 +264,10 @@
   <p class="contact__section_title">Contact</p>
   <div class="contact__section_inner">
     <form class="theform">
-      <input
-        class="name"
-        type="text"
-        name="name"
-        id="name"
-        placeholder="Your Name"
-      />
-      <input
-        class="email"
-        type="email"
-        name="email"
-        id="email"
-        placeholder="E-Mail Address"
-      />
-      <input
-        class="subject"
-        type="text"
-        name="subject"
-        id="subject"
-        placeholder="Subject"
-      />
-      <textarea
-        class="message"
-        name="message"
-        id="message"
-        rows="2"
-        placeholder="Message"
-      ></textarea>
+      <input class="name" type="text" name="name" id="name" placeholder="Your Name" />
+      <input class="email" type="email" name="email" id="email" placeholder="E-Mail Address" />
+      <input class="subject" type="text" name="subject" id="subject" placeholder="Subject" />
+      <textarea class="message" name="message" id="message" rows="2" placeholder="Message"></textarea>
       <p id="login__error_ptm_xd" class="login__error_ptm_xd">Ups! Something went wrong 😥</p>
       <!-- <input type="submit" value="Send" /> -->
       <button id="contact__send" class="send" type="reset">Send</button>
