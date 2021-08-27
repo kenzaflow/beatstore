@@ -92,6 +92,7 @@ var actualSongID;
 var actualSongURL;
 
 function playSound(element_clicked_id) {
+  scanTracks();
   var newAudioIndex = findTrackIndex(
     track_list,
     element_clicked_id.getAttribute("data-track_src")
@@ -179,8 +180,8 @@ var player__control_play = document.getElementById("player__control_play");
 var player__control_pause = document.getElementById("player__control_pause");
 
 function play_Sound_Now(newAudioIndex) {
-  scanTracks();
-  console.table(track_list);
+
+  
   if (track_list[actualSongID] !== undefined) {
     var OldAudioIndex = findTrackIndex(track_list, actualSongURL);
     var old_track_div =
@@ -231,6 +232,7 @@ function play_Sound_Now(newAudioIndex) {
 
   if (track_div !== undefined) {
     track_div.classList.add("playing");
+    track_div.classList.remove("playing");
   }
 
   site__player.classList.add("active");
@@ -253,7 +255,7 @@ function play_Sound_Now(newAudioIndex) {
       ? track_list[newAudioIndex][3]
       : "img/placeholders/track.svg";
 
-  track_div.classList.remove("playing");
+  
 
   sound = new Howl({
     src: track_list[newAudioIndex][0],
@@ -282,7 +284,9 @@ function play_Sound_Now(newAudioIndex) {
       start_TimerSliderUpdater();
       player__control_pause.classList.add("visible");
       player__control_play.classList.remove("visible");
-      track_div.classList.add("playing");
+      if (track_div !== undefined) {
+        track_div.classList.add("playing");
+      }
     },
     onseek: function () {
       stop_TimerSliderUpdater();
@@ -291,6 +295,7 @@ function play_Sound_Now(newAudioIndex) {
     onpause: function () {
       player__control_pause.classList.remove("visible");
       player__control_play.classList.add("visible");
+      stop_TimerSliderUpdater();
     },
     onvolume: function () {},
     onload: function () {
@@ -393,9 +398,7 @@ document.getElementById("player__control_pause").onclick = function () {
   if (sound != null) {
     if (sound.playing() == true) {
       sound.pause();
-      player__control_pause.classList.remove("visible");
-      player__control_play.classList.add("visible");
-      stop_TimerSliderUpdater();
+      
     } else {
       /* wtf */
       /* error, report xd */

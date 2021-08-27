@@ -1,3 +1,7 @@
+function removePlaceHolder(element_clicked_id) {
+  element_clicked_id.removeAttribute("placeholder");
+}
+
 function interceptClickEvent(e) {
   var href;
   var target = e.target || e.srcElement;
@@ -47,6 +51,23 @@ function interceptClickEvent(e) {
       '<iframe class="youtube__section__video_iframe" width="100%" height="100%" src="https://www.youtube.com/embed/41p8H7OU4Ew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
     if (typeof sound !== "undefined") {
       sound.pause();
+    }
+  }
+  if (target.id == "login__send" || target.id == "contact__send") {
+    if (
+      document
+        .getElementById("login__error_ptm_xd")
+        .classList.contains("enabled")
+    ) {
+      document
+        .getElementById("login__error_ptm_xd")
+        .classList.remove("enabled");
+
+      setTimeout(() => {
+        document.getElementById("login__error_ptm_xd").classList.add("enabled");
+      }, 500);
+    } else {
+      document.getElementById("login__error_ptm_xd").classList.add("enabled");
     }
   }
   if (
@@ -105,20 +126,26 @@ function interceptClickEvent(e) {
       /* En este nesting van los elementos */
       if (target.tagName !== "a") {
         //tell the browser not to respond to the link click
-        e.preventDefault();
+
         if (target.getAttribute("href") !== "") {
           if (target.getAttribute("href") !== null) {
             if (target.getAttribute("href") !== "#") {
-              href = target.getAttribute("href");
-              /* console.log(href); */
+              if (target.getAttribute("href").split("")[0] == "?") {
+                href = target.getAttribute("href");
+                e.preventDefault();
+                /* console.log(href); */
 
-              //put your logic here...
-              if (true) {
-                /* WIIIIII */
-                /* console.log(getParameterByName("page", href)); */
-                let newPage = getParameterByName("page", href);
-                replaceSiteContent(newPage + ".html");
+                //put your logic here...
+                if (true) {
+                  /* WIIIIII */
+                  /* console.log(getParameterByName("page", href)); */
+                  let newPage = getParameterByName("page", href);
+                  replaceSiteContent(newPage + ".html");
+                }
               }
+            }
+            if (target.getAttribute("href") == "#") {
+              e.preventDefault();
             }
           }
         }
@@ -221,9 +248,9 @@ async function replaceSiteContent(url, error_page) {
 
       setCurrentPage(queryURL);
 
-      if (document.getElementById("site").classList.contains("in_home")) {
+      /* if (document.getElementById("site").classList.contains("in_home")) {
         document.getElementById("site").classList.remove("in_home");
-      }
+      } */
 
       /* disableAllMenuActives(queryURL); */
 
@@ -408,7 +435,7 @@ function scanImageTracks() {
               allTag_DIVS[currentDIV].getAttribute("data-track_src") ==
               actualSongURL /* track_list[currentSrc][0] */
             ) {
-              allTag_DIVS[currentDIV].classList.add("playing");
+              /* allTag_DIVS[currentDIV].classList.add("playing"); */
             }
           }
         }
