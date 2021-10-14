@@ -1318,7 +1318,8 @@ body {
         font-weight: 500; }
   .site__footer .footer_socials {
     grid-area: socials;
-    justify-items: center; }
+    justify-items: center;
+    line-height: 1; }
     .site__footer .footer_socials * {
       font-size: 1.5rem; }
     .site__footer .footer_socials .socials__inner {
@@ -1331,10 +1332,11 @@ body {
         object-fit: cover;
         object-position: center;
         background-color: #ffffff;
+        /* fill: #ffffff; */
         padding: 0.75rem;
         box-sizing: content-box;
         border-radius: 0.25rem;
-        filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.5)); }
+        filter: invert(1) drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.5)); }
 
 .site__player {
   /* background-color: var(--site-player-background-color); */
@@ -1932,16 +1934,16 @@ body {
   /* max-width: 90rem; */ }
   @media (max-width: 479px) {
     .youtube__section {
-      background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/backgrounds/v2/youtube_0_25.webp"); } }
+      background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/backgrounds/youtube/youtube_0_25.webp"); } }
   @media (min-width: 480px) and (max-width: 959px) {
     .youtube__section {
-      background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/backgrounds/v2/youtube_0_5.webp"); } }
+      background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/backgrounds/youtube/youtube_0_5.webp"); } }
   @media (min-width: 960px) and (max-width: 1439px) {
     .youtube__section {
-      background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/backgrounds/v2/youtube_0_75.webp"); } }
+      background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/backgrounds/youtube/youtube_0_75.webp"); } }
   @media (min-width: 1440px) {
     .youtube__section {
-      background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/backgrounds/v2/youtube_0_75.webp"); } }
+      background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("../img/backgrounds/youtube/youtube_0_75.webp"); } }
   @media (min-width: 768px) {
     .youtube__section {
       grid-template-areas: "info video";

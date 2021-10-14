@@ -140,7 +140,7 @@ function interceptClickEvent(e) {
                   /* WIIIIII */
                   /* console.log(getParameterByName("page", href)); */
                   let newPage = getParameterByName("page", href);
-                  replaceSiteContent(newPage + ".html");
+                  replaceSiteContent(newPage);
                 }
               }
             }
@@ -187,7 +187,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   ); */
 
   /* setPageIfExists(myParam + ".html"); */
-  replaceSiteContent(myParam + ".html");
+  replaceSiteContent(myParam);
 
   /* console.log("esto no deberia suceder"); */
 });
@@ -231,9 +231,11 @@ async function replaceSiteContent(url, error_page) {
   displayPreloading(true);
   window.scrollTo(0, 0);
 
-  let queryURL = url.replace(".html", "");
+  /* let queryURL = url.replace(".html", ""); */
+  let queryURL = url;
+  console.log(queryURL);
   try {
-    const response = await fetch(url, { cache: "no-store" });
+    const response = await fetch("internals/" + queryURL + ".html", { cache: "no-store" });
     const data = await response.text();
     /* console.log(data); */
 
@@ -275,13 +277,18 @@ async function replaceSiteContent(url, error_page) {
 
       agregarScript();
     } else if (response.status == 404) {
-      replaceSiteContent("404.html", queryURL);
+      if (queryURL === "404") {
+        /* replaceSiteContent("404.html", queryURL); */
+        alert("Imposible cargar página de error (404)");
+      } else {
+        replaceSiteContent("404", queryURL);
+      }
     } else {
-      replaceSiteContent("404.html", queryURL);
+      replaceSiteContent("404", queryURL);
     }
   } catch (err) {
     console.log("Hubo un problema con la petición Fetch:" + err.message);
-    replaceSiteContent("404.html", queryURL);
+    replaceSiteContent("404", queryURL);
   }
 }
 
@@ -543,7 +550,8 @@ document.getElementsByTagName("head")[0].appendChild(linkToAdd);
 
 var linkToAddAnother = document.createElement("link");
 linkToAddAnother.setAttribute("rel", "stylesheet");
-linkToAddAnother.href = "assets/css/external/uicons/css/uicons-solid-rounded.css?0.0.3";
+linkToAddAnother.href =
+  "assets/css/external/uicons/css/uicons-solid-rounded.css?0.0.3";
 document.getElementsByTagName("head")[0].appendChild(linkToAddAnother);
 
 var linkToAddAnotherOne = document.createElement("link");
