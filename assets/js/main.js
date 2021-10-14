@@ -501,7 +501,7 @@ function startLoadingPlayer(element_clicked_id) {
   const scriptOne = document.createElement("script");
   scriptOne.id = "howler_id";
   scriptOne.type = "text/javascript";
-  scriptOne.src = "scripts/howler.min.js?0.0.11";
+  scriptOne.src = "assets/js/external/howler.min.js";
 
   document.head.appendChild(scriptOne);
 
@@ -510,7 +510,7 @@ function startLoadingPlayer(element_clicked_id) {
     const scriptTwo = document.createElement("script");
     scriptTwo.id = "player_script";
     scriptTwo.type = "text/javascript";
-    scriptTwo.src = "scripts/player.js?0.0.10";
+    scriptTwo.src = "assets/js/player.js";
     scriptTwo.async = true;
 
     document.head.appendChild(scriptTwo);
@@ -543,7 +543,7 @@ document.getElementsByTagName("head")[0].appendChild(linkToAdd);
 
 var linkToAddAnother = document.createElement("link");
 linkToAddAnother.setAttribute("rel", "stylesheet");
-linkToAddAnother.href = "css/uicons/css/uicons-solid-rounded.css?0.0.3";
+linkToAddAnother.href = "assets/css/external/uicons/css/uicons-solid-rounded.css?0.0.3";
 document.getElementsByTagName("head")[0].appendChild(linkToAddAnother);
 
 var linkToAddAnotherOne = document.createElement("link");
