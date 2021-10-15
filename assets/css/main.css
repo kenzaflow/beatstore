@@ -2086,22 +2086,6 @@ body {
         filter: drop-shadow(0rem 0.25rem 0.5rem rgba(0, 0, 0, 0.75));
         cursor: pointer; }
 
-.debug__box {
-  display: block;
-  position: fixed;
-  bottom: 2.5rem;
-  left: 2.5rem;
-  background-color: #00fbbd;
-  padding: 1rem;
-  border: 0.1rem solid #00f4ae;
-  border-radius: 0.5rem;
-  z-index: 9999;
-  filter: opacity(0.75) drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.25));
-  transition: filter 0.5s;
-  cursor: default;
-  font-weight: 500;
-  display: none; }
-
 .contact__section {
   width: 100%;
   height: auto;
@@ -2264,6 +2248,25 @@ body {
           gap: 0.5rem; }
           .contact__section .contact__section_inner .theform .info .line > [class^="fi-sr"] {
             line-height: 0; }
+
+.debug__box {
+  display: block;
+  position: fixed;
+  bottom: 2.5rem;
+  left: 2.5rem;
+  background-color: #00fbbd;
+  padding: 1rem;
+  border: 0.1rem solid #00f4ae;
+  border-radius: 0.5rem;
+  z-index: 9999;
+  filter: opacity(0.75) drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.25));
+  transition: all 0.5s ease-out;
+  cursor: default;
+  font-weight: 500;
+  max-width: 30rem;
+  /* display: none; */ }
+  .debug__box.dejame_ver_el_player {
+    bottom: 12rem; }
 
 .debug__box:hover {
   filter: opacity(0.25); }

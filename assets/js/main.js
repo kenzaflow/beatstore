@@ -141,6 +141,35 @@ function interceptClickEvent(e) {
                   /* console.log(getParameterByName("page", href)); */
                   let newPage = getParameterByName("page", href);
                   replaceSiteContent(newPage);
+
+                  if (newPage === "cart") {
+                    //DELETEME
+
+                    let theScriptIsLoaded =
+                      document.querySelector("#coderhouse");
+
+                    console.log(theScriptIsLoaded);
+
+                    if (theScriptIsLoaded == null) {
+                      const theScript = document.createElement("script");
+                      theScript.id = "coderhouse";
+                      theScript.type = "text/javascript";
+                      theScript.src = "assets/js/coderhouse.js";
+
+                      document.head.appendChild(theScript);
+
+                      do {
+                        theScriptIsLoaded =
+                          document.querySelector("#coderhouse");
+                      } while (theScriptIsLoaded == null);
+
+                      theScriptIsLoaded.addEventListener("load", function () {
+                        ejecutarCODERHOUSE();
+                      });
+                    } else {
+                      ejecutarCODERHOUSE();
+                    }
+                  }
                 }
               }
             }
@@ -233,9 +262,11 @@ async function replaceSiteContent(url, error_page) {
 
   /* let queryURL = url.replace(".html", ""); */
   let queryURL = url;
-  console.log(queryURL);
+  /* console.log(queryURL); */
   try {
-    const response = await fetch("internals/" + queryURL + ".html", { cache: "no-store" });
+    const response = await fetch("internals/" + queryURL + ".html", {
+      cache: "no-store",
+    });
     const data = await response.text();
     /* console.log(data); */
 
@@ -339,8 +370,8 @@ var mediaqueryList = window.matchMedia("(min-width: 768px)");
 function updateScreen() {
   // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 
-  document.getElementById("debug__text").innerHTML =
-    "Absoulute: " +
+  // document.getElementById("debug__text").innerHTML =
+  "Absoulute: " +
     screen.width +
     "x" +
     screen.height +
@@ -528,6 +559,8 @@ function startLoadingPlayer(element_clicked_id) {
       playSound(element_clicked_id);
     });
   });
+
+  document.getElementById("debug__box").classList.add("dejame_ver_el_player");
 }
 
 // module.js
