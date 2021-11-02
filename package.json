@@ -1,6 +1,6 @@
 {
-  "name": "beatstore_version_6",
-  "version": "0.0.1",
+  "name": "beatstore",
+  "version": "0.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {

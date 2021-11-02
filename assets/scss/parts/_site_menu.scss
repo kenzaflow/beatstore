@@ -67,7 +67,7 @@ $theme-menu-colors: (
     }
   }
 
-  .site__menu__hamburger {
+  .menu__hamburger {
     cursor: pointer;
     text-align: right;
 
@@ -99,7 +99,7 @@ $theme-menu-colors: (
       cursor: pointer;
     }
 
-    .hamburger__icon_line {
+    .hamburger__icon--line {
       cursor: pointer;
       content: "";
       background-color: black;
@@ -117,15 +117,15 @@ $theme-menu-colors: (
       }
     }
 
-    .hamburger__icon_line.active {
+    .hamburger__icon--line.active {
       transform: rotate(45deg);
     }
 
-    .hamburger__icon_line.active ~ .hamburger__icon_line {
+    .hamburger__icon--line.active ~ .hamburger__icon--line {
       transform: rotate(-45deg);
     }
 
-    .hamburger__icon_line.active ~ .hamburger__icon_line:last-child {
+    .hamburger__icon--line.active ~ .hamburger__icon--line:last-child {
       transform: rotate(-45deg);
     }
   }
