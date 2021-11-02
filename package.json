@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-css": "node-sass --include-path scss assets/scss/main.scss assets/css/main.css",
-    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+    "sass-compile_normal": "sass --watch assets/scss/main.scss assets/css/main.css",
+    "sass-compile_minify": "sass --watch assets/scss/main.scss assets/css/main.min.css --style compressed",
+    "watch-scss": "npm run sass-compile_minify"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "node-sass": "^6.0.1",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.14"
   }
 }
