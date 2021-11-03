@@ -29,6 +29,63 @@ const beats = [
 
 /* console.log(beats); */
 
+var yaEstaAgregado = false;
+
+let pausarReproduccion = false;
+
+function playSound(element_clicked_id) {
+  pausarReproduccion = true;
+
+  console.log('Cargando reproduccion');
+
+  if (yaEstaAgregado == false) {
+    yaEstaAgregado = true;
+
+    document.getElementById('site__player').classList.add('active');
+    document.getElementById('player__control_spinner').classList.add('visible');
+
+    setTimeout(() => {
+      startLoadingPlayer(element_clicked_id);
+    }, 100);
+  } else {
+    console.log('bancaaaaaaaaaaa');
+  }
+}
+
+function startLoadingPlayer(element_clicked_id) {
+  const scriptOne = document.createElement('script');
+  scriptOne.id = 'howler_id';
+  scriptOne.type = 'text/javascript';
+  scriptOne.src = 'assets/js/external/howler.min.js';
+
+  document.head.appendChild(scriptOne);
+
+  var scriptOneLoaded = document.querySelector('#howler_id');
+  scriptOneLoaded.addEventListener('load', function () {
+    const scriptTwo = document.createElement('script');
+    scriptTwo.id = 'player_script';
+    scriptTwo.type = 'text/javascript';
+    scriptTwo.src = 'assets/js/player.js';
+    scriptTwo.async = true;
+
+    document.head.appendChild(scriptTwo);
+
+    var scriptTwoLoaded = document.querySelector('#player_script');
+    scriptTwoLoaded.addEventListener('load', function () {
+      /* console.log("Está cargado el player"); */
+      playSound(element_clicked_id);
+    });
+  });
+
+  
+
+  pausarReproduccion = false;
+
+  console.log('Termino de cargar la reproduccion');
+
+  /* document.getElementById('debug__box').classList.add('dejame_ver_el_player'); */
+}
+
 function interceptClickEvent(e) {
   var href;
   var target = e.target || e.srcElement;
@@ -119,9 +176,16 @@ function interceptClickEvent(e) {
                   let newPage = getParameterByName('page', href);
                   /* replaceSiteContent(newPage); */
 
-                  setTimeout(function () {
+                  console.log('Cargar nueva página');
+
+                  if (pausarReproduccion == true) {
+                    cargarNuevaPagina = newPage;
+                    console.log('Esperamos');
+                  } else {
+                    cargarNuevaPagina = null;
+                    console.log('Proseguimos');
                     replaceSiteContent(newPage);
-                  }, 500);
+                  }
 
                   /* if (newPage === 'cart') {
                     //DELETEME
@@ -473,51 +537,6 @@ window.addEventListener('load', (event) => {
     scanImageTracks();
   }, 750); */
 });
-
-var yaEstaAgregado = false;
-
-function playSound(element_clicked_id) {
-  if (yaEstaAgregado == false) {
-    yaEstaAgregado = true;
-
-    document.getElementById('site__player').classList.add('active');
-    document.getElementById('player__control_spinner').classList.add('visible');
-
-    setTimeout(() => {
-      startLoadingPlayer(element_clicked_id);
-    }, 100);
-  } else {
-    console.log('bancaaaaaaaaaaa');
-  }
-}
-
-function startLoadingPlayer(element_clicked_id) {
-  const scriptOne = document.createElement('script');
-  scriptOne.id = 'howler_id';
-  scriptOne.type = 'text/javascript';
-  scriptOne.src = 'assets/js/external/howler.min.js';
-
-  document.head.appendChild(scriptOne);
-
-  var scriptOneLoaded = document.querySelector('#howler_id');
-  scriptOneLoaded.addEventListener('load', function () {
-    const scriptTwo = document.createElement('script');
-    scriptTwo.id = 'player_script';
-    scriptTwo.type = 'text/javascript';
-    scriptTwo.src = 'assets/js/player.js';
-    scriptTwo.async = true;
-
-    document.head.appendChild(scriptTwo);
-
-    var scriptTwoLoaded = document.querySelector('#player_script');
-    scriptTwoLoaded.addEventListener('load', function () {
-      /* console.log("Está cargado el player"); */
-      playSound(element_clicked_id);
-    });
-  });
-
-  /* document.getElementById('debug__box').classList.add('dejame_ver_el_player'); */
-}
 
 // module.js
 /* export function hello() {

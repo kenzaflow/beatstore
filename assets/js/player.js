@@ -274,6 +274,13 @@ function play_Sound_Now(newAudioIndex) {
       /* player__control_play.classList.remove("visible"); */
     },
   });
+
+
+  if (cargarNuevaPagina != null) {
+    console.log('Ahora sí cargamos');
+    replaceSiteContent(cargarNuevaPagina);
+    cargarNuevaPagina = null;
+  }
 }
 
 /* ======================== */
