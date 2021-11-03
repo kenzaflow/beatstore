@@ -1,31 +1,33 @@
 class beat {
-  constructor(name, bpm, key, duration, tag, image, price, preview) {
+  constructor(name, bpm, key, duration, tag, price, image, preview) {
     this.name = name;
     this.bpm = bpm;
     this.key = key;
     this.duration = duration;
     this.tag = tag;
-    this.image = image;
     this.price = price;
+    this.image = image;
     this.preview = preview;
   }
 }
 
 const beats = [
-  new beat('Luz', 85, 'E Min', '3:30', ['JustinQuiles', 'Latin'], undefined, 'data/luz.mp3'),
-  new beat('Karma', 90, 'A Min', '3:06', ['JBalvin', 'Sech'], undefined, 'data/karma.mp3'),
-  new beat('Quizás', 99, 'F Min', '3:11', ['BadBunny', 'MariaBecerra'], undefined, 'data/quizas.mp3'),
-  new beat('Sufres', 100, 'D Min', '3:17', ['MariaBecerra', 'EmiliaMernes'], undefined, 'data/sufres.mp3'),
-  new beat('Otra Vez', 90, 'C# Min', '2:55', ['JhayCortez', 'NioGarcia'], undefined, 'data/otra_vez.mp3'),
-  new beat('Bellaca', 92, 'C Min', '3:13', undefined, undefined, 'data/bellaca.mp3'),
-  new beat('Dogg', 130, 'G Maj', '3:52', undefined, undefined, 'data/dogg.mp3'),
-  new beat('Payaso', 120, 'D Min', '2:53', undefined, undefined, 'data/payaso.mp3'),
-  new beat('Prohibida', 80, 'D Min', '3:26', undefined, undefined, 'data/prohibida.mp3'),
-  new beat('Rock Life Club Sports', 140, 'Bb Min', '3:57', undefined, undefined, 'data/rock_life_club_sports.mp3'),
-  new beat('Spaceflight', 140, 'F# Min', '3:17', undefined, undefined, 'data/spaceflight.mp3'),
-  new beat('Te Vas', 87, 'A Min', '3:07', undefined, undefined, 'data/te_vas.mp3'),
-  new beat('Virao', 130, 'F# Min', '2:26', undefined, undefined, 'data/virao.mp3'),
+  new beat('Luz', 85, 'E Min', '3:30', ['JustinQuiles', 'Latin'], undefined, 'data/luz.jpg', 'data/luz.mp3'),
+  new beat('Karma', 90, 'A Min', '3:06', ['JBalvin', 'Sech'], undefined, 'data/karma.jpg', 'data/karma.mp3'),
+  new beat('Quizás', 99, 'F Min', '3:11', ['BadBunny', 'MariaBecerra'], undefined, 'data/quizas.jpg', 'data/quizas.mp3'),
+  new beat('Sufres', 100, 'D Min', '3:17', ['MariaBecerra', 'EmiliaMernes'], undefined, 'data/sufres.jpg', 'data/sufres.mp3'),
+  new beat('Otra Vez', 90, 'C# Min', '2:55', ['JhayCortez', 'NioGarcia'], undefined, 'data/otra_vez.jpg', 'data/otra_vez.mp3'),
+  new beat('Bellaca', 92, 'C Min', '3:13', undefined, undefined, 'data/bellaca.jpg', 'data/bellaca.mp3'),
+  new beat('Dogg', 130, 'G Maj', '3:52', undefined, undefined, 'data/dogg.gif', 'data/dogg.mp3'),
+  new beat('Payaso', 120, 'D Min', '2:53', undefined, undefined, 'data/payaso.jpg', 'data/payaso.mp3'),
+  new beat('Prohibida', 80, 'D Min', '3:26', undefined, undefined, 'data/prohibida.jpg', 'data/prohibida.mp3'),
+  new beat('Rock Life Club Sports', 140, 'Bb Min', '3:57', undefined, undefined, 'data/rock_life_club_sports.jpg', 'data/rock_life_club_sports.mp3'),
+  new beat('Spaceflight', 140, 'F# Min', '3:17', undefined, undefined, 'data/spaceflight.jpg', 'data/spaceflight.mp3'),
+  new beat('Te Vas', 87, 'A Min', '3:07', undefined, undefined, 'data/te_vas.jpg', 'data/te_vas.mp3'),
+  new beat('Virao', 130, 'F# Min', '2:26', undefined, undefined, 'data/virao.jpg', 'data/virao.mp3'),
 ];
+
+/* console.log(beats); */
 
 function interceptClickEvent(e) {
   var href;
@@ -115,7 +117,11 @@ function interceptClickEvent(e) {
                   /* WIIIIII */
                   /* console.log(getParameterByName("page", href)); */
                   let newPage = getParameterByName('page', href);
-                  replaceSiteContent(newPage);
+                  /* replaceSiteContent(newPage); */
+
+                  setTimeout(function () {
+                    replaceSiteContent(newPage);
+                  }, 500);
 
                   /* if (newPage === 'cart') {
                     //DELETEME

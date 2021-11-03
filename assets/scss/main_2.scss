@@ -1,0 +1,105 @@
+@import "base/_base_dir";
+
+:root {
+    --wrapper: hsl(0, 0%, 95%);
+    --separator: hsl(0, 0%, 50%);
+    --primary: hsl(0, 75%, 50%);
+    --black: hsl(0, 0%, 0%);
+    --white: hsl(0, 0%, 100%);
+}
+
+body {
+    color: var(--black);
+}
+
+.wrapper {
+    background-color: var(--wrapper);
+    padding: 1rem;
+    /* grid-area: wrapper; */
+}
+
+.separator {
+    background-color: var(--separator);
+    height: 0.2rem;
+    margin: 2rem 0;
+    &.separator--vertical {
+        height: 100%;
+        width: 0.2rem;
+        margin: 0 2rem;
+        display: inline-block;
+    }
+    &.separator--invisible {
+        background-color: transparent;
+    }
+    &.separator--little {
+        margin: 1rem 0;
+        &.separator--vertical {
+            margin: 0 1rem;
+        }
+    }
+}
+
+.link {
+    &:hover {
+        color: var(--primary);
+        text-decoration: none;
+    }
+}
+
+.icon {
+    line-height: 1;
+    font-size: 3rem;
+    height: auto;
+    display: inline-block;
+    align-content: center;
+    width: 4rem;
+    text-align: center;
+    padding: 0.5rem;
+    &:hover {
+        color: var(--primary);
+    }
+    &.icon--alt {
+        background-color: var(--black);
+        i {
+            color: var(--white);
+        }
+        &:hover {
+            background-color: var(--primary);
+        }
+    }
+}
+
+.button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    width: auto;
+    height: auto;
+    /* border-radius: 0.27rem; */
+    & > span {
+        display: grid;
+        grid-auto-flow: column;
+        align-content: center;
+        align-items: baseline;
+        gap: 0.5rem;
+        font-weight: 500;
+    }
+    &.button--primary {
+        background-color: var(--black);
+        color: var(--white);
+        &:hover {
+            background-color: var(--primary);
+        }
+    }
+    &.button--secondary {
+        box-shadow: 0 0 0 0.2rem var(--black) inset;
+        color: var(--black);
+        &:hover {
+            box-shadow: 0 0 0 0.2rem var(--primary) inset;
+            color: var(--primary);
+        }
+    }
+    &.button--wide {
+        width: 100%;
+        text-align: center;
+    }
+}
