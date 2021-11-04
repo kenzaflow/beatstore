@@ -215,6 +215,109 @@ body {
     }
   }
 
+  .track__img {
+    grid-area: image;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0.25rem;
+    filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.3));
+    cursor: pointer;
+    max-width: 6.4rem;
+  }
+
+  .track__name {
+    cursor: pointer;
+    grid-area: name;
+    justify-self: baseline;
+    width: auto;
+    height: auto;
+    font-size: 1.8rem;
+    color: var(--site-content-featured-title-text);
+    font-weight: 700;
+  }
+
+  .section__cart-added {
+    width: 100%;
+    height: auto;
+    display: grid;
+    background-color: #fafafa;
+    padding: 1rem;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    grid-template-areas: ". place .";
+    hr {
+      border-bottom: 0.1rem solid $color-white-300;
+    }
+    .cart__background {
+      padding: 3rem;
+      background-color: $color-white-050;
+      display: grid;
+      gap: 2rem;
+      grid-area: place;
+      width: 90%;
+      max-width: $screen-width-medium;
+      height: auto;
+      border-radius: 0.5rem;
+      filter: drop-shadow(0 0.22rem 0.44rem rgba(0, 0, 0, 0.5));
+      .cart__track {
+        display: grid;
+        grid-template-columns: 1fr auto auto 1fr;
+        grid-template-areas:
+          ". image name ."
+          ". image lease .";
+        width: 100%;
+        align-items: center;
+        gap: 1rem;
+        .track__name {
+          align-self: end;
+          text-align: start;
+        }
+        .track__lease {
+          font-weight: 400;
+          grid-area: lease;
+          align-self: start;
+          text-align: start;
+          width: min-content;
+        }
+      }
+      .cart__title {
+        font-size: 2.8rem;
+        font-weight: 400;
+        color: $color-black-900;
+        text-align: center;
+        width: auto;
+        height: auto;
+      }
+      .cart__subtitle {
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: $color-black-900;
+        text-align: center;
+        width: auto;
+        height: auto;
+        .link {
+          font-size: inherit;
+          font-weight: 500;
+          display: inline-block;
+          cursor: pointer;
+        }
+      }
+      .cart__goback {
+        @include components__button(
+          $background-color: var(--site__featured__buy-button--background-color),
+          $text-color: var(--site__featured__buy-button--text-color),
+          $size: "medium",
+          $width: auto,
+          $shadow: "auto"
+        );
+      }
+    }
+  }
+
   .account {
     width: 100%;
     height: auto;
@@ -811,7 +914,6 @@ body {
 
       .tracklist_track__img {
         grid-area: image;
-        /* height: 100%; */
         width: 100%;
         aspect-ratio: 1 / 1;
         object-fit: cover;

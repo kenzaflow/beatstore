@@ -27,16 +27,25 @@ const beats = [
   new beat('Virao', 130, 'F# Min', '2:26', undefined, undefined, 'data/virao.jpg', 'data/virao.mp3'),
 ];
 
-/* console.log(beats); */
+console.log(beats);
+
+let ultimoBeatAgregado = null;
+
+function agregarBeatAlCarrito(beatId) {
+  /* console.log(beats[beatId]); */
+  ultimoBeatAgregado = beats[beatId];
+}
 
 var yaEstaAgregado = false;
+
+let cargarNuevaPagina;
 
 let pausarReproduccion = false;
 
 function playSound(element_clicked_id) {
   pausarReproduccion = true;
 
-  console.log('Cargando reproduccion');
+  /* console.log('Cargando reproduccion'); */
 
   if (yaEstaAgregado == false) {
     yaEstaAgregado = true;
@@ -48,7 +57,7 @@ function playSound(element_clicked_id) {
       startLoadingPlayer(element_clicked_id);
     }, 100);
   } else {
-    console.log('bancaaaaaaaaaaa');
+    /* console.log('bancaaaaaaaaaaa'); */
   }
 }
 
@@ -77,16 +86,16 @@ function startLoadingPlayer(element_clicked_id) {
     });
   });
 
-  
-
   pausarReproduccion = false;
 
-  console.log('Termino de cargar la reproduccion');
+  /* console.log('Termino de cargar la reproduccion'); */
 
   /* document.getElementById('debug__box').classList.add('dejame_ver_el_player'); */
 }
 
 function interceptClickEvent(e) {
+  /* console.log(e); */
+
   var href;
   var target = e.target || e.srcElement;
 
@@ -176,14 +185,18 @@ function interceptClickEvent(e) {
                   let newPage = getParameterByName('page', href);
                   /* replaceSiteContent(newPage); */
 
-                  console.log('Cargar nueva página');
+                  if (target.getAttribute('data-beat-id') != null && newPage == 'cart_added') {
+                    agregarBeatAlCarrito(target.getAttribute('data-beat-id'));
+                  }
+
+                  /* console.log('Cargar nueva página'); */
 
                   if (pausarReproduccion == true) {
                     cargarNuevaPagina = newPage;
-                    console.log('Esperamos');
+                    /* console.log('Esperamos'); */
                   } else {
                     cargarNuevaPagina = null;
-                    console.log('Proseguimos');
+                    /* console.log('Proseguimos'); */
                     replaceSiteContent(newPage);
                   }
 
@@ -337,6 +350,16 @@ async function replaceSiteContent(url, error_page) {
         /* document.getElementById("site").classList.add("in_home"); */
       }
 
+      if (queryURL === 'cart_added') {
+        if (ultimoBeatAgregado != null) {
+          /* console.log('es null capo'); */
+          actualizarPaginaCarrito();
+        }
+        {
+          /* window.location = 'index.html'; */
+        }
+      }
+
       if (queryURL === '404') {
         if (error_page == undefined) {
           document.getElementById('error_404_cannot_text').innerHTML = 'Cannot find the page';
@@ -361,6 +384,23 @@ async function replaceSiteContent(url, error_page) {
   } catch (err) {
     console.log('Hubo un problema con la petición Fetch:' + err.message);
     replaceSiteContent('404', queryURL);
+  }
+}
+
+function actualizarPaginaCarrito() {
+  let cartImage = document.getElementById('cart_added_track_image');
+  if (cartImage != null) {
+    cartImage.src = ultimoBeatAgregado.image;
+  }
+
+  let cartName = document.getElementById('cart_added_track_name');
+  if (cartName != null) {
+    cartName.innerText = ultimoBeatAgregado.name;
+  }
+
+  let cartLease = document.getElementById('cart_added_track_lease');
+  if (cartLease != null) {
+    cartLease.innerText = 'Limited Lease';
   }
 }
 
@@ -550,19 +590,70 @@ window.addEventListener('load', (event) => {
 /* window.onbeforeunload = confirmExit;
 function confirmExit() {} */
 
-var linkToAdd = document.createElement('link');
-linkToAdd.setAttribute('rel', 'stylesheet');
-linkToAdd.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap';
-document.getElementsByTagName('head')[0].appendChild(linkToAdd);
-
-var linkToAddAnother = document.createElement('link');
-linkToAddAnother.setAttribute('rel', 'stylesheet');
-linkToAddAnother.href = 'assets/css/external/uicons/css/uicons-solid-rounded.css?0.0.3';
-document.getElementsByTagName('head')[0].appendChild(linkToAddAnother);
-
-var linkToAddAnotherOne = document.createElement('link');
-linkToAddAnotherOne.setAttribute('rel', 'stylesheet');
-linkToAddAnotherOne.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap';
-document.getElementsByTagName('head')[0].appendChild(linkToAddAnotherOne);
+addMetaStylesheet('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+addMetaStylesheet('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+addMetaStylesheet('assets/css/external/uicons-regular-rounded/css/uicons-regular-rounded.css');
+addMetaStylesheet('assets/css/external/uicons-bold-rounded/css/uicons-bold-rounded.css');
+addMetaStylesheet('assets/css/external/uicons-solid-rounded/css/uicons-solid-rounded.css');
 
 updateScreen();
+
+function addMetaStylesheet(url) {
+  let linkToAdd = document.createElement('link');
+  linkToAdd.setAttribute('rel', 'stylesheet');
+  linkToAdd.href = url;
+  document.getElementsByTagName('head')[0].appendChild(linkToAdd);
+}
+
+site.onmouseover = site.onmouseout = handler;
+
+function handler(event) {
+  function str(el) {
+    if (!el) return 'null';
+    return el.className || el.tagName;
+  }
+
+  /* console.log(event.type + ':  ' + 'target=' + str(event.target) + ',  relatedTarget=' + str(event.relatedTarget) + '\n'); */
+  /* console.log('Mouse out: ' + str(event.relatedTarget));
+  console.log('Mouse over: ' + str(event.target)); */
+
+  /* START ICONOS HOVER */
+
+  /* let theIndex = 0;
+
+  if (event.target.className.includes('fi-rr')) {
+
+    while (event.target.classList[theIndex].includes('fi-rr') == false) {
+      theIndex += 1;
+      if (theIndex > 10) {
+        break;
+      }
+    }
+
+    let claseSolid = event.target.classList[theIndex].replace('fi-rr', 'fi-sr');
+
+    event.target.classList.remove(event.target.classList[theIndex]);
+    event.target.classList.add(claseSolid);
+  } else if (event.target.className.includes('fi-sr')) {
+    while (event.target.classList[theIndex].includes('fi-sr') == false) {
+      theIndex += 1;
+      if (theIndex > 10) {
+        break;
+      }
+    }
+
+    let claseRegular = event.target.classList[theIndex].replace('fi-sr', 'fi-rr');
+
+    event.target.classList.remove(event.target.classList[theIndex]);
+    event.target.classList.add(claseRegular);
+  } */
+
+  /* END ICONOS HOVER */
+
+  /* if (event.type == 'mouseover') {
+    event.target.style.background = 'pink';
+  }
+  if (event.type == 'mouseout') {
+    event.target.style.background = '';
+  } */
+}
