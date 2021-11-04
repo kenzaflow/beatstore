@@ -590,11 +590,11 @@ window.addEventListener('load', (event) => {
 /* window.onbeforeunload = confirmExit;
 function confirmExit() {} */
 
-addMetaStylesheet('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
-addMetaStylesheet('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-addMetaStylesheet('assets/css/external/uicons-regular-rounded/css/uicons-regular-rounded.css');
-addMetaStylesheet('assets/css/external/uicons-bold-rounded/css/uicons-bold-rounded.css');
-addMetaStylesheet('assets/css/external/uicons-solid-rounded/css/uicons-solid-rounded.css');
+addMetaStylesheet('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap?v=0.0.15');
+addMetaStylesheet('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap?v=0.0.15');
+addMetaStylesheet('assets/css/external/uicons-regular-rounded/css/uicons-regular-rounded.css?v=0.0.15');
+addMetaStylesheet('assets/css/external/uicons-bold-rounded/css/uicons-bold-rounded.css?v=0.0.15');
+addMetaStylesheet('assets/css/external/uicons-solid-rounded/css/uicons-solid-rounded.css?v=0.0.15');
 
 updateScreen();
 
