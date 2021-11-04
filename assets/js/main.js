@@ -65,7 +65,7 @@ function startLoadingPlayer(element_clicked_id) {
   const scriptOne = document.createElement('script');
   scriptOne.id = 'howler_id';
   scriptOne.type = 'text/javascript';
-  scriptOne.src = 'assets/js/external/howler.min.js';
+  scriptOne.src = 'assets/js/external/howler.min.js?v=0.0.15';
 
   document.head.appendChild(scriptOne);
 
@@ -74,7 +74,7 @@ function startLoadingPlayer(element_clicked_id) {
     const scriptTwo = document.createElement('script');
     scriptTwo.id = 'player_script';
     scriptTwo.type = 'text/javascript';
-    scriptTwo.src = 'assets/js/player.js';
+    scriptTwo.src = 'assets/js/player.js?v=0.0.15';
     scriptTwo.async = true;
 
     document.head.appendChild(scriptTwo);
