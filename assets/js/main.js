@@ -28,15 +28,17 @@ const beats = [
   new beat(13, 'Virao', 130, 'F# Min', '2:26', undefined, undefined, 'data/virao.jpg', 'data/virao.mp3'),
 ];
 
-console.log(beats);
+/* console.log(beats); */
 
 let carrito = [];
+
+localStorage.clear();
 
 if (localStorage.getItem('carrito') != null) {
   carrito = JSON.parse(localStorage.getItem('carrito'));
 }
 
-console.log(carrito);
+/* console.log(carrito); */
 
 function findBeatArrayNumberById(id) {
   if (beats.length > 0) {
@@ -107,6 +109,44 @@ function playSound(element_clicked_id) {
     }, 100);
   } else {
     /* console.log('bancaaaaaaaaaaa'); */
+  }
+}
+
+function updatePage_cart() {
+  cart_checkout_section = document.getElementById('cart_checkout_section');
+  cart_list = document.getElementById('cart__list');
+
+  boton = document.createElement('a');
+  boton.classList.add('cart__goback');
+  boton.setAttribute('type', 'button');
+
+  if (carrito.length > 0) {
+    if (carrito.length > 2) {
+      cart_list.classList.remove('no_overflow');
+    }
+
+    for (let currentBeat = 0; currentBeat < carrito.length; currentBeat++) {
+      beatInfo = beats[findBeatArrayNumberById(carrito[currentBeat])];
+      let theBeat = document.createElement('div');
+      theBeat.classList.add('cart__track');
+      theBeat.innerHTML = `<img id="cart_added_track_image" draggable="false" loading="lazy" class="track__img" src="${beatInfo.image}" alt="Artwork" />
+      <span id="cart_added_track_name" class="track__name">${beatInfo.name}</span>
+      <span id="cart_added_track_lease" class="track__name track__lease">Lease Name</span>`;
+      cart_list.append(theBeat);
+    }
+
+    boton.innerText = 'Finish with PayPal';
+    boton.href = '?page=cart';
+    cart_checkout_section.appendChild(boton);
+  } else {
+    /* ...; */
+    let theMessage = document.createElement('span');
+    theMessage.innerText = `There is no beats added to cart`;
+    cart_list.appendChild(theMessage);
+
+    boton.innerText = 'Go back';
+    boton.href = '?page=home';
+    cart_checkout_section.appendChild(boton);
   }
 }
 
@@ -407,6 +447,10 @@ async function replaceSiteContent(url, error_page) {
         {
           /* window.location = 'index.html'; */
         }
+      }
+
+      if (queryURL === 'cart') {
+        updatePage_cart();
       }
 
       if (queryURL === '404') {

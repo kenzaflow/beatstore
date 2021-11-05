@@ -263,25 +263,45 @@ body {
       height: auto;
       border-radius: 0.5rem;
       filter: drop-shadow(0 0.22rem 0.44rem rgba(0, 0, 0, 0.5));
-      .cart__track {
+      .cart__list {
         display: grid;
-        grid-template-columns: 1fr auto auto 1fr;
-        grid-template-areas:
-          ". image name ."
-          ". image lease .";
-        width: 100%;
-        align-items: center;
         gap: 1rem;
-        .track__name {
-          align-self: end;
-          text-align: start;
+        max-height: min(30vh, 40rem);
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        &.no_overflow {
+          overflow-y: hidden;
         }
-        .track__lease {
-          font-weight: 400;
-          grid-area: lease;
-          align-self: start;
-          text-align: start;
-          width: min-content;
+
+        .cart__track {
+          scroll-snap-align: start;
+          display: grid;
+          grid-template-columns: 0 1fr 1fr 0;
+          grid-template-areas:
+            ". image name ."
+            ". image lease .";
+          width: 100%;
+          align-items: center;
+          gap: 1rem;
+          &:not(:last-child) {
+            padding-bottom: 1rem;
+            border-bottom: 0.1rem solid $color-white-300;
+          }
+          .track__img {
+            justify-self: end;
+          }
+          .track__name {
+            align-self: end;
+            text-align: start;
+          }
+          .track__lease {
+            font-weight: 400;
+            grid-area: lease;
+            align-self: start;
+            text-align: start;
+            width: min-content;
+          }
         }
       }
       .cart__title {
