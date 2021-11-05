@@ -32,8 +32,6 @@ const beats = [
 
 let carrito = [];
 
-localStorage.clear();
-
 if (localStorage.getItem('carrito') != null) {
   carrito = JSON.parse(localStorage.getItem('carrito'));
 }
