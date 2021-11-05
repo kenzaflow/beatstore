@@ -1,5 +1,6 @@
 class beat {
-  constructor(name, bpm, key, duration, tag, price, image, preview) {
+  constructor(id, name, bpm, key, duration, tag, price, image, preview) {
+    this.id = id;
     this.name = name;
     this.bpm = bpm;
     this.key = key;
@@ -12,29 +13,77 @@ class beat {
 }
 
 const beats = [
-  new beat('Luz', 85, 'E Min', '3:30', ['JustinQuiles', 'Latin'], undefined, 'data/luz.jpg', 'data/luz.mp3'),
-  new beat('Karma', 90, 'A Min', '3:06', ['JBalvin', 'Sech'], undefined, 'data/karma.jpg', 'data/karma.mp3'),
-  new beat('Quizás', 99, 'F Min', '3:11', ['BadBunny', 'MariaBecerra'], undefined, 'data/quizas.jpg', 'data/quizas.mp3'),
-  new beat('Sufres', 100, 'D Min', '3:17', ['MariaBecerra', 'EmiliaMernes'], undefined, 'data/sufres.jpg', 'data/sufres.mp3'),
-  new beat('Otra Vez', 90, 'C# Min', '2:55', ['JhayCortez', 'NioGarcia'], undefined, 'data/otra_vez.jpg', 'data/otra_vez.mp3'),
-  new beat('Bellaca', 92, 'C Min', '3:13', undefined, undefined, 'data/bellaca.jpg', 'data/bellaca.mp3'),
-  new beat('Dogg', 130, 'G Maj', '3:52', undefined, undefined, 'data/dogg.gif', 'data/dogg.mp3'),
-  new beat('Payaso', 120, 'D Min', '2:53', undefined, undefined, 'data/payaso.jpg', 'data/payaso.mp3'),
-  new beat('Prohibida', 80, 'D Min', '3:26', undefined, undefined, 'data/prohibida.jpg', 'data/prohibida.mp3'),
-  new beat('Rock Life Club Sports', 140, 'Bb Min', '3:57', undefined, undefined, 'data/rock_life_club_sports.jpg', 'data/rock_life_club_sports.mp3'),
-  new beat('Spaceflight', 140, 'F# Min', '3:17', undefined, undefined, 'data/spaceflight.jpg', 'data/spaceflight.mp3'),
-  new beat('Te Vas', 87, 'A Min', '3:07', undefined, undefined, 'data/te_vas.jpg', 'data/te_vas.mp3'),
-  new beat('Virao', 130, 'F# Min', '2:26', undefined, undefined, 'data/virao.jpg', 'data/virao.mp3'),
+  new beat(1, 'Luz', 85, 'E Min', '3:30', ['JustinQuiles', 'Latin'], undefined, 'data/luz.jpg', 'data/luz.mp3'),
+  new beat(2, 'Karma', 90, 'A Min', '3:06', ['JBalvin', 'Sech'], undefined, 'data/karma.jpg', 'data/karma.mp3'),
+  new beat(3, 'Quizás', 99, 'F Min', '3:11', ['BadBunny', 'MariaBecerra'], undefined, 'data/quizas.jpg', 'data/quizas.mp3'),
+  new beat(4, 'Sufres', 100, 'D Min', '3:17', ['MariaBecerra', 'EmiliaMernes'], undefined, 'data/sufres.jpg', 'data/sufres.mp3'),
+  new beat(5, 'Otra Vez', 90, 'C# Min', '2:55', ['JhayCortez', 'NioGarcia'], undefined, 'data/otra_vez.jpg', 'data/otra_vez.mp3'),
+  new beat(6, 'Bellaca', 92, 'C Min', '3:13', undefined, undefined, 'data/bellaca.jpg', 'data/bellaca.mp3'),
+  new beat(7, 'Dogg', 130, 'G Maj', '3:52', undefined, undefined, 'data/dogg.gif', 'data/dogg.mp3'),
+  new beat(8, 'Payaso', 120, 'D Min', '2:53', undefined, undefined, 'data/payaso.jpg', 'data/payaso.mp3'),
+  new beat(9, 'Prohibida', 80, 'D Min', '3:26', undefined, undefined, 'data/prohibida.jpg', 'data/prohibida.mp3'),
+  new beat(10, 'Rock Life Club Sports', 140, 'Bb Min', '3:57', undefined, undefined, 'data/rock_life_club_sports.jpg', 'data/rock_life_club_sports.mp3'),
+  new beat(11, 'Spaceflight', 140, 'F# Min', '3:17', undefined, undefined, 'data/spaceflight.jpg', 'data/spaceflight.mp3'),
+  new beat(12, 'Te Vas', 87, 'A Min', '3:07', undefined, undefined, 'data/te_vas.jpg', 'data/te_vas.mp3'),
+  new beat(13, 'Virao', 130, 'F# Min', '2:26', undefined, undefined, 'data/virao.jpg', 'data/virao.mp3'),
 ];
 
 console.log(beats);
 
+let carrito = [];
+
+if (localStorage.getItem('carrito') != null) {
+  carrito = JSON.parse(localStorage.getItem('carrito'));
+}
+
+console.log(carrito);
+
+function findBeatArrayNumberById(id) {
+  if (beats.length > 0) {
+    let encontramos = false;
+    let currentNumber = -1;
+
+    do {
+      currentNumber += 1;
+      if (beats[currentNumber].id == id) {
+        encontramos = currentNumber;
+        break;
+      } else {
+      }
+    } while (encontramos == false);
+    return encontramos;
+  }
+  return false;
+}
+
 let ultimoBeatAgregado = null;
 
 function agregarBeatAlCarrito(beatId) {
+  carrito.push(beats[beatId].id);
+  localStorage.setItem('carrito', JSON.stringify(carrito));
   /* console.log(beats[beatId]); */
-  ultimoBeatAgregado = beats[beatId];
+  ultimoBeatAgregado = beats[beatId].id;
+  actualizarIconoCarrito();
 }
+
+function actualizarIconoCarrito() {
+  let site_menu = document.getElementById('site__menu__links');
+
+  let string_cart_element = `<i style="display: inline-block; transform: translateY(2px)" class="fi fi-br-shopping-cart fw"></i><span class="cart_number">${carrito.length}</span>`;
+
+  /* console.log(site_menu.querySelector('#cart_section')); */
+  site_menu.querySelector('#cart_section').innerHTML = string_cart_element;
+
+  /* let cart_section = document.createElement('a');
+  cart_section.id = 'cart_section';
+  cart_section.classList.add('link');
+  cart_section.classList.add('cart_section');
+  cart_section.href = '?page=cart';
+  cart_section.innerHTML = string_cart_element;
+  site_menu.appendChild(cart_section); */
+}
+
+actualizarIconoCarrito();
 
 var yaEstaAgregado = false;
 
@@ -390,12 +439,12 @@ async function replaceSiteContent(url, error_page) {
 function actualizarPaginaCarrito() {
   let cartImage = document.getElementById('cart_added_track_image');
   if (cartImage != null) {
-    cartImage.src = ultimoBeatAgregado.image;
+    cartImage.src = beats[findBeatArrayNumberById(ultimoBeatAgregado)].image;
   }
 
   let cartName = document.getElementById('cart_added_track_name');
   if (cartName != null) {
-    cartName.innerText = ultimoBeatAgregado.name;
+    cartName.innerText = beats[findBeatArrayNumberById(ultimoBeatAgregado)].name;
   }
 
   let cartLease = document.getElementById('cart_added_track_lease');

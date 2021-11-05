@@ -1,8 +1,7 @@
 $theme-menu-colors: (
-  /* menu */ /* mobile */ /* background */ /* color */ /* ============== */
-    site-menu-background-color: $color-white-300,
-  /* menu */ /* mobile */ /* nav-separator */ /* color */ /* ============== */
-    site-menu-nav-separator-color: $color-black-200
+  /* menu */ /* mobile */ /* background */ /* color */ /* ============== */ site-menu-background-color: $color-white-300,
+  /* menu */ /* mobile */ /* nav-separator */ /* color */ /* ============== */ site-menu-nav-separator-color:
+    $color-black-200
 );
 
 // loop over each name, color
@@ -136,6 +135,7 @@ $theme-menu-colors: (
   flex-direction: column;
   height: auto;
   z-index: $z-index__site-menu;
+
   a {
     text-align: center;
     padding: 1rem;
@@ -144,6 +144,32 @@ $theme-menu-colors: (
     /* &.active {
       font-weight: 700;
     } */
+  }
+
+  .cart_section {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    cursor: pointer;
+    .cart_number {
+      font-size: 1.7rem;
+      background-color: hsl(50, 75%, 65%);
+      padding: 0.4rem;
+      border-radius: 100%;
+      aspect-ratio: 1 / 1;
+      height: 2.5rem;
+      width: auto;
+      cursor: pointer;
+    }
+    &::after {
+      content: none;
+      cursor: pointer;
+    }
+    /* color: red; */
   }
 
   @media (max-width: $screen-width-big - 1) {
@@ -180,6 +206,15 @@ $theme-menu-colors: (
       align-items: center;
       justify-content: flex-end;
       transition: none;
+
+      //  nuevo
+      //  ToDo:
+      //  Borrar lo anterior...
+      display: grid;
+      grid-auto-flow: column;
+      align-content: center;
+      justify-content: end;
+      align-items: baseline;
     }
     a {
       text-align: center;
