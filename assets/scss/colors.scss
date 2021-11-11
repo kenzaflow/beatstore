@@ -1,0 +1,25 @@
+@mixin light-theme {
+    --text-color: #222;
+    --bkg-color: #fff;
+}
+
+@mixin dark-theme {
+    --text-color: #eee;
+    --bkg-color: #121212;
+}
+
+body {
+    @include light-theme();
+}
+body.dark-theme {
+    @include dark-theme();
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        @include dark-theme();
+    }
+    body.light-theme {
+        @include light-theme();
+    }
+}

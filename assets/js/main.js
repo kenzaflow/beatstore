@@ -28,8 +28,6 @@ const beats = [
   new beat(13, 'Virao', 130, 'F# Min', '2:26', undefined, undefined, 'data/virao.jpg', 'data/virao.mp3'),
 ];
 
-/* console.log(beats); */
-
 let carrito = [];
 
 if (localStorage.getItem('carrito') != null) {

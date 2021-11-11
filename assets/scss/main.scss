@@ -1,5 +1,7 @@
 @use "sass:math";
 
+@import "colors";
+
 @import "libs/vars";
 
 //
@@ -83,6 +85,10 @@ $theme-colors: (
   @each $name, $color in $theme-colors {
     --#{$name}: #{$color};
   }
+}
+
+:root {
+  color-scheme: light dark; /* both supported */
 }
 
 /* width */
@@ -184,6 +190,9 @@ body {
     height: auto;
     display: grid;
     background-color: #fafafa;
+    &.dark {
+      background-color: #494949;
+    }
     gap: 3rem;
     padding: 1rem;
     text-align: center;
@@ -492,7 +501,7 @@ body {
 
     position: relative;
 
-    @media (max-width: $screen-width-medium - 1) {
+    @media (max-width: ($screen-width-medium - 1)) {
       & {
         height: 50rem;
         /* background-image: linear-gradient(
@@ -506,7 +515,7 @@ body {
         background-size: cover; */
       }
     }
-    @media (min-width: $screen-width-medium) and (max-width: $screen-width-big - 1) {
+    @media (min-width: $screen-width-medium) and (max-width: ($screen-width-big - 1)) {
       & {
         height: 60rem;
         /*         background-image: linear-gradient(
@@ -831,7 +840,7 @@ body {
             );
           }
         }
-        @media (min-width: $screen-width-medium) and (max-width: $screen-width-big - 1px) {
+        @media (min-width: $screen-width-medium) and (max-width: ($screen-width-big - 1px)) {
           & {
             @include components__button(
               $background-color: var(--site__featured__buy-button--background-color),
@@ -1181,7 +1190,7 @@ body {
             );
           }
         }
-        @media (min-width: $screen-width-medium) and (max-width: $screen-width-big - 1px) {
+        @media (min-width: $screen-width-medium) and (max-width: ($screen-width-big - 1px)) {
           & {
             @include components__button(
               $background-color: var(--site__featured__buy-button--background-color),
@@ -1916,7 +1925,7 @@ body {
             );
           }
         }
-        @media (min-width: $screen-width-medium) and (max-width: $screen-width-big - 1px) {
+        @media (min-width: $screen-width-medium) and (max-width: ($screen-width-big - 1px)) {
           & {
             @include components__button(
               $background-color: var(--site__featured__buy-button--background-color),
@@ -1998,7 +2007,7 @@ body {
     display: grid;
     grid-auto-flow: row;
 
-    @media (min-width: 540px) and (max-width: $screen-width-big -1) {
+    @media (min-width: 540px) and (max-width: ($screen-width-big - 1)) {
       & {
         grid-template-columns: auto auto auto;
       }
