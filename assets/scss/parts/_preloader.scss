@@ -1,12 +1,9 @@
 $theme-preloader-colors: (
-  /* loading */ /* background */ /* color */ /* ============== */
-    site-loading-background-color: $color-white-500,
-  /* loading */ /* circle */ /* base--color */ /* ============== */
-    site-loading-circle-color: $color-white-600,
-  /* loading */ /* circle */ /* left--color */ /* ============== */
-    site-loading-circle-color--left: $color-primary-500,
-  /* loading */ /* circle */ /* right--color */ /* ============== */
-    site-loading-circle-color--right: $color-secondary-500
+  /* loading */ /* background */ /* color */ /* ============== */ site-loading-background-color: $color-white-500,
+  /* loading */ /* circle */ /* base--color */ /* ============== */ site-loading-circle-color: $color-white-600,
+  /* loading */ /* circle */ /* left--color */ /* ============== */ site-loading-circle-color--left: $color-primary-500,
+  /* loading */ /* circle */ /* right--color */ /* ============== */ site-loading-circle-color--right:
+    $color-secondary-500
 );
 
 // loop over each name, color
@@ -40,7 +37,7 @@ $background_size: 5rem;
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(240, 240, 240, 0.75);
+  /* background-color: rgba(240, 240, 240, 0.75); */
   /* backdrop-filter: blur(1rem); */
   /* filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.5));
   border-radius: 1rem; */
@@ -77,9 +74,12 @@ $background_size: 5rem;
     position: fixed;
     left: calc(50% - #{$background_size * 0.5});
     top: calc(50% - #{$background_size * 0.5});
-    width: $background_size;
-    height: $background_size;
-    filter: drop-shadow(0 0.5rem 1rem rgba(0,0,0,0.5));
+    width: $background_size * 2;
+    height: $background_size * 2;
+    filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.5));
+    transform: translate(-2.5rem, -2.5rem);
+    background-color: rgba(240, 240, 240, 0.75);
+    border-radius: 2.5rem;
   }
 }
 

@@ -54,6 +54,15 @@ function findBeatArrayNumberById(id) {
   return false;
 }
 
+function sacarBeatDelCarrito(indexToDelete) {
+  console.log('borrar: ' + indexToDelete);
+  /* carrito = carrito.filter((index) => index !== indexToDelete); */
+  let borrado = carrito.splice(indexToDelete, 1);
+  console.log(carrito);
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  actualizarIconoCarrito();
+}
+
 let ultimoBeatAgregado = null;
 
 function agregarBeatAlCarrito(beatId) {
@@ -108,9 +117,49 @@ function playSound(element_clicked_id) {
   }
 }
 
+let cola = [];
+
+let searchCola;
+
+function startSearch() {
+  searchCola = setInterval(function () {
+    console.log(cola.length);
+    if (cola.length > 0) {
+      startElimination(cola[0]);
+    }
+  }, 1000);
+}
+
+
+
+function startElimination(block) {
+  clearInterval(searchCola);
+  $(block).fadeOut(function () {
+    sacarBeatDelCarrito(block.getAttribute('data-beat-cart'));
+    cola.shift();
+    if (cola.length == 0) {
+      if (document.getElementById('botoncito') != undefined) {
+        document.getElementById('botoncito').remove();
+      }
+      document.getElementById('cart__subtitle').classList.add('disabled');
+    }
+    updatePage_cart();
+  });
+}
+
 function updatePage_cart() {
   cart_checkout_section = document.getElementById('cart_checkout_section');
+
+  startSearch();
+
+  /* cart_checkout_section.replaceChildren();
+
+  let theCarrit = document.createElement('div');
+  theCarrit.id = 'cart__list';
+  cart_checkout_section.appendChild(theCarrit); */
+
   cart_list = document.getElementById('cart__list');
+  cart_list.innerHTML = '';
 
   boton = document.createElement('a');
   boton.classList.add('cart__goback');
@@ -125,15 +174,31 @@ function updatePage_cart() {
       beatInfo = beats[findBeatArrayNumberById(carrito[currentBeat])];
       let theBeat = document.createElement('div');
       theBeat.classList.add('cart__track');
+      theBeat.setAttribute('data-beat-cart', currentBeat);
       theBeat.innerHTML = `<img id="cart_added_track_image" draggable="false" loading="lazy" class="track__img" src="${beatInfo.image}" alt="Artwork" />
+      <span class="track__remove"><i class="fi-rr-cross-circle"></i></span>
       <span id="cart_added_track_name" class="track__name">${beatInfo.name}</span>
       <span id="cart_added_track_lease" class="track__name track__lease">Lease Name</span>`;
       cart_list.append(theBeat);
+      theChildren = cart_list.children[cart_list.children.length - 1];
+      theChildren.addEventListener(
+        'click',
+        function (e) {
+          /* console.log(this.getAttribute('data-beat-cart')); */
+          cola.push(this);
+        },
+        false
+      );
     }
 
     boton.innerText = 'Finish with PayPal';
     boton.href = '?page=cart';
-    cart_checkout_section.appendChild(boton);
+    boton.id = 'botoncito';
+    if (document.getElementById('botoncito') == undefined) {
+      cart_checkout_section.appendChild(boton);
+    }
+
+    document.getElementById('cart__subtitle').classList.remove('disabled');
   } else {
     /* ...; */
     let theMessage = document.createElement('span');
@@ -679,20 +744,36 @@ window.addEventListener('load', (event) => {
 /* window.onbeforeunload = confirmExit;
 function confirmExit() {} */
 
-addMetaStylesheet('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap?v=0.0.15');
-addMetaStylesheet('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap?v=0.0.15');
-addMetaStylesheet('assets/css/external/uicons-regular-rounded/css/uicons-regular-rounded.css?v=0.0.15');
-addMetaStylesheet('assets/css/external/uicons-bold-rounded/css/uicons-bold-rounded.css?v=0.0.15');
-addMetaStylesheet('assets/css/external/uicons-solid-rounded/css/uicons-solid-rounded.css?v=0.0.15');
+let meta_stylesheet = [
+  'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap',
+  'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap',
+  'assets/css/external/uicons-regular-rounded/css/uicons-regular-rounded.css',
+  'assets/css/external/uicons-bold-rounded/css/uicons-bold-rounded.css',
+  'assets/css/external/uicons-solid-rounded/css/uicons-solid-rounded.css',
+];
 
-updateScreen();
+for (link in meta_stylesheet) {
+  let esIgual = meta_stylesheet[link].split('.')[meta_stylesheet[link].split('.').length - 1];
+  addMetaLink(meta_stylesheet[link] + '?v=0.1.16');
+}
 
-function addMetaStylesheet(url) {
+function addMetaLink(url) {
   let linkToAdd = document.createElement('link');
   linkToAdd.setAttribute('rel', 'stylesheet');
   linkToAdd.href = url;
   document.getElementsByTagName('head')[0].appendChild(linkToAdd);
 }
+
+addMetaScript('https://code.jquery.com/jquery-3.6.0.min.js');
+
+function addMetaScript(url) {
+  let linkToAdd = document.createElement('script');
+  linkToAdd.setAttribute('defer', 'true');
+  linkToAdd.src = url;
+  document.getElementsByTagName('head')[0].appendChild(linkToAdd);
+}
+
+updateScreen();
 
 site.onmouseover = site.onmouseout = handler;
 
