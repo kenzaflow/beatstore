@@ -1,3 +1,31 @@
+/* ------------------ */
+/* Implementar esto */
+/* -- */
+/* Tira error al cargar la página Cart, checkear despues */
+/* -- */
+/* 'use strict'; */
+/* ------------------ */
+
+/* HELPERS */
+
+function debounce(func, timeout = 300) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+/* BEAT STUFFS */
+
+/* BEAT CONSTRUCTOR */
+
 class beat {
   constructor(id, name, bpm, key, duration, tag, price, image, preview) {
     this.id = id;
@@ -12,7 +40,10 @@ class beat {
   }
 }
 
-const beats = [
+/* This: Movido a un .json para usar con ajax, más abajo */
+/* ToDo: Fetch... */
+
+/* const beats = [
   new beat(1, 'Luz', 85, 'E Min', '3:30', ['JustinQuiles', 'Latin'], undefined, 'data/luz.jpg', 'data/luz.mp3'),
   new beat(2, 'Karma', 90, 'A Min', '3:06', ['JBalvin', 'Sech'], undefined, 'data/karma.jpg', 'data/karma.mp3'),
   new beat(3, 'Quizás', 99, 'F Min', '3:11', ['BadBunny', 'MariaBecerra'], undefined, 'data/quizas.jpg', 'data/quizas.mp3'),
@@ -26,15 +57,25 @@ const beats = [
   new beat(11, 'Spaceflight', 140, 'F# Min', '3:17', undefined, undefined, 'data/spaceflight.jpg', 'data/spaceflight.mp3'),
   new beat(12, 'Te Vas', 87, 'A Min', '3:07', undefined, undefined, 'data/te_vas.jpg', 'data/te_vas.mp3'),
   new beat(13, 'Virao', 130, 'F# Min', '2:26', undefined, undefined, 'data/virao.jpg', 'data/virao.mp3'),
-];
+]; */
 
-let carrito = [];
+/* ------------ */
+/* CARGAR BEATS */
+/* ------------ */
 
-if (localStorage.getItem('carrito') != null) {
-  carrito = JSON.parse(localStorage.getItem('carrito'));
-}
+let beats = [];
 
-/* console.log(carrito); */
+$.when($.getJSON('./data/api/beat_list.json'), $.ready).done((data) => {
+  data[0].forEach((element) => {
+    beats.push(
+      new beat(element['id'], element['name'], element['bpm'], element['key'], element['duration'], element['tag'], element['price'], element['image'], element['preview'])
+    );
+  });
+});
+
+/* ------------------ */
+/* BUSCAR BEAT POR ID */
+/* ------------------ */
 
 function findBeatArrayNumberById(id) {
   if (beats.length > 0) {
@@ -54,11 +95,14 @@ function findBeatArrayNumberById(id) {
   return false;
 }
 
+let carrito = [];
+
+if (localStorage.getItem('carrito') != null) {
+  carrito = JSON.parse(localStorage.getItem('carrito'));
+}
+
 function sacarBeatDelCarrito(indexToDelete) {
-  console.log('borrar: ' + indexToDelete);
-  /* carrito = carrito.filter((index) => index !== indexToDelete); */
   let borrado = carrito.splice(indexToDelete, 1);
-  console.log(carrito);
   localStorage.setItem('carrito', JSON.stringify(carrito));
   actualizarIconoCarrito();
 }
@@ -123,14 +167,11 @@ let searchCola;
 
 function startSearch() {
   searchCola = setInterval(function () {
-    console.log(cola.length);
     if (cola.length > 0) {
       startElimination(cola[0]);
     }
   }, 1000);
 }
-
-
 
 function startElimination(block) {
   clearInterval(searchCola);
@@ -151,12 +192,6 @@ function updatePage_cart() {
   cart_checkout_section = document.getElementById('cart_checkout_section');
 
   startSearch();
-
-  /* cart_checkout_section.replaceChildren();
-
-  let theCarrit = document.createElement('div');
-  theCarrit.id = 'cart__list';
-  cart_checkout_section.appendChild(theCarrit); */
 
   cart_list = document.getElementById('cart__list');
   cart_list.innerHTML = '';
@@ -243,11 +278,13 @@ function startLoadingPlayer(element_clicked_id) {
   /* document.getElementById('debug__box').classList.add('dejame_ver_el_player'); */
 }
 
+/* ToDo: QUE ASCO */
+
 function interceptClickEvent(e) {
   /* console.log(e); */
 
-  var href;
-  var target = e.target || e.srcElement;
+  let href;
+  let target = e.target || e.srcElement;
 
   if (
     target.id == 'site__menu__hamburger' ||
@@ -417,14 +454,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     myParam = urlParams.get('page');
   }
 
-  /* fileExists(myParam + ".html").then(
-    (yes) => yes && getPage(myParam + ".html")
-  ); */
-
-  /* setPageIfExists(myParam + ".html"); */
   replaceSiteContent(myParam);
-
-  /* console.log("esto no deberia suceder"); */
 });
 
 function setCurrentPage(thePage) {
@@ -432,35 +462,6 @@ function setCurrentPage(thePage) {
   url.searchParams.set('page', thePage);
   history.pushState(null, '', url);
 }
-
-/* function getPage(theURL) {
-  console.log(theURL);
-} */
-
-/* const fileExists = (file) =>
-  fetch(file, { method: "HEAD", cache: "no-store" }).then(
-    (response) => response.status == 200
-  ); */
-
-/* function disableAllMenuActives(thePageID) {
-  thePageID = "?page=" + thePageID;
-  var allTag_A = document.getElementsByTagName("a");
-  for (var currentA = 0; currentA < allTag_A.length; currentA++) {
-    if (
-      allTag_A[currentA].getAttribute("href") !== null &&
-      allTag_A[currentA].getAttribute("href") !== undefined
-    ) {
-      if (allTag_A[currentA].classList.contains("active")) {
-        allTag_A[currentA].classList.remove("active");
-      }
-
-      if (allTag_A[currentA].getAttribute("href") == thePageID) {
-        allTag_A[currentA].classList.add("active");
-        console.log("DUINU");
-      }
-    }
-  }
-} */
 
 async function replaceSiteContent(url, error_page) {
   displayPreloading(true);
@@ -590,37 +591,20 @@ function agregarScript() {
     });
 }; */
 
-function debounce(func, timeout = 300) {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      func.apply(this, args);
-    }, timeout);
-  };
-}
-
-var mediaqueryList = window.matchMedia('(min-width: 768px)');
+let mediaqueryList = window.matchMedia('(min-width: 768px)');
 
 function updateScreen() {
   // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-
-  // document.getElementById("debug__text").innerHTML =
-  'Absoulute: ' + screen.width + 'x' + screen.height + '<br>' + 'Available: ' + screen.availWidth + 'x' + screen.availHeight + '<br>';
 
   const parent_site = document.getElementById('site');
   const parent_site_menu = document.getElementById('site__menu');
   const child_menu = document.getElementById('site__menu__links');
 
   if (mediaqueryList.matches) {
-    /* console.log("pantalla => a 768px"); */
     parent_site_menu.append(child_menu);
   } else {
-    /* console.log("pantalla < a 768px"); */
     parent_site.append(child_menu);
   }
-
-  /* console.log("reescalado ahora"); */
 }
 
 window.addEventListener(
@@ -659,18 +643,13 @@ window.addEventListener(
 
 /* let sape = false; */
 
-function displayPreloading(display) {
-  /* console.log("DIOS"); */
-  var theBody = document.getElementById('body');
-
-  if (display === false) {
-    theBody.classList.remove('preloading');
-    /* sape = false; */
+const displayPreloading = (valor) => {
+  if (valor === false) {
+    document.getElementById('body').classList.remove('preloading');
   } else {
-    theBody.classList.add('preloading');
-    /* sape = true; */
+    document.getElementById('body').classList.add('preloading');
   }
-}
+};
 
 /* window.onkeypress = function (event) {
   if (event.keyCode == 48) {
@@ -678,6 +657,8 @@ function displayPreloading(display) {
     displayPreloading(sape);
   }
 }; */
+
+/* ToDo: Esto de abajo es un asco */
 
 function scanImageTracks() {
   var allTag_DIVS = document.getElementsByTagName('div');
@@ -706,44 +687,6 @@ function scanImageTracks() {
   }
 }
 
-window.addEventListener('load', (event) => {
-  /* var linesToAdd = [
-    '<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"/>',
-  ];
-  for (var i = 0; i < linesToAdd.length; i++) {
-    document.head.innerHTML += linesToAdd[i];
-  } */
-  /* const scriptOne = document.createElement("script");
-  scriptOne.type = "text/javascript";
-  scriptOne.src = "scripts/howler.min.js?0.0.8";
-
-  document.head.appendChild(scriptOne);
-
-  const scriptTwo = document.createElement("script");
-  scriptTwo.type = "text/javascript";
-  scriptTwo.src = "scripts/player.js?0.0.6";
-
-   document.head.appendChild(scriptTwo); */
-  /*   setTimeout(() => {
-    displayPreloading();
-  }, 500); */
-  /* setTimeout(() => {
-    scanImageTracks();
-  }, 750); */
-});
-
-// module.js
-/* export function hello() {
-  return "Hello";
-} */
-
-// main.js
-/* import {playSound} from 'player'; // or './module' */
-/* let val = hello(); // val is "Hello"; */
-
-/* window.onbeforeunload = confirmExit;
-function confirmExit() {} */
-
 let meta_stylesheet = [
   'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap',
   'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap',
@@ -752,9 +695,18 @@ let meta_stylesheet = [
   'assets/css/external/uicons-solid-rounded/css/uicons-solid-rounded.css',
 ];
 
-for (link in meta_stylesheet) {
+for (const link in meta_stylesheet) {
   let esIgual = meta_stylesheet[link].split('.')[meta_stylesheet[link].split('.').length - 1];
-  addMetaLink(meta_stylesheet[link] + '?v=0.1.16');
+
+  let stringToAdd;
+  if (meta_stylesheet[link].includes('?')) {
+    stringToAdd = '&';
+  } else {
+    stringToAdd = '?';
+  }
+  /* addMetaLink(`${meta_stylesheet[link]}${stringToAdd}v=${getRandomInt(1, 999999)}`); */
+
+  addMetaLink(`${meta_stylesheet[link]}${meta_stylesheet[link].includes('?') ? '&' : '?'}v=${getRandomInt(1, 999999)}`);
 }
 
 function addMetaLink(url) {
@@ -762,68 +714,4 @@ function addMetaLink(url) {
   linkToAdd.setAttribute('rel', 'stylesheet');
   linkToAdd.href = url;
   document.getElementsByTagName('head')[0].appendChild(linkToAdd);
-}
-
-addMetaScript('https://code.jquery.com/jquery-3.6.0.min.js');
-
-function addMetaScript(url) {
-  let linkToAdd = document.createElement('script');
-  linkToAdd.setAttribute('defer', 'true');
-  linkToAdd.src = url;
-  document.getElementsByTagName('head')[0].appendChild(linkToAdd);
-}
-
-updateScreen();
-
-site.onmouseover = site.onmouseout = handler;
-
-function handler(event) {
-  function str(el) {
-    if (!el) return 'null';
-    return el.className || el.tagName;
-  }
-
-  /* console.log(event.type + ':  ' + 'target=' + str(event.target) + ',  relatedTarget=' + str(event.relatedTarget) + '\n'); */
-  /* console.log('Mouse out: ' + str(event.relatedTarget));
-  console.log('Mouse over: ' + str(event.target)); */
-
-  /* START ICONOS HOVER */
-
-  /* let theIndex = 0;
-
-  if (event.target.className.includes('fi-rr')) {
-
-    while (event.target.classList[theIndex].includes('fi-rr') == false) {
-      theIndex += 1;
-      if (theIndex > 10) {
-        break;
-      }
-    }
-
-    let claseSolid = event.target.classList[theIndex].replace('fi-rr', 'fi-sr');
-
-    event.target.classList.remove(event.target.classList[theIndex]);
-    event.target.classList.add(claseSolid);
-  } else if (event.target.className.includes('fi-sr')) {
-    while (event.target.classList[theIndex].includes('fi-sr') == false) {
-      theIndex += 1;
-      if (theIndex > 10) {
-        break;
-      }
-    }
-
-    let claseRegular = event.target.classList[theIndex].replace('fi-sr', 'fi-rr');
-
-    event.target.classList.remove(event.target.classList[theIndex]);
-    event.target.classList.add(claseRegular);
-  } */
-
-  /* END ICONOS HOVER */
-
-  /* if (event.type == 'mouseover') {
-    event.target.style.background = 'pink';
-  }
-  if (event.type == 'mouseout') {
-    event.target.style.background = '';
-  } */
 }

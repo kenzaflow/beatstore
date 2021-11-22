@@ -55,3 +55,75 @@ function enableORdisableHelp() {
 // ----
 // ----
 // ----
+
+
+
+// ----
+// ----
+// ----
+// COMIENZO ICON HOVER
+// ----
+// ----
+// ----
+
+
+/* site.onmouseover = site.onmouseout = handler; */
+
+//function handler(event) {
+/* function str(el) {
+    if (!el) return 'null';
+    return el.className || el.tagName;
+  } */
+
+/* console.log(event.type + ':  ' + 'target=' + str(event.target) + ',  relatedTarget=' + str(event.relatedTarget) + '\n'); */
+/* console.log('Mouse out: ' + str(event.relatedTarget));
+  console.log('Mouse over: ' + str(event.target)); */
+
+/* START ICONOS HOVER */
+
+/* let theIndex = 0;
+
+  if (event.target.className.includes('fi-rr')) {
+
+    while (event.target.classList[theIndex].includes('fi-rr') == false) {
+      theIndex += 1;
+      if (theIndex > 10) {
+        break;
+      }
+    }
+
+    let claseSolid = event.target.classList[theIndex].replace('fi-rr', 'fi-sr');
+
+    event.target.classList.remove(event.target.classList[theIndex]);
+    event.target.classList.add(claseSolid);
+  } else if (event.target.className.includes('fi-sr')) {
+    while (event.target.classList[theIndex].includes('fi-sr') == false) {
+      theIndex += 1;
+      if (theIndex > 10) {
+        break;
+      }
+    }
+
+    let claseRegular = event.target.classList[theIndex].replace('fi-sr', 'fi-rr');
+
+    event.target.classList.remove(event.target.classList[theIndex]);
+    event.target.classList.add(claseRegular);
+  } */
+
+/* END ICONOS HOVER */
+
+/* if (event.type == 'mouseover') {
+    event.target.style.background = 'pink';
+  }
+  if (event.type == 'mouseout') {
+    event.target.style.background = '';
+  } */
+//}
+
+// ----
+// ----
+// ----
+// FIN ICON HOVER
+// ----
+// ----
+// ----
