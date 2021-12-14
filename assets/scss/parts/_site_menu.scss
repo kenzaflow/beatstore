@@ -172,7 +172,7 @@ $theme-menu-colors: (
     /* color: red; */
   }
 
-  @media (max-width: $screen-width-big - 1) {
+  @media (max-width: ($screen-width-big - 1)) {
     & {
       width: auto;
       position: fixed;
@@ -189,7 +189,7 @@ $theme-menu-colors: (
     }
     &.active {
       transform: scaleY(1);
-      filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.5));
+      /* filter: drop-shadow(0 0.1rem 0.2rem rgba(0, 0, 0, 0.5)); */
     }
     & a:not(a:last-child) {
       border-bottom: 0.1rem solid var(--site-menu-nav-separator-color);

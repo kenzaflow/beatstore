@@ -1,8 +1,7 @@
 @use "sass:math";
 
-@import "colors";
-
-@import "libs/vars";
+@import "themes/colors";
+@import "themes/typography";
 
 //
 //
@@ -128,9 +127,6 @@ $theme-colors: (
 body {
   background-color: var(--site-color-body-background-color);
   color: var(--site-color-body-fonts-color);
-  * {
-    font-family: "Poppins", sans-serif;
-  }
 
   overscroll-behavior-y: none;
   overscroll-behavior-x: none;
@@ -1434,7 +1430,7 @@ body {
   padding: 0 1rem;
   z-index: $z-index__site-player;
   /* overflow: hidden; */
-  transform: translateY(100%);
+  transform: translateY(100%) scaleY(0);
   transform-origin: bottom;
   transition: transform 0.25s cubic-bezier(0.65, 0, 0.35, 1);
   position: fixed;

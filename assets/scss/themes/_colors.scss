@@ -1,12 +1,5 @@
-@mixin light-theme {
-    --text-color: #222;
-    --bkg-color: #fff;
-}
-
-@mixin dark-theme {
-    --text-color: #eee;
-    --bkg-color: #121212;
-}
+@import "light.scss";
+@import "dark.scss";
 
 body {
     @include light-theme();

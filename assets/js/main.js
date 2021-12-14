@@ -122,16 +122,7 @@ function actualizarIconoCarrito() {
 
   let string_cart_element = `<i style="display: inline-block; transform: translateY(2px)" class="fi fi-br-shopping-cart fw"></i><span class="cart_number">${carrito.length}</span>`;
 
-  /* console.log(site_menu.querySelector('#cart_section')); */
   site_menu.querySelector('#cart_section').innerHTML = string_cart_element;
-
-  /* let cart_section = document.createElement('a');
-  cart_section.id = 'cart_section';
-  cart_section.classList.add('link');
-  cart_section.classList.add('cart_section');
-  cart_section.href = '?page=cart';
-  cart_section.innerHTML = string_cart_element;
-  site_menu.appendChild(cart_section); */
 }
 
 actualizarIconoCarrito();
@@ -161,37 +152,8 @@ function playSound(element_clicked_id) {
   }
 }
 
-let cola = [];
-
-let searchCola;
-
-function startSearch() {
-  searchCola = setInterval(function () {
-    if (cola.length > 0) {
-      startElimination(cola[0]);
-    }
-  }, 1000);
-}
-
-function startElimination(block) {
-  clearInterval(searchCola);
-  $(block).fadeOut(function () {
-    sacarBeatDelCarrito(block.getAttribute('data-beat-cart'));
-    cola.shift();
-    if (cola.length == 0) {
-      if (document.getElementById('botoncito') != undefined) {
-        document.getElementById('botoncito').remove();
-      }
-      document.getElementById('cart__subtitle').classList.add('disabled');
-    }
-    updatePage_cart();
-  });
-}
-
 function updatePage_cart() {
   cart_checkout_section = document.getElementById('cart_checkout_section');
-
-  startSearch();
 
   cart_list = document.getElementById('cart__list');
   cart_list.innerHTML = '';
@@ -220,7 +182,10 @@ function updatePage_cart() {
         'click',
         function (e) {
           /* console.log(this.getAttribute('data-beat-cart')); */
-          cola.push(this);
+          /* cola.push(this); */
+          console.log(this);
+          sacarBeatDelCarrito(this.getAttribute('data-beat-cart'));
+          updatePage_cart();
         },
         false
       );
@@ -688,8 +653,6 @@ function scanImageTracks() {
 }
 
 let meta_stylesheet = [
-  'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap',
-  'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap',
   'assets/css/external/uicons-regular-rounded/css/uicons-regular-rounded.css',
   'assets/css/external/uicons-bold-rounded/css/uicons-bold-rounded.css',
   'assets/css/external/uicons-solid-rounded/css/uicons-solid-rounded.css',
@@ -715,3 +678,15 @@ function addMetaLink(url) {
   linkToAdd.href = url;
   document.getElementsByTagName('head')[0].appendChild(linkToAdd);
 }
+
+/* class custom_button extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    this.innerHTML = '<h1>sape</h1>';
+  }
+}
+
+window.customElements.define('custom-button', custom_button); */

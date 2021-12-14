@@ -5,11 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass-compile_normal_old": "sass --watch assets/scss/main.scss assets/css/main.css",
-    "sass-compile_minify_old": "sass --watch assets/scss/main.scss assets/css/main.min.css --style compressed",
-    "sass-compile_normal": "sass --watch assets/scss/main_2.scss assets/css/main_2.css",
-    "sass-compile_minify": "sass --watch assets/scss/main_2.scss assets/css/main_2.min.css --style compressed",
-    "watch-scss": "npm run sass-compile_minify_old"
+    "watch-scss": "sass --watch assets/scss/main.scss assets/css/main.min.css --style compressed"
   },
   "author": "",
   "license": "ISC"
