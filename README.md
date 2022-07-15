@@ -1,5 +1,11 @@
 # beatstore
 
+SPA realizado con JavaScript Vanilla. No se utilizó ningún framework.
+
+Otras tecnologías usadas:
+
+- HTML, SCSS, Howler, UIcons, Font Awesome.
+
 ## Proyecto Front-End de un eCommerce
 
 La idea principal es hacer una página que pueda usar personalmente como CV, mostrar proyectos y vender instrumentales.
