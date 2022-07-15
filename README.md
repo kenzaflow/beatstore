@@ -8,7 +8,7 @@ Otras tecnologías usadas:
 
 ## Proyecto Front-End de un eCommerce
 
-La idea principal es hacer una página que pueda usar personalmente como CV, mostrar proyectos y vender instrumentales.
+Fué mi primer acercamiento de lleno al desarrollo web. Mi idea en ese momento era hacer una página que pueda usar personalmente como mi CV de producción musical; mostrar mis proyectos, vender instrumentales y ofrecer mis servicios.
 
 Se puede ver funcionando en el [GitHub Pages de este repositorio](https://kenzaflow.com/beatstore/).
 
